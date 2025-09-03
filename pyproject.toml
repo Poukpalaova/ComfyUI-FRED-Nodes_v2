@@ -1,7 +1,7 @@
 [project]
-name = "ComfyUI FRED Nodes v2"
-description = "Multiple nodes to be used for more complex workflow."
+name = "comfyui-fred-nodes-v2"
 version = "2.0.0"
+description = "FRED's enhanced custom nodes for ComfyUI"
 readme = "README.md"
 requires-python = ">=3.10"
 license = { file = "LICENSE" }
@@ -15,7 +15,7 @@ dependencies = { file = ["requirements.txt"] }
 Repository = "https://github.com/Poukpalaova/ComfyUI-FRED-Nodes_v2"
 
 [tool.comfy]
-PublisherId = "Poukpalaova"
+PublisherId = "FredBisAI"
 DisplayName = "ComfyUI FRED Nodes v2"
 Icon = "https://raw.githubusercontent.com/Poukpalaova/ComfyUI-FRED-Nodes_v2/main/icon.png"
 Banner = "https://raw.githubusercontent.com/Poukpalaova/ComfyUI-FRED-Nodes_v2/main/banner.png"
