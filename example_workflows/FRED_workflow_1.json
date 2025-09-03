@@ -1,0 +1,3763 @@
+{
+  "id": "ecab9e02-b702-4e78-b2d1-4efd36ea7b81",
+  "revision": 0,
+  "last_node_id": 143,
+  "last_link_id": 273,
+  "nodes": [
+    {
+      "id": 87,
+      "type": "Display Any (rgthree)",
+      "pos": [
+        660,
+        1280
+      ],
+      "size": [
+        210,
+        88
+      ],
+      "flags": {},
+      "order": 35,
+      "mode": 0,
+      "inputs": [
+        {
+          "dir": 3,
+          "name": "source",
+          "type": "*",
+          "link": 146
+        }
+      ],
+      "outputs": [],
+      "title": "Brisque score",
+      "properties": {
+        "cnr_id": "rgthree-comfy",
+        "ver": "f72f39d482c743706482b4d875e3c80dcec2d415",
+        "Node name for S&R": "Display Any (rgthree)",
+        "enableTabs": false,
+        "tabWidth": 65,
+        "tabXOffset": 10,
+        "hasSecondTab": false,
+        "secondTabText": "Send Back",
+        "secondTabOffset": 80,
+        "secondTabWidth": 65,
+        "widget_ue_connectable": {}
+      },
+      "widgets_values": [
+        "88.69"
+      ]
+    },
+    {
+      "id": 88,
+      "type": "Display Any (rgthree)",
+      "pos": [
+        660,
+        1420
+      ],
+      "size": [
+        210,
+        88
+      ],
+      "flags": {},
+      "order": 36,
+      "mode": 0,
+      "inputs": [
+        {
+          "dir": 3,
+          "name": "source",
+          "type": "*",
+          "link": 147
+        }
+      ],
+      "outputs": [],
+      "title": "Blur score",
+      "properties": {
+        "cnr_id": "rgthree-comfy",
+        "ver": "f72f39d482c743706482b4d875e3c80dcec2d415",
+        "Node name for S&R": "Display Any (rgthree)",
+        "enableTabs": false,
+        "tabWidth": 65,
+        "tabXOffset": 10,
+        "hasSecondTab": false,
+        "secondTabText": "Send Back",
+        "secondTabOffset": 80,
+        "secondTabWidth": 65,
+        "widget_ue_connectable": {}
+      },
+      "widgets_values": [
+        "91.84"
+      ]
+    },
+    {
+      "id": 89,
+      "type": "Display Any (rgthree)",
+      "pos": [
+        660,
+        1560
+      ],
+      "size": [
+        210,
+        88
+      ],
+      "flags": {},
+      "order": 37,
+      "mode": 0,
+      "inputs": [
+        {
+          "dir": 3,
+          "name": "source",
+          "type": "*",
+          "link": 148
+        }
+      ],
+      "outputs": [],
+      "title": "SNR score",
+      "properties": {
+        "cnr_id": "rgthree-comfy",
+        "ver": "f72f39d482c743706482b4d875e3c80dcec2d415",
+        "Node name for S&R": "Display Any (rgthree)",
+        "enableTabs": false,
+        "tabWidth": 65,
+        "tabXOffset": 10,
+        "hasSecondTab": false,
+        "secondTabText": "Send Back",
+        "secondTabOffset": 80,
+        "secondTabWidth": 65,
+        "widget_ue_connectable": {}
+      },
+      "widgets_values": [
+        "0.15"
+      ]
+    },
+    {
+      "id": 90,
+      "type": "Display Any (rgthree)",
+      "pos": [
+        660,
+        1700
+      ],
+      "size": [
+        210,
+        88
+      ],
+      "flags": {},
+      "order": 38,
+      "mode": 0,
+      "inputs": [
+        {
+          "dir": 3,
+          "name": "source",
+          "type": "*",
+          "link": 149
+        }
+      ],
+      "outputs": [],
+      "title": "Compression score",
+      "properties": {
+        "cnr_id": "rgthree-comfy",
+        "ver": "f72f39d482c743706482b4d875e3c80dcec2d415",
+        "Node name for S&R": "Display Any (rgthree)",
+        "enableTabs": false,
+        "tabWidth": 65,
+        "tabXOffset": 10,
+        "hasSecondTab": false,
+        "secondTabText": "Send Back",
+        "secondTabOffset": 80,
+        "secondTabWidth": 65,
+        "widget_ue_connectable": {}
+      },
+      "widgets_values": [
+        "6.68"
+      ]
+    },
+    {
+      "id": 54,
+      "type": "Display Any (rgthree)",
+      "pos": [
+        -510,
+        1430
+      ],
+      "size": [
+        210,
+        90
+      ],
+      "flags": {},
+      "order": 44,
+      "mode": 0,
+      "inputs": [
+        {
+          "dir": 3,
+          "name": "source",
+          "type": "*",
+          "link": 158
+        }
+      ],
+      "outputs": [],
+      "title": "Face Pixel Ratio",
+      "properties": {
+        "cnr_id": "rgthree-comfy",
+        "ver": "f72f39d482c743706482b4d875e3c80dcec2d415",
+        "Node name for S&R": "Display Any (rgthree)",
+        "enableTabs": false,
+        "tabWidth": 65,
+        "tabXOffset": 10,
+        "hasSecondTab": false,
+        "secondTabText": "Send Back",
+        "secondTabOffset": 80,
+        "secondTabWidth": 65,
+        "widget_ue_connectable": {}
+      },
+      "widgets_values": [
+        "19.038028265173757"
+      ]
+    },
+    {
+      "id": 57,
+      "type": "Display Any (rgthree)",
+      "pos": [
+        1120,
+        910
+      ],
+      "size": [
+        210,
+        88
+      ],
+      "flags": {},
+      "order": 53,
+      "mode": 0,
+      "inputs": [
+        {
+          "dir": 3,
+          "name": "source",
+          "type": "*",
+          "link": 139
+        }
+      ],
+      "outputs": [],
+      "title": "Output Height",
+      "properties": {
+        "cnr_id": "rgthree-comfy",
+        "ver": "f72f39d482c743706482b4d875e3c80dcec2d415",
+        "Node name for S&R": "Display Any (rgthree)",
+        "enableTabs": false,
+        "tabWidth": 65,
+        "tabXOffset": 10,
+        "hasSecondTab": false,
+        "secondTabText": "Send Back",
+        "secondTabOffset": 80,
+        "secondTabWidth": 65,
+        "widget_ue_connectable": {}
+      },
+      "widgets_values": [
+        "826"
+      ]
+    },
+    {
+      "id": 59,
+      "type": "Display Any (rgthree)",
+      "pos": [
+        1350,
+        770
+      ],
+      "size": [
+        210,
+        88
+      ],
+      "flags": {},
+      "order": 55,
+      "mode": 0,
+      "inputs": [
+        {
+          "dir": 3,
+          "name": "source",
+          "type": "*",
+          "link": 141
+        }
+      ],
+      "outputs": [],
+      "title": "Native Height",
+      "properties": {
+        "cnr_id": "rgthree-comfy",
+        "ver": "f72f39d482c743706482b4d875e3c80dcec2d415",
+        "Node name for S&R": "Display Any (rgthree)",
+        "enableTabs": false,
+        "tabWidth": 65,
+        "tabXOffset": 10,
+        "hasSecondTab": false,
+        "secondTabText": "Send Back",
+        "secondTabOffset": 80,
+        "secondTabWidth": 65,
+        "widget_ue_connectable": {}
+      },
+      "widgets_values": [
+        "832"
+      ]
+    },
+    {
+      "id": 60,
+      "type": "Display Any (rgthree)",
+      "pos": [
+        1350,
+        910
+      ],
+      "size": [
+        210,
+        88
+      ],
+      "flags": {},
+      "order": 56,
+      "mode": 0,
+      "inputs": [
+        {
+          "dir": 3,
+          "name": "source",
+          "type": "*",
+          "link": 142
+        }
+      ],
+      "outputs": [],
+      "title": "SD aspect ratio",
+      "properties": {
+        "cnr_id": "rgthree-comfy",
+        "ver": "f72f39d482c743706482b4d875e3c80dcec2d415",
+        "Node name for S&R": "Display Any (rgthree)",
+        "enableTabs": false,
+        "tabWidth": 65,
+        "tabXOffset": 10,
+        "hasSecondTab": false,
+        "secondTabText": "Send Back",
+        "secondTabOffset": 80,
+        "secondTabWidth": 65,
+        "widget_ue_connectable": {}
+      },
+      "widgets_values": [
+        "3:2 landscape 1216x832"
+      ]
+    },
+    {
+      "id": 56,
+      "type": "Display Any (rgthree)",
+      "pos": [
+        1120,
+        770
+      ],
+      "size": [
+        210,
+        88
+      ],
+      "flags": {},
+      "order": 52,
+      "mode": 0,
+      "inputs": [
+        {
+          "dir": 3,
+          "name": "source",
+          "type": "*",
+          "link": 138
+        }
+      ],
+      "outputs": [],
+      "title": "Output Width",
+      "properties": {
+        "cnr_id": "rgthree-comfy",
+        "ver": "f72f39d482c743706482b4d875e3c80dcec2d415",
+        "Node name for S&R": "Display Any (rgthree)",
+        "enableTabs": false,
+        "tabWidth": 65,
+        "tabXOffset": 10,
+        "hasSecondTab": false,
+        "secondTabText": "Send Back",
+        "secondTabOffset": 80,
+        "secondTabWidth": 65,
+        "widget_ue_connectable": {}
+      },
+      "widgets_values": [
+        "1208"
+      ]
+    },
+    {
+      "id": 102,
+      "type": "Display Any (rgthree)",
+      "pos": [
+        1240,
+        1880
+      ],
+      "size": [
+        210,
+        88
+      ],
+      "flags": {},
+      "order": 30,
+      "mode": 0,
+      "inputs": [
+        {
+          "dir": 3,
+          "name": "source",
+          "type": "*",
+          "link": 201
+        }
+      ],
+      "outputs": [],
+      "title": "seed",
+      "properties": {
+        "cnr_id": "rgthree-comfy",
+        "ver": "f72f39d482c743706482b4d875e3c80dcec2d415",
+        "Node name for S&R": "Display Any (rgthree)",
+        "enableTabs": false,
+        "tabWidth": 65,
+        "tabXOffset": 10,
+        "hasSecondTab": false,
+        "secondTabText": "Send Back",
+        "secondTabOffset": 80,
+        "secondTabWidth": 65,
+        "widget_ue_connectable": {}
+      },
+      "widgets_values": [
+        "417461732829852"
+      ]
+    },
+    {
+      "id": 101,
+      "type": "Display Any (rgthree)",
+      "pos": [
+        1240,
+        1740
+      ],
+      "size": [
+        210,
+        88
+      ],
+      "flags": {},
+      "order": 29,
+      "mode": 0,
+      "inputs": [
+        {
+          "dir": 3,
+          "name": "source",
+          "type": "*",
+          "link": 200
+        }
+      ],
+      "outputs": [],
+      "title": "steps",
+      "properties": {
+        "cnr_id": "rgthree-comfy",
+        "ver": "f72f39d482c743706482b4d875e3c80dcec2d415",
+        "Node name for S&R": "Display Any (rgthree)",
+        "enableTabs": false,
+        "tabWidth": 65,
+        "tabXOffset": 10,
+        "hasSecondTab": false,
+        "secondTabText": "Send Back",
+        "secondTabOffset": 80,
+        "secondTabWidth": 65,
+        "widget_ue_connectable": {}
+      },
+      "widgets_values": [
+        "117"
+      ]
+    },
+    {
+      "id": 104,
+      "type": "Display Any (rgthree)",
+      "pos": [
+        1240,
+        1460
+      ],
+      "size": [
+        210,
+        88
+      ],
+      "flags": {},
+      "order": 27,
+      "mode": 0,
+      "inputs": [
+        {
+          "dir": 3,
+          "name": "source",
+          "type": "*",
+          "link": 198
+        }
+      ],
+      "outputs": [],
+      "title": "denoise",
+      "properties": {
+        "cnr_id": "rgthree-comfy",
+        "ver": "f72f39d482c743706482b4d875e3c80dcec2d415",
+        "Node name for S&R": "Display Any (rgthree)",
+        "enableTabs": false,
+        "tabWidth": 65,
+        "tabXOffset": 10,
+        "hasSecondTab": false,
+        "secondTabText": "Send Back",
+        "secondTabOffset": 80,
+        "secondTabWidth": 65,
+        "widget_ue_connectable": {}
+      },
+      "widgets_values": [
+        "0.6"
+      ]
+    },
+    {
+      "id": 99,
+      "type": "Display Any (rgthree)",
+      "pos": [
+        1240,
+        1600
+      ],
+      "size": [
+        210,
+        88
+      ],
+      "flags": {},
+      "order": 28,
+      "mode": 0,
+      "inputs": [
+        {
+          "dir": 3,
+          "name": "source",
+          "type": "*",
+          "link": 199
+        }
+      ],
+      "outputs": [],
+      "title": "guidance",
+      "properties": {
+        "cnr_id": "rgthree-comfy",
+        "ver": "f72f39d482c743706482b4d875e3c80dcec2d415",
+        "Node name for S&R": "Display Any (rgthree)",
+        "enableTabs": false,
+        "tabWidth": 65,
+        "tabXOffset": 10,
+        "hasSecondTab": false,
+        "secondTabText": "Send Back",
+        "secondTabOffset": 80,
+        "secondTabWidth": 65,
+        "widget_ue_connectable": {}
+      },
+      "widgets_values": [
+        "2.2"
+      ]
+    },
+    {
+      "id": 112,
+      "type": "CheckpointLoaderSimple",
+      "pos": [
+        910,
+        1290
+      ],
+      "size": [
+        310,
+        98
+      ],
+      "flags": {
+        "collapsed": true
+      },
+      "order": 0,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "MODEL",
+          "type": "MODEL",
+          "links": [
+            196
+          ]
+        },
+        {
+          "name": "CLIP",
+          "type": "CLIP",
+          "links": null
+        },
+        {
+          "name": "VAE",
+          "type": "VAE",
+          "links": null
+        }
+      ],
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.3.55",
+        "Node name for S&R": "CheckpointLoaderSimple"
+      },
+      "widgets_values": [
+        "Deliberate_v2.safetensors"
+      ]
+    },
+    {
+      "id": 44,
+      "type": "Display Any (rgthree)",
+      "pos": [
+        -430,
+        110
+      ],
+      "size": [
+        210,
+        88
+      ],
+      "flags": {},
+      "order": 10,
+      "mode": 0,
+      "inputs": [
+        {
+          "dir": 3,
+          "name": "source",
+          "type": "*",
+          "link": 253
+        }
+      ],
+      "outputs": [],
+      "title": "Width",
+      "properties": {
+        "cnr_id": "rgthree-comfy",
+        "ver": "f72f39d482c743706482b4d875e3c80dcec2d415",
+        "Node name for S&R": "Display Any (rgthree)",
+        "enableTabs": false,
+        "tabWidth": 65,
+        "tabXOffset": 10,
+        "hasSecondTab": false,
+        "secondTabText": "Send Back",
+        "secondTabOffset": 80,
+        "secondTabWidth": 65,
+        "widget_ue_connectable": {}
+      },
+      "widgets_values": [
+        "1208"
+      ]
+    },
+    {
+      "id": 129,
+      "type": "Display Any (rgthree)",
+      "pos": [
+        -430,
+        -30
+      ],
+      "size": [
+        210,
+        88
+      ],
+      "flags": {},
+      "order": 9,
+      "mode": 0,
+      "inputs": [
+        {
+          "dir": 3,
+          "name": "source",
+          "type": "*",
+          "link": 252
+        }
+      ],
+      "outputs": [],
+      "title": "image_size_kb",
+      "properties": {
+        "cnr_id": "rgthree-comfy",
+        "ver": "f72f39d482c743706482b4d875e3c80dcec2d415",
+        "Node name for S&R": "Display Any (rgthree)",
+        "enableTabs": false,
+        "tabWidth": 65,
+        "tabXOffset": 10,
+        "hasSecondTab": false,
+        "secondTabText": "Send Back",
+        "secondTabOffset": 80,
+        "secondTabWidth": 65,
+        "widget_ue_connectable": {}
+      },
+      "widgets_values": [
+        "4000.24609375"
+      ]
+    },
+    {
+      "id": 96,
+      "type": "Display Any (rgthree)",
+      "pos": [
+        -510,
+        1290
+      ],
+      "size": [
+        210,
+        90
+      ],
+      "flags": {},
+      "order": 42,
+      "mode": 0,
+      "inputs": [
+        {
+          "dir": 3,
+          "name": "source",
+          "type": "*",
+          "link": 161
+        }
+      ],
+      "outputs": [],
+      "title": "bbox",
+      "properties": {
+        "cnr_id": "rgthree-comfy",
+        "ver": "f72f39d482c743706482b4d875e3c80dcec2d415",
+        "Node name for S&R": "Display Any (rgthree)",
+        "enableTabs": false,
+        "tabWidth": 65,
+        "tabXOffset": 10,
+        "hasSecondTab": false,
+        "secondTabText": "Send Back",
+        "secondTabOffset": 80,
+        "secondTabWidth": 65,
+        "widget_ue_connectable": {}
+      },
+      "widgets_values": [
+        "[   5    0 1160 1552]"
+      ]
+    },
+    {
+      "id": 65,
+      "type": "Display Any (rgthree)",
+      "pos": [
+        -510,
+        1570
+      ],
+      "size": [
+        210.30624389648438,
+        90
+      ],
+      "flags": {},
+      "order": 45,
+      "mode": 0,
+      "inputs": [
+        {
+          "dir": 3,
+          "name": "source",
+          "type": "*",
+          "link": 159
+        }
+      ],
+      "outputs": [],
+      "title": "Face Pixel Ratio_w_margin",
+      "properties": {
+        "cnr_id": "rgthree-comfy",
+        "ver": "f72f39d482c743706482b4d875e3c80dcec2d415",
+        "Node name for S&R": "Display Any (rgthree)",
+        "enableTabs": false,
+        "tabWidth": 65,
+        "tabXOffset": 10,
+        "hasSecondTab": false,
+        "secondTabText": "Send Back",
+        "secondTabOffset": 80,
+        "secondTabWidth": 65,
+        "widget_ue_connectable": {}
+      },
+      "widgets_values": [
+        "96.02649006622516"
+      ]
+    },
+    {
+      "id": 113,
+      "type": "Display Any (rgthree)",
+      "pos": [
+        1240,
+        2020
+      ],
+      "size": [
+        210,
+        88
+      ],
+      "flags": {},
+      "order": 33,
+      "mode": 0,
+      "inputs": [
+        {
+          "dir": 3,
+          "name": "source",
+          "type": "*",
+          "link": 204
+        }
+      ],
+      "outputs": [],
+      "title": "model name",
+      "properties": {
+        "cnr_id": "rgthree-comfy",
+        "ver": "f72f39d482c743706482b4d875e3c80dcec2d415",
+        "Node name for S&R": "Display Any (rgthree)",
+        "enableTabs": false,
+        "tabWidth": 65,
+        "tabXOffset": 10,
+        "hasSecondTab": false,
+        "secondTabText": "Send Back",
+        "secondTabOffset": 80,
+        "secondTabWidth": 65,
+        "widget_ue_connectable": {}
+      },
+      "widgets_values": [
+        "Deliberate_v2"
+      ]
+    },
+    {
+      "id": 105,
+      "type": "Display Any (rgthree)",
+      "pos": [
+        910,
+        2020
+      ],
+      "size": [
+        310,
+        88
+      ],
+      "flags": {},
+      "order": 32,
+      "mode": 0,
+      "inputs": [
+        {
+          "dir": 3,
+          "name": "source",
+          "type": "*",
+          "link": 203
+        }
+      ],
+      "outputs": [],
+      "title": "scheduler name",
+      "properties": {
+        "cnr_id": "rgthree-comfy",
+        "ver": "f72f39d482c743706482b4d875e3c80dcec2d415",
+        "Node name for S&R": "Display Any (rgthree)",
+        "enableTabs": false,
+        "tabWidth": 65,
+        "tabXOffset": 10,
+        "hasSecondTab": false,
+        "secondTabText": "Send Back",
+        "secondTabOffset": 80,
+        "secondTabWidth": 65,
+        "widget_ue_connectable": {}
+      },
+      "widgets_values": [
+        "simple"
+      ]
+    },
+    {
+      "id": 100,
+      "type": "Display Any (rgthree)",
+      "pos": [
+        1240,
+        1320
+      ],
+      "size": [
+        210,
+        90
+      ],
+      "flags": {},
+      "order": 26,
+      "mode": 0,
+      "inputs": [
+        {
+          "dir": 3,
+          "name": "source",
+          "type": "*",
+          "link": 197
+        }
+      ],
+      "outputs": [],
+      "title": "scale",
+      "properties": {
+        "cnr_id": "rgthree-comfy",
+        "ver": "f72f39d482c743706482b4d875e3c80dcec2d415",
+        "Node name for S&R": "Display Any (rgthree)",
+        "enableTabs": false,
+        "tabWidth": 65,
+        "tabXOffset": 10,
+        "hasSecondTab": false,
+        "secondTabText": "Send Back",
+        "secondTabOffset": 80,
+        "secondTabWidth": 65,
+        "widget_ue_connectable": {}
+      },
+      "widgets_values": [
+        "1.4"
+      ]
+    },
+    {
+      "id": 103,
+      "type": "Display Any (rgthree)",
+      "pos": [
+        910,
+        1880
+      ],
+      "size": [
+        310,
+        88
+      ],
+      "flags": {},
+      "order": 31,
+      "mode": 0,
+      "inputs": [
+        {
+          "dir": 3,
+          "name": "source",
+          "type": "*",
+          "link": 202
+        }
+      ],
+      "outputs": [],
+      "title": "sampler name",
+      "properties": {
+        "cnr_id": "rgthree-comfy",
+        "ver": "f72f39d482c743706482b4d875e3c80dcec2d415",
+        "Node name for S&R": "Display Any (rgthree)",
+        "enableTabs": false,
+        "tabWidth": 65,
+        "tabXOffset": 10,
+        "hasSecondTab": false,
+        "secondTabText": "Send Back",
+        "secondTabOffset": 80,
+        "secondTabWidth": 65,
+        "widget_ue_connectable": {}
+      },
+      "widgets_values": [
+        "euler"
+      ]
+    },
+    {
+      "id": 85,
+      "type": "ShowText|pysssss",
+      "pos": [
+        2200,
+        140
+      ],
+      "size": [
+        380,
+        400
+      ],
+      "flags": {},
+      "order": 58,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "text",
+          "type": "STRING",
+          "link": 145
+        }
+      ],
+      "outputs": [
+        {
+          "name": "STRING",
+          "shape": 6,
+          "type": "STRING",
+          "links": null
+        }
+      ],
+      "properties": {
+        "cnr_id": "comfyui-custom-scripts",
+        "ver": "f2838ed5e59de4d73cde5c98354b87a8d3200190",
+        "Node name for S&R": "ShowText|pysssss"
+      },
+      "widgets_values": [
+        "<?xpacket begin='' id='W5M0MpCehiHzreSzNTczkc9d'?>\n<x:xmpmeta xmlns:x='adobe:ns:meta/'>\n  <rdf:RDF xmlns:rdf='http://www.w3.org/1999/02/22-rdf-syntax-ns#'>\n    <rdf:Description xmlns:dc='http://purl.org/dc/elements/1.1/'>\n      <dc:subject>\n        <rdf:Bag>\n          <rdf:li>Breathtaking photography of a 20 year old man</rdf:li>\n        </rdf:Bag>\n      </dc:subject>\n    </rdf:Description>\n  </rdf:RDF>\n</x:xmpmeta>\n<?xpacket end='w'?>"
+      ]
+    },
+    {
+      "id": 45,
+      "type": "Display Any (rgthree)",
+      "pos": [
+        -430,
+        250
+      ],
+      "size": [
+        210,
+        88
+      ],
+      "flags": {},
+      "order": 11,
+      "mode": 0,
+      "inputs": [
+        {
+          "dir": 3,
+          "name": "source",
+          "type": "*",
+          "link": 254
+        }
+      ],
+      "outputs": [],
+      "title": "Height",
+      "properties": {
+        "cnr_id": "rgthree-comfy",
+        "ver": "f72f39d482c743706482b4d875e3c80dcec2d415",
+        "Node name for S&R": "Display Any (rgthree)",
+        "enableTabs": false,
+        "tabWidth": 65,
+        "tabXOffset": 10,
+        "hasSecondTab": false,
+        "secondTabText": "Send Back",
+        "secondTabOffset": 80,
+        "secondTabWidth": 65,
+        "widget_ue_connectable": {}
+      },
+      "widgets_values": [
+        "1552"
+      ]
+    },
+    {
+      "id": 46,
+      "type": "Display Any (rgthree)",
+      "pos": [
+        -430,
+        390
+      ],
+      "size": [
+        210,
+        88
+      ],
+      "flags": {},
+      "order": 12,
+      "mode": 0,
+      "inputs": [
+        {
+          "dir": 3,
+          "name": "source",
+          "type": "*",
+          "link": 255
+        }
+      ],
+      "outputs": [],
+      "title": "Index",
+      "properties": {
+        "cnr_id": "rgthree-comfy",
+        "ver": "f72f39d482c743706482b4d875e3c80dcec2d415",
+        "Node name for S&R": "Display Any (rgthree)",
+        "enableTabs": false,
+        "tabWidth": 65,
+        "tabXOffset": 10,
+        "hasSecondTab": false,
+        "secondTabText": "Send Back",
+        "secondTabOffset": 80,
+        "secondTabWidth": 65,
+        "widget_ue_connectable": {}
+      },
+      "widgets_values": [
+        "0"
+      ]
+    },
+    {
+      "id": 47,
+      "type": "Display Any (rgthree)",
+      "pos": [
+        -430,
+        530
+      ],
+      "size": [
+        210,
+        88
+      ],
+      "flags": {},
+      "order": 13,
+      "mode": 0,
+      "inputs": [
+        {
+          "dir": 3,
+          "name": "source",
+          "type": "*",
+          "link": 256
+        }
+      ],
+      "outputs": [],
+      "title": "Total img QTY",
+      "properties": {
+        "cnr_id": "rgthree-comfy",
+        "ver": "f72f39d482c743706482b4d875e3c80dcec2d415",
+        "Node name for S&R": "Display Any (rgthree)",
+        "enableTabs": false,
+        "tabWidth": 65,
+        "tabXOffset": 10,
+        "hasSecondTab": false,
+        "secondTabText": "Send Back",
+        "secondTabOffset": 80,
+        "secondTabWidth": 65,
+        "widget_ue_connectable": {}
+      },
+      "widgets_values": [
+        "1"
+      ]
+    },
+    {
+      "id": 48,
+      "type": "Display Any (rgthree)",
+      "pos": [
+        -430,
+        670
+      ],
+      "size": [
+        210,
+        88
+      ],
+      "flags": {},
+      "order": 14,
+      "mode": 0,
+      "inputs": [
+        {
+          "dir": 3,
+          "name": "source",
+          "type": "*",
+          "link": 257
+        }
+      ],
+      "outputs": [],
+      "title": "Img QTY current folder",
+      "properties": {
+        "cnr_id": "rgthree-comfy",
+        "ver": "f72f39d482c743706482b4d875e3c80dcec2d415",
+        "Node name for S&R": "Display Any (rgthree)",
+        "enableTabs": false,
+        "tabWidth": 65,
+        "tabXOffset": 10,
+        "hasSecondTab": false,
+        "secondTabText": "Send Back",
+        "secondTabOffset": 80,
+        "secondTabWidth": 65,
+        "widget_ue_connectable": {}
+      },
+      "widgets_values": [
+        "1"
+      ]
+    },
+    {
+      "id": 50,
+      "type": "Display Any (rgthree)",
+      "pos": [
+        -430,
+        810
+      ],
+      "size": [
+        210,
+        88
+      ],
+      "flags": {},
+      "order": 15,
+      "mode": 0,
+      "inputs": [
+        {
+          "dir": 3,
+          "name": "source",
+          "type": "*",
+          "link": 258
+        }
+      ],
+      "outputs": [],
+      "title": "Folder Path",
+      "properties": {
+        "cnr_id": "rgthree-comfy",
+        "ver": "f72f39d482c743706482b4d875e3c80dcec2d415",
+        "Node name for S&R": "Display Any (rgthree)",
+        "enableTabs": false,
+        "tabWidth": 65,
+        "tabXOffset": 10,
+        "hasSecondTab": false,
+        "secondTabText": "Send Back",
+        "secondTabOffset": 80,
+        "secondTabWidth": 65,
+        "widget_ue_connectable": {}
+      },
+      "widgets_values": [
+        "H:\\AIgenerated\\StableDiffusion\\ComfyUI_TEST\\input"
+      ]
+    },
+    {
+      "id": 51,
+      "type": "Display Any (rgthree)",
+      "pos": [
+        -430,
+        950
+      ],
+      "size": [
+        210,
+        88
+      ],
+      "flags": {},
+      "order": 16,
+      "mode": 0,
+      "inputs": [
+        {
+          "dir": 3,
+          "name": "source",
+          "type": "*",
+          "link": 259
+        }
+      ],
+      "outputs": [],
+      "title": "Full Folder Path",
+      "properties": {
+        "cnr_id": "rgthree-comfy",
+        "ver": "f72f39d482c743706482b4d875e3c80dcec2d415",
+        "Node name for S&R": "Display Any (rgthree)",
+        "enableTabs": false,
+        "tabWidth": 65,
+        "tabXOffset": 10,
+        "hasSecondTab": false,
+        "secondTabText": "Send Back",
+        "secondTabOffset": 80,
+        "secondTabWidth": 65,
+        "widget_ue_connectable": {}
+      },
+      "widgets_values": [
+        "H:\\AIgenerated\\StableDiffusion\\ComfyUI_TEST\\input"
+      ]
+    },
+    {
+      "id": 52,
+      "type": "Display Any (rgthree)",
+      "pos": [
+        -430,
+        1090
+      ],
+      "size": [
+        210,
+        88
+      ],
+      "flags": {},
+      "order": 17,
+      "mode": 0,
+      "inputs": [
+        {
+          "dir": 3,
+          "name": "source",
+          "type": "*",
+          "link": 260
+        }
+      ],
+      "outputs": [],
+      "title": "Filename Text",
+      "properties": {
+        "cnr_id": "rgthree-comfy",
+        "ver": "f72f39d482c743706482b4d875e3c80dcec2d415",
+        "Node name for S&R": "Display Any (rgthree)",
+        "enableTabs": false,
+        "tabWidth": 65,
+        "tabXOffset": 10,
+        "hasSecondTab": false,
+        "secondTabText": "Send Back",
+        "secondTabOffset": 80,
+        "secondTabWidth": 65,
+        "widget_ue_connectable": {}
+      },
+      "widgets_values": [
+        "AlexisBledel_flux_lora_v1_2025-06-11_0_82"
+      ]
+    },
+    {
+      "id": 72,
+      "type": "Display Any (rgthree)",
+      "pos": [
+        -210,
+        560
+      ],
+      "size": [
+        660,
+        200
+      ],
+      "flags": {},
+      "order": 19,
+      "mode": 0,
+      "inputs": [
+        {
+          "dir": 3,
+          "name": "source",
+          "type": "*",
+          "link": 264
+        }
+      ],
+      "outputs": [],
+      "title": "Positive prompt",
+      "properties": {
+        "cnr_id": "rgthree-comfy",
+        "ver": "f72f39d482c743706482b4d875e3c80dcec2d415",
+        "Node name for S&R": "Display Any (rgthree)",
+        "enableTabs": false,
+        "tabWidth": 65,
+        "tabXOffset": 10,
+        "hasSecondTab": false,
+        "secondTabText": "Send Back",
+        "secondTabOffset": 80,
+        "secondTabWidth": 65,
+        "widget_ue_connectable": {}
+      },
+      "widgets_values": [
+        "beautiful young skinny ohwx woman with detailed eyes with iris pattern showing her sexy slim body. her ultra narrow waist showing that she is underweight with skin on bones but still have very large breasts. sexy woman"
+      ]
+    },
+    {
+      "id": 73,
+      "type": "Display Any (rgthree)",
+      "pos": [
+        -210,
+        810
+      ],
+      "size": [
+        660,
+        90
+      ],
+      "flags": {},
+      "order": 20,
+      "mode": 0,
+      "inputs": [
+        {
+          "dir": 3,
+          "name": "source",
+          "type": "*",
+          "link": 265
+        }
+      ],
+      "outputs": [],
+      "title": "Negative prompt",
+      "properties": {
+        "cnr_id": "rgthree-comfy",
+        "ver": "f72f39d482c743706482b4d875e3c80dcec2d415",
+        "Node name for S&R": "Display Any (rgthree)",
+        "enableTabs": false,
+        "tabWidth": 65,
+        "tabXOffset": 10,
+        "hasSecondTab": false,
+        "secondTabText": "Send Back",
+        "secondTabOffset": 80,
+        "secondTabWidth": 65,
+        "widget_ue_connectable": {}
+      },
+      "widgets_values": [
+        "AlexisBledel_flux_lora_v1"
+      ]
+    },
+    {
+      "id": 75,
+      "type": "Display Any (rgthree)",
+      "pos": [
+        -210,
+        950
+      ],
+      "size": [
+        660,
+        90
+      ],
+      "flags": {},
+      "order": 21,
+      "mode": 0,
+      "inputs": [
+        {
+          "dir": 3,
+          "name": "source",
+          "type": "*",
+          "link": 266
+        }
+      ],
+      "outputs": [],
+      "title": "Generation Parameters",
+      "properties": {
+        "cnr_id": "rgthree-comfy",
+        "ver": "f72f39d482c743706482b4d875e3c80dcec2d415",
+        "Node name for S&R": "Display Any (rgthree)",
+        "enableTabs": false,
+        "tabWidth": 65,
+        "tabXOffset": 10,
+        "hasSecondTab": false,
+        "secondTabText": "Send Back",
+        "secondTabOffset": 80,
+        "secondTabWidth": 65,
+        "widget_ue_connectable": {}
+      },
+      "widgets_values": [
+        "Steps: 10, Sampler: Euler, CFG scale: 2.7, Seed: 111, Size: 1208x1552, Clip skip: 2, Model hash: 8e91b68084, Model: flux1-dev-fp8, Hashes: {\"model\": \"8e91b68084\"}, Version: ComfyUI"
+      ]
+    },
+    {
+      "id": 71,
+      "type": "Display Any (rgthree)",
+      "pos": [
+        -210,
+        1090
+      ],
+      "size": [
+        660,
+        90
+      ],
+      "flags": {},
+      "order": 18,
+      "mode": 0,
+      "inputs": [
+        {
+          "dir": 3,
+          "name": "source",
+          "type": "*",
+          "link": 262
+        }
+      ],
+      "outputs": [],
+      "title": "Skipped report",
+      "properties": {
+        "cnr_id": "rgthree-comfy",
+        "ver": "f72f39d482c743706482b4d875e3c80dcec2d415",
+        "Node name for S&R": "Display Any (rgthree)",
+        "enableTabs": false,
+        "tabWidth": 65,
+        "tabXOffset": 10,
+        "hasSecondTab": false,
+        "secondTabText": "Send Back",
+        "secondTabOffset": 80,
+        "secondTabWidth": 65,
+        "widget_ue_connectable": {}
+      },
+      "widgets_values": [
+        "None"
+      ]
+    },
+    {
+      "id": 139,
+      "type": "PreviewImage",
+      "pos": [
+        -290,
+        1290
+      ],
+      "size": [
+        320,
+        410
+      ],
+      "flags": {},
+      "order": 41,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "images",
+          "type": "IMAGE",
+          "link": 268
+        }
+      ],
+      "outputs": [],
+      "title": "Face Image",
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.3.38",
+        "Node name for S&R": "PreviewImage",
+        "enableTabs": false,
+        "tabWidth": 65,
+        "tabXOffset": 10,
+        "hasSecondTab": false,
+        "secondTabText": "Send Back",
+        "secondTabOffset": 80,
+        "secondTabWidth": 65,
+        "widget_ue_connectable": {}
+      },
+      "widgets_values": []
+    },
+    {
+      "id": 38,
+      "type": "PreviewImage",
+      "pos": [
+        -290,
+        1750
+      ],
+      "size": [
+        320,
+        410
+      ],
+      "flags": {},
+      "order": 40,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "images",
+          "type": "IMAGE",
+          "link": 156
+        }
+      ],
+      "outputs": [],
+      "title": "Face Image",
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.3.38",
+        "Node name for S&R": "PreviewImage",
+        "enableTabs": false,
+        "tabWidth": 65,
+        "tabXOffset": 10,
+        "hasSecondTab": false,
+        "secondTabText": "Send Back",
+        "secondTabOffset": 80,
+        "secondTabWidth": 65,
+        "widget_ue_connectable": {}
+      },
+      "widgets_values": []
+    },
+    {
+      "id": 122,
+      "type": "FRED_Simplified_Parameters_Panel",
+      "pos": [
+        910,
+        1320
+      ],
+      "size": [
+        310,
+        510
+      ],
+      "flags": {},
+      "order": 4,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "model",
+          "type": "MODEL",
+          "link": 196
+        }
+      ],
+      "outputs": [
+        {
+          "name": "scale",
+          "type": "FLOAT",
+          "links": [
+            197
+          ]
+        },
+        {
+          "name": "denoise",
+          "type": "FLOAT",
+          "links": [
+            198
+          ]
+        },
+        {
+          "name": "guidance",
+          "type": "FLOAT",
+          "links": [
+            199
+          ]
+        },
+        {
+          "name": "steps",
+          "type": "INT",
+          "links": [
+            200
+          ]
+        },
+        {
+          "name": "noise",
+          "type": "NOISE",
+          "links": null
+        },
+        {
+          "name": "seed",
+          "type": "INT",
+          "links": [
+            201
+          ]
+        },
+        {
+          "name": "sampler",
+          "type": "SAMPLER",
+          "links": null
+        },
+        {
+          "name": "sampler_name",
+          "type": "STRING",
+          "links": [
+            202
+          ]
+        },
+        {
+          "name": "sigmas",
+          "type": "SIGMAS",
+          "links": null
+        },
+        {
+          "name": "scheduler_name",
+          "type": "STRING",
+          "links": [
+            203
+          ]
+        },
+        {
+          "name": "model_name",
+          "type": "STRING",
+          "links": [
+            204
+          ]
+        },
+        {
+          "name": "help",
+          "type": "STRING",
+          "links": [
+            272
+          ]
+        }
+      ],
+      "properties": {
+        "aux_id": "Poukpalaova/ComfyUI-FRED-Nodes",
+        "ver": "cea12830a7bffb94c073581f003419ed075a5fe3",
+        "Node name for S&R": "FRED_Simplified_Parameters_Panel"
+      },
+      "widgets_values": [
+        1.4,
+        0.6,
+        2.2,
+        117,
+        "fixed",
+        417461732829852,
+        "fixed",
+        "euler",
+        "simple",
+        ""
+      ],
+      "color": "#323",
+      "bgcolor": "#535"
+    },
+    {
+      "id": 80,
+      "type": "FRED_ImageQualityInspector",
+      "pos": [
+        70,
+        1280
+      ],
+      "size": [
+        570,
+        138
+      ],
+      "flags": {},
+      "order": 5,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "image",
+          "type": "IMAGE",
+          "link": 246
+        },
+        {
+          "name": "mask",
+          "shape": 7,
+          "type": "MASK",
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "name": "BRISQUE",
+          "type": "FLOAT",
+          "links": [
+            146
+          ]
+        },
+        {
+          "name": "BLUR",
+          "type": "FLOAT",
+          "links": [
+            147
+          ]
+        },
+        {
+          "name": "SNR",
+          "type": "FLOAT",
+          "links": [
+            148
+          ]
+        },
+        {
+          "name": "COMPRESSION_RATIO",
+          "type": "FLOAT",
+          "links": [
+            149
+          ]
+        },
+        {
+          "name": "help",
+          "type": "STRING",
+          "links": [
+            191
+          ]
+        }
+      ],
+      "properties": {
+        "aux_id": "Poukpalaova/ComfyUI-FRED-Nodes",
+        "ver": "cea12830a7bffb94c073581f003419ed075a5fe3",
+        "Node name for S&R": "FRED_ImageQualityInspector"
+      },
+      "widgets_values": [
+        true
+      ],
+      "color": "#332922",
+      "bgcolor": "#593930"
+    },
+    {
+      "id": 95,
+      "type": "FRED_CropFace",
+      "pos": [
+        -840,
+        1290
+      ],
+      "size": [
+        320,
+        370
+      ],
+      "flags": {},
+      "order": 6,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "image",
+          "type": "IMAGE",
+          "link": 248
+        }
+      ],
+      "outputs": [
+        {
+          "name": "face_image",
+          "type": "IMAGE",
+          "links": [
+            156
+          ]
+        },
+        {
+          "name": "preview",
+          "type": "IMAGE",
+          "links": [
+            268
+          ]
+        },
+        {
+          "name": "bbox",
+          "type": "BBOX",
+          "links": [
+            161,
+            270
+          ]
+        },
+        {
+          "name": "face_pixel_ratio",
+          "type": "FLOAT",
+          "links": [
+            158
+          ]
+        },
+        {
+          "name": "face_w_margin_pixel_ratio",
+          "type": "FLOAT",
+          "links": [
+            159
+          ]
+        },
+        {
+          "name": "help",
+          "type": "STRING",
+          "links": [
+            160
+          ]
+        }
+      ],
+      "properties": {
+        "aux_id": "Poukpalaova/ComfyUI-FRED-Nodes",
+        "ver": "cea12830a7bffb94c073581f003419ed075a5fe3",
+        "Node name for S&R": "FRED_CropFace"
+      },
+      "widgets_values": [
+        0.8,
+        0.6,
+        0.6,
+        0.4,
+        1,
+        0,
+        1536
+      ],
+      "color": "#223",
+      "bgcolor": "#335"
+    },
+    {
+      "id": 62,
+      "type": "Display Any (rgthree)",
+      "pos": [
+        -840,
+        1710
+      ],
+      "size": [
+        540,
+        450
+      ],
+      "flags": {},
+      "order": 46,
+      "mode": 0,
+      "inputs": [
+        {
+          "dir": 3,
+          "name": "source",
+          "type": "*",
+          "link": 160
+        }
+      ],
+      "outputs": [],
+      "title": "👑 FRED_CropFace: Read Me",
+      "properties": {
+        "cnr_id": "rgthree-comfy",
+        "ver": "f72f39d482c743706482b4d875e3c80dcec2d415",
+        "Node name for S&R": "Display Any (rgthree)",
+        "enableTabs": false,
+        "tabWidth": 65,
+        "tabXOffset": 10,
+        "hasSecondTab": false,
+        "secondTabText": "Send Back",
+        "secondTabOffset": 80,
+        "secondTabWidth": 65,
+        "widget_ue_connectable": {}
+      },
+      "widgets_values": [
+        "\n👑 FRED_CropFace\n\n🔹 PURPOSE:\nDetect faces using RetinaFace (via facexlib) and crop one of them with customizable margins.\nUseful for isolating faces while keeping context.\n\n📥 INPUTS:\n- image • input image (IMAGE)\n- confidence • detection confidence threshold (default 0.8)\n- left_margin_factor / right_margin_factor / top_margin_factor / bottom_margin_factor\n  • expand bounding box by proportional margins\n- face_id • which detected face to crop (sorted left→right, default 0)\n- max_size • resize image before detection for performance (default 1536)\n\n⚙️ KEY OPTIONS:\n- If no face detected → returns original image and empty bbox\n- Margins are applied relative to detected face size and clamped to image bounds\n- Face detection weights are stored under `<models>/facexlib` and downloaded on first run\n- Works with either pip-installed facexlib or bundled version in `thirdparty/facexlib`\n\n📤 OUTPUTS:\n- face_image • cropped face (IMAGE)\n- preview • original image with detection + margin overlay (IMAGE)\n- bbox • bounding box (x,y,w,h) as array\n- face_pixel_ratio • % of total pixels occupied by the detected face\n- face_w_margin_pixel_ratio • % including applied margins\n"
+      ],
+      "color": "#222",
+      "bgcolor": "#000"
+    },
+    {
+      "id": 138,
+      "type": "FRED_ImageLoad",
+      "pos": [
+        -840,
+        -30
+      ],
+      "size": [
+        400,
+        1210
+      ],
+      "flags": {},
+      "order": 1,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "image",
+          "type": "IMAGE",
+          "links": [
+            245,
+            246,
+            247,
+            248
+          ]
+        },
+        {
+          "name": "mask",
+          "type": "MASK",
+          "links": [
+            249,
+            250,
+            271
+          ]
+        },
+        {
+          "name": "image_size_kb",
+          "type": "FLOAT",
+          "links": [
+            252
+          ]
+        },
+        {
+          "name": "width",
+          "type": "INT",
+          "links": [
+            253
+          ]
+        },
+        {
+          "name": "height",
+          "type": "INT",
+          "links": [
+            254
+          ]
+        },
+        {
+          "name": "index",
+          "type": "INT",
+          "links": [
+            255
+          ]
+        },
+        {
+          "name": "total_images_qty_in_folder(s)",
+          "type": "INT",
+          "links": [
+            256
+          ]
+        },
+        {
+          "name": "images_qty_in_current_folder",
+          "type": "INT",
+          "links": [
+            257
+          ]
+        },
+        {
+          "name": "folder_path",
+          "type": "STRING",
+          "links": [
+            258
+          ]
+        },
+        {
+          "name": "full_folder_path",
+          "type": "STRING",
+          "links": [
+            259
+          ]
+        },
+        {
+          "name": "filename_text",
+          "type": "STRING",
+          "links": [
+            260
+          ]
+        },
+        {
+          "name": "skipped_report",
+          "type": "STRING",
+          "links": [
+            261,
+            262
+          ]
+        },
+        {
+          "name": "positive_prompt",
+          "type": "STRING",
+          "links": [
+            263,
+            264
+          ]
+        },
+        {
+          "name": "negative_prompt",
+          "type": "STRING",
+          "links": [
+            265
+          ]
+        },
+        {
+          "name": "parameters",
+          "type": "STRING",
+          "links": [
+            266
+          ]
+        },
+        {
+          "name": "help",
+          "type": "STRING",
+          "links": [
+            267
+          ]
+        }
+      ],
+      "properties": {
+        "aux_id": "Poukpalaova/ComfyUI-FRED-Nodes",
+        "ver": "cea12830a7bffb94c073581f003419ed075a5fe3",
+        "Node name for S&R": "FRED_ImageLoad"
+      },
+      "widgets_values": [
+        "clipspace/clipspace-painted-masked-43533.png [input]",
+        {
+          "filename": "clipspace-paint-43533.png",
+          "subfolder": "clipspace",
+          "type": "input"
+        },
+        "no_folder",
+        0,
+        "fixed",
+        999999999,
+        true,
+        "",
+        false,
+        false,
+        false,
+        "image",
+        "false",
+        "AlexisBledel_flux_lora_v1_2025-06-11_0_82.png"
+      ],
+      "color": "#2a363b",
+      "bgcolor": "#3f5159"
+    },
+    {
+      "id": 53,
+      "type": "Display Any (rgthree)",
+      "pos": [
+        -210,
+        -30
+      ],
+      "size": [
+        660,
+        540
+      ],
+      "flags": {},
+      "order": 22,
+      "mode": 0,
+      "inputs": [
+        {
+          "dir": 3,
+          "name": "source",
+          "type": "*",
+          "link": 267
+        }
+      ],
+      "outputs": [],
+      "title": "👑 FRED Image Load (avif support): Read Me",
+      "properties": {
+        "cnr_id": "rgthree-comfy",
+        "ver": "f72f39d482c743706482b4d875e3c80dcec2d415",
+        "Node name for S&R": "Display Any (rgthree)",
+        "enableTabs": false,
+        "tabWidth": 65,
+        "tabXOffset": 10,
+        "hasSecondTab": false,
+        "secondTabText": "Send Back",
+        "secondTabOffset": 80,
+        "secondTabWidth": 65,
+        "widget_ue_connectable": {}
+      },
+      "widgets_values": [
+        "\n👑 FRED_LoadImage_V8\n\n🔹 PURPOSE:\nLoad images from disk or direct input with index management, caching, logging and optional preview.\n\n📥 INPUTS:\n- image • input filename or direct image\n- Get_metadata_from_file  • will provide the \"Positive\", \"Negative\" and generation data if available\n- mode • \"no_folder\" (direct) or \"image_from_folder\"\n- path • folder path\n- index • image index\n- control after generate\n- stop_at_max_index • create an exception that stop iteration with a message that the max index is reached\n- next_index_if_any_invalid • skip bad images in current folder and keep a log of it\n- include_subdirectories • include subfolders\n- show_image_from_path • preview loaded image\n- clear_cache • clear cached index/logs. This is required before parsing a very high amount of images. It's faster.\n- filename_text_extension • output filename with/without extension\n- source_filename • record frontend image name before it get modified by a manual mask getting the image \n  to clipspace and loosing all it metadata.\n\n⚙️ KEY OPTIONS:\n- Very efficient node to parse multiple image in multiple folder/subfolder. \n  Tested on a batch of 1 million images without crash and it also skip the broken images and log it for \n  reference if you want to delete them.\n- Can show the image behing seen in a folder_mode within this node.\n- Show valuables images and folder infos.\n- Can work in single image mode (no_folder) or image_from_folder\n\n📤 OUTPUTS:\n- IMAGE, MASK, WIDTH, HEIGHT\n- INDEX • current index\n- TOTAL IMAGES QTY IN ALL FOLDER(S)/SUBFOLDER(S)\n- IMAGES QTY IN CURRENT FOLDER\n- FOLDER_PATH / FULL_FOLDER_PATH\n- filename_text • name without extension (optional)\n- skipped_report • list of invalid images\n"
+      ],
+      "color": "#222",
+      "bgcolor": "#000"
+    },
+    {
+      "id": 69,
+      "type": "FRED_AutoCropImage_Native_Ratio",
+      "pos": [
+        490,
+        -30
+      ],
+      "size": [
+        310,
+        610
+      ],
+      "flags": {},
+      "order": 7,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "image",
+          "type": "IMAGE",
+          "link": 245
+        },
+        {
+          "name": "mask_optional",
+          "shape": 7,
+          "type": "MASK",
+          "link": 249
+        }
+      ],
+      "outputs": [
+        {
+          "name": "modified_image",
+          "type": "IMAGE",
+          "links": [
+            133,
+            174
+          ]
+        },
+        {
+          "name": "preview",
+          "type": "IMAGE",
+          "links": [
+            132
+          ]
+        },
+        {
+          "name": "modified_mask",
+          "type": "MASK",
+          "links": [
+            135
+          ]
+        },
+        {
+          "name": "scale_factor",
+          "type": "FLOAT",
+          "links": [
+            137
+          ]
+        },
+        {
+          "name": "output_width",
+          "type": "INT",
+          "links": [
+            138
+          ]
+        },
+        {
+          "name": "output_height",
+          "type": "INT",
+          "links": [
+            139
+          ]
+        },
+        {
+          "name": "native_width",
+          "type": "INT",
+          "links": [
+            140
+          ]
+        },
+        {
+          "name": "native_height",
+          "type": "INT",
+          "links": [
+            141
+          ]
+        },
+        {
+          "name": "sd_aspect_ratios",
+          "type": "STRING",
+          "links": [
+            142
+          ]
+        },
+        {
+          "name": "help",
+          "type": "STRING",
+          "links": [
+            189
+          ]
+        }
+      ],
+      "properties": {
+        "aux_id": "Poukpalaova/ComfyUI-FRED-Nodes",
+        "ver": "cea12830a7bffb94c073581f003419ed075a5fe3",
+        "Node name for S&R": "FRED_AutoCropImage_Native_Ratio"
+      },
+      "widgets_values": [
+        false,
+        "3:2 landscape 1216x832",
+        true,
+        1024,
+        1024,
+        true,
+        0,
+        0,
+        false,
+        "bilinear",
+        "area",
+        1.5,
+        false,
+        "1",
+        0.7,
+        "#503555"
+      ],
+      "color": "#233",
+      "bgcolor": "#355"
+    },
+    {
+      "id": 5,
+      "type": "PreviewImage",
+      "pos": [
+        810,
+        -30
+      ],
+      "size": [
+        300,
+        610
+      ],
+      "flags": {},
+      "order": 49,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "images",
+          "type": "IMAGE",
+          "link": 132
+        }
+      ],
+      "outputs": [],
+      "title": "Crop preview",
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.3.38",
+        "Node name for S&R": "PreviewImage",
+        "enableTabs": false,
+        "tabWidth": 65,
+        "tabXOffset": 10,
+        "hasSecondTab": false,
+        "secondTabText": "Send Back",
+        "secondTabOffset": 80,
+        "secondTabWidth": 65,
+        "widget_ue_connectable": {}
+      },
+      "widgets_values": []
+    },
+    {
+      "id": 117,
+      "type": "Display Any (rgthree)",
+      "pos": [
+        490,
+        630
+      ],
+      "size": [
+        620,
+        560
+      ],
+      "flags": {},
+      "order": 57,
+      "mode": 0,
+      "inputs": [
+        {
+          "dir": 3,
+          "name": "source",
+          "type": "*",
+          "link": 189
+        }
+      ],
+      "outputs": [],
+      "title": "👑 FRED AutoCropImage Native Ratio: Read Me",
+      "properties": {
+        "cnr_id": "rgthree-comfy",
+        "ver": "f72f39d482c743706482b4d875e3c80dcec2d415",
+        "Node name for S&R": "Display Any (rgthree)",
+        "enableTabs": false,
+        "tabWidth": 65,
+        "tabXOffset": 10,
+        "hasSecondTab": false,
+        "secondTabText": "Send Back",
+        "secondTabOffset": 80,
+        "secondTabWidth": 65,
+        "widget_ue_connectable": {}
+      },
+      "widgets_values": [
+        "\n👑 FRED_AutoCropImage_Native_Ratio\n\n🔹 PURPOSE:\nAutomatically crop and resize images to fit Stable Diffusion standard aspect ratios or custom sizes, while preserving masks if needed.\n\n📥 INPUTS:\n- image • main input image\n- mask_optional • optional mask used to preserve that portion of the image during crop or to precrop from it\n- aspect_ratio • predefined SD ratios, \"Auto_find_resolution\", \"custom\", or \"no_crop_to_ratio\"\n- Precrop_from_input_mask • crop image to mask boundaries before ratio crop\n- mask_preserve • ensures mask area is not cut off for the choosed resolution\n- custom_width / custom_height • manual target dimensions\n- crop_from_center / crop_x_in_Percent / crop_y_in_Percent • crop positioning\n- resize_image / resize_mode_if_upscale / resize_mode_if_downscale • resize modes\n- prescale_factor / include_prescale_if_resize • apply pre-scaling\n- multiple_of • round dimensions to multiple of N\n- preview_mask_color / preview_mask_color_intensity • preview overlay settings\n\n⚙️ KEY OPTIONS:\n- Auto-find: detect closest SDXL ratio\n- Custom: force manual width/height\n- no_crop_to_ratio: skip aspect ratio crop\n- Resize: upscale/downscale modes (bicubic, bilinear, area…)\n- Overlay: preview crop + mask in color\n\n📤 OUTPUTS:\n- modified_image • cropped/resized result\n- preview • preview image with overlay\n- modified_mask • resized and/or cropped mask like the image\n- scale_factor • wanted value to be applyed to the output image. If include scale_factor is true, the scale_factor output will be 1\n- output_width / output_height • final dimensions\n- native_width / native_height • target SD ratio dimensions\n- sd_aspect_ratios • name of matched ratio\n"
+      ],
+      "color": "#222",
+      "bgcolor": "#000"
+    },
+    {
+      "id": 15,
+      "type": "PreviewImage",
+      "pos": [
+        1120,
+        -30
+      ],
+      "size": [
+        300,
+        610
+      ],
+      "flags": {},
+      "order": 47,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "images",
+          "type": "IMAGE",
+          "link": 133
+        }
+      ],
+      "outputs": [],
+      "title": "Cropped image",
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.3.38",
+        "Node name for S&R": "PreviewImage",
+        "enableTabs": false,
+        "tabWidth": 65,
+        "tabXOffset": 10,
+        "hasSecondTab": false,
+        "secondTabText": "Send Back",
+        "secondTabOffset": 80,
+        "secondTabWidth": 65,
+        "widget_ue_connectable": {}
+      },
+      "widgets_values": []
+    },
+    {
+      "id": 41,
+      "type": "MaskPreview+",
+      "pos": [
+        1430,
+        300
+      ],
+      "size": [
+        220,
+        280
+      ],
+      "flags": {},
+      "order": 50,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "mask",
+          "type": "MASK",
+          "link": 135
+        }
+      ],
+      "outputs": [],
+      "title": "Modified Mask",
+      "properties": {
+        "cnr_id": "comfyui_essentials",
+        "ver": "9d9f4bedfc9f0321c19faf71855e228c93bd0dc9",
+        "Node name for S&R": "MaskPreview+",
+        "enableTabs": false,
+        "tabWidth": 65,
+        "tabXOffset": 10,
+        "hasSecondTab": false,
+        "secondTabText": "Send Back",
+        "secondTabOffset": 80,
+        "secondTabWidth": 65,
+        "widget_ue_connectable": {}
+      },
+      "widgets_values": []
+    },
+    {
+      "id": 58,
+      "type": "Display Any (rgthree)",
+      "pos": [
+        1350,
+        630
+      ],
+      "size": [
+        210,
+        88
+      ],
+      "flags": {},
+      "order": 54,
+      "mode": 0,
+      "inputs": [
+        {
+          "dir": 3,
+          "name": "source",
+          "type": "*",
+          "link": 140
+        }
+      ],
+      "outputs": [],
+      "title": "Native Width",
+      "properties": {
+        "cnr_id": "rgthree-comfy",
+        "ver": "f72f39d482c743706482b4d875e3c80dcec2d415",
+        "Node name for S&R": "Display Any (rgthree)",
+        "enableTabs": false,
+        "tabWidth": 65,
+        "tabXOffset": 10,
+        "hasSecondTab": false,
+        "secondTabText": "Send Back",
+        "secondTabOffset": 80,
+        "secondTabWidth": 65,
+        "widget_ue_connectable": {}
+      },
+      "widgets_values": [
+        "1216"
+      ]
+    },
+    {
+      "id": 40,
+      "type": "MaskPreview+",
+      "pos": [
+        1430,
+        -30
+      ],
+      "size": [
+        220,
+        280
+      ],
+      "flags": {},
+      "order": 8,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "mask",
+          "type": "MASK",
+          "link": 250
+        }
+      ],
+      "outputs": [],
+      "title": "Original Mask",
+      "properties": {
+        "cnr_id": "comfyui_essentials",
+        "ver": "9d9f4bedfc9f0321c19faf71855e228c93bd0dc9",
+        "Node name for S&R": "MaskPreview+",
+        "enableTabs": false,
+        "tabWidth": 65,
+        "tabXOffset": 10,
+        "hasSecondTab": false,
+        "secondTabText": "Send Back",
+        "secondTabOffset": 80,
+        "secondTabWidth": 65,
+        "widget_ue_connectable": {}
+      },
+      "widgets_values": []
+    },
+    {
+      "id": 55,
+      "type": "Display Any (rgthree)",
+      "pos": [
+        1120,
+        630
+      ],
+      "size": [
+        210,
+        88
+      ],
+      "flags": {},
+      "order": 51,
+      "mode": 0,
+      "inputs": [
+        {
+          "dir": 3,
+          "name": "source",
+          "type": "*",
+          "link": 137
+        }
+      ],
+      "outputs": [],
+      "title": "Scale Factor",
+      "properties": {
+        "cnr_id": "rgthree-comfy",
+        "ver": "f72f39d482c743706482b4d875e3c80dcec2d415",
+        "Node name for S&R": "Display Any (rgthree)",
+        "enableTabs": false,
+        "tabWidth": 65,
+        "tabXOffset": 10,
+        "hasSecondTab": false,
+        "secondTabText": "Send Back",
+        "secondTabOffset": 80,
+        "secondTabWidth": 65,
+        "widget_ue_connectable": {}
+      },
+      "widgets_values": [
+        "1.0066225165562914"
+      ]
+    },
+    {
+      "id": 82,
+      "type": "FRED_Text_to_XMP",
+      "pos": [
+        2200,
+        -20
+      ],
+      "size": [
+        380,
+        126
+      ],
+      "flags": {},
+      "order": 24,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "text",
+          "type": "STRING",
+          "widget": {
+            "name": "text"
+          },
+          "link": 206
+        }
+      ],
+      "outputs": [
+        {
+          "name": "XMP_formatted_text",
+          "type": "STRING",
+          "links": [
+            145
+          ]
+        },
+        {
+          "name": "help",
+          "type": "STRING",
+          "links": [
+            273
+          ]
+        }
+      ],
+      "properties": {
+        "aux_id": "Poukpalaova/ComfyUI-FRED-Nodes",
+        "ver": "cea12830a7bffb94c073581f003419ed075a5fe3",
+        "Node name for S&R": "FRED_Text_to_XMP"
+      },
+      "widgets_values": [
+        "",
+        false,
+        false
+      ],
+      "color": "#232",
+      "bgcolor": "#353"
+    },
+    {
+      "id": 118,
+      "type": "Display Any (rgthree)",
+      "pos": [
+        1690,
+        560
+      ],
+      "size": [
+        470,
+        630
+      ],
+      "flags": {},
+      "order": 25,
+      "mode": 0,
+      "inputs": [
+        {
+          "dir": 3,
+          "name": "source",
+          "type": "*",
+          "link": 207
+        }
+      ],
+      "outputs": [],
+      "title": "👑 FRED Wildcard Concat (Dynamic): Read Me",
+      "properties": {
+        "cnr_id": "rgthree-comfy",
+        "ver": "f72f39d482c743706482b4d875e3c80dcec2d415",
+        "Node name for S&R": "Display Any (rgthree)",
+        "enableTabs": false,
+        "tabWidth": 65,
+        "tabXOffset": 10,
+        "hasSecondTab": false,
+        "secondTabText": "Send Back",
+        "secondTabOffset": 80,
+        "secondTabWidth": 65,
+        "widget_ue_connectable": {}
+      },
+      "widgets_values": [
+        "\n👑 FRED_WildcardConcat_Dynamic\n\n🔹 PURPOSE:\nBuild dynamic prompts by concatenating multiple wildcard blocks together.  \nEach block can be toggled, weighted, and combined with prefix/suffix text, making this node \nsimilar to “Power LoRA” mixed with “Creaprompt” but for wildcards.\n\n📥 INPUTS:\n- wildcards_dir • base folder containing wildcard text files\n- string_delimiter • delimiter placed between text parts (default = space)\n- buttons\n  • ➕ Add Wildcard → adds a row: toggle, file, weight, line combo, suffix, remove.\n  • 🧹 Clear all → romove all added wildcards\n- Toggle all\n- prefix • optional string prepended before all blocks\n- Each block:\n  • on/off toggle\n  • file (which wildcard file to pick lines from)\n  • line (rule for selecting line: random, sequential, fixed, etc.)\n  • weight (scaling factor applied to that block)\n  • ❌ Remove button\n- suffix • optional string appended after all blocks\n\n⚙️ KEY OPTIONS:\n- Blocks can be added/removed dynamically in the UI.\n- Wildcard files are read from the selected directory.\n- Wildcard are in .txt file and easy to edit.\n- You can use your own list and adding them to the wildcards folder within this custom_nodes folder\n- Each block expands independently; weighted blocks allow fine control.\n- string_delimiter ensures clean spacing (can be customized, default is a space).\n- Output is deterministic or random depending on “line” selection.\n- The random line is added by the code, no need to add it in the .txt file.\n\n📤 OUTPUTS:\n- result_string • final concatenated string (prefix + blocks + suffix)\n- help • this message\n\n📝 Notes:\n- Use consistent wildcard file structure (one entry per line).\n- Weights are included numerically in the string only if block “on” is True.\n- Changing delimiter also affects suffix join.\n- Designed for flexible prompt building with many interchangeable parts.\n"
+      ],
+      "color": "#222",
+      "bgcolor": "#000"
+    },
+    {
+      "id": 84,
+      "type": "ShowText|pysssss",
+      "pos": [
+        1690,
+        -30
+      ],
+      "size": [
+        470,
+        100
+      ],
+      "flags": {},
+      "order": 23,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "text",
+          "type": "STRING",
+          "link": 205
+        }
+      ],
+      "outputs": [
+        {
+          "name": "STRING",
+          "shape": 6,
+          "type": "STRING",
+          "links": null
+        }
+      ],
+      "properties": {
+        "cnr_id": "comfyui-custom-scripts",
+        "ver": "f2838ed5e59de4d73cde5c98354b87a8d3200190",
+        "Node name for S&R": "ShowText|pysssss"
+      },
+      "widgets_values": [
+        "Breathtaking photography of a 20 year old man"
+      ]
+    },
+    {
+      "id": 143,
+      "type": "Display Any (rgthree)",
+      "pos": [
+        2200,
+        590
+      ],
+      "size": [
+        400,
+        600
+      ],
+      "flags": {},
+      "order": 59,
+      "mode": 0,
+      "inputs": [
+        {
+          "dir": 3,
+          "name": "source",
+          "type": "*",
+          "link": 273
+        }
+      ],
+      "outputs": [],
+      "title": "👑 FRED_Text_to_XMP: Read Me",
+      "properties": {
+        "cnr_id": "rgthree-comfy",
+        "ver": "f72f39d482c743706482b4d875e3c80dcec2d415",
+        "Node name for S&R": "Display Any (rgthree)",
+        "enableTabs": false,
+        "tabWidth": 65,
+        "tabXOffset": 10,
+        "hasSecondTab": false,
+        "secondTabText": "Send Back",
+        "secondTabOffset": 80,
+        "secondTabWidth": 65,
+        "widget_ue_connectable": {}
+      },
+      "widgets_values": [
+        "\n👑 FRED_Text_to_XMP\n\n🔹 PURPOSE:\nCreate and attach XMP metadata to your images (or write a sidecar .xmp) from free text or structured fields.\nUseful to archive prompts/parameters/keywords in a standard, app-friendly format (Lightroom, Bridge, Photoshop, digiKam, DAMs).\n\n📥 INPUTS:\n- image • input image to annotate (pass-through if you only want a sidecar)\n- xmp_body • the text to convert into XMP. Accepts:\n  • Plain \"key = value\" lines\n  • JSON (object) for complex fields\n  • Namespaced keys (dc:subject, xmp:Rating, photoshop:AuthorsPosition, exif:UserComment, etc.)\n- include_prompt / include_negative / include_parameters • auto-inject these strings into XMP (if provided upstream)\n- keywords • comma-separated list → stored as dc:subject (Bag)\n- creator / title / description / rights • common Dublin Core/Photoshop fields\n- rating • 0–5 (xmp:Rating)\n- write_mode • \"embed_png\", \"embed_jpeg\", \"embed_tiff\", \"sidecar_only\" (what to write and where)\n- sidecar_path • template/path for .xmp when sidecar_only or when embedding is unavailable\n- merge_strategy • \"merge\", \"overwrite\", \"skip\" (how to resolve existing XMP in the input)\n- pretty_print • human-readable XML\n- sanitize_xml • escape unsafe characters (& < > \") in values\n- time_format • used for tokens inside paths/fields\n- token context • optional dict to expand %tokens (model/prompt/seed/etc.)\n\n⚙️ KEY OPTIONS:\n- Namespaces & mapping:\n  • dc:title / dc:description / dc:subject (keywords as rdf:Bag)\n  • xmp:Rating (0–5), xmp:CreateDate / xmp:MetadataDate (UTC ISO)\n  • photoshop:AuthorsPosition / photoshop:Headline (optional)\n  • exif:UserComment for prompt/notes if you want EXIF readers to see it\n- Input parsing:\n  • Line mode: one \"key = value\" per line → trims spaces; empty lines ignored.\n  • JSON mode: if xmp_body starts with '{', it’s parsed as JSON (nested objects/arrays allowed).\n  • Arrays: comma-separated values map to rdf:Bag by default for dc:* fields.\n- Auto-fill (if toggled):\n  • include_prompt → writes to exif:UserComment and dc:description\n  • include_negative → appends to dc:description with a \"Negative:\" section\n  • include_parameters → writes a compact block into xmpMM:History or exif:UserComment\n- Tokens in fields and paths:\n  • %date, %date_dash, %time, %datetime\n  • %model_name, %seed, %steps, %width, %height, %guidance/%cfg, %denoise, etc.\n  • %img_count for batches (if provided)\n- Embedding vs. sidecar:\n  • PNG/TIFF: embeds XMP packet in the file (when supported by the format/writer)\n  • JPEG: embeds standard XMP segment\n  • Sidecar: writes adjacent .xmp XML file (good for non-destructive, DAM-friendly workflows)\n- Safety:\n  • sanitize_xml prevents malformed XML; long values are preserved (no hard truncation)\n  • merge_strategy decides how to handle pre-existing XMP in the input image\n\n📤 OUTPUTS:\n- IMAGE • pass-through image (unchanged pixels)\n- XMP_STRING • the final XMP packet text (UTF-8)\n- SIDE_CAR_PATH • full path to the written .xmp (empty if none)\n- help • this message\n\n📝 Tips:\n- Prefer dc:subject (keywords) for searchability in DAM/Lightroom.\n- Keep prompts in exif:UserComment + dc:description; readers vary by app.\n- Sidecar only is safest when you don’t want to modify the original image file.\n- Use tokens to stamp model/version/seed for reliable provenance.\n"
+      ],
+      "color": "#222",
+      "bgcolor": "#000"
+    },
+    {
+      "id": 119,
+      "type": "Display Any (rgthree)",
+      "pos": [
+        70,
+        1470
+      ],
+      "size": [
+        570,
+        690
+      ],
+      "flags": {},
+      "order": 39,
+      "mode": 0,
+      "inputs": [
+        {
+          "dir": 3,
+          "name": "source",
+          "type": "*",
+          "link": 191
+        }
+      ],
+      "outputs": [],
+      "title": "👑 FRED Image Quality Inspector (piq): Read Me",
+      "properties": {
+        "cnr_id": "rgthree-comfy",
+        "ver": "f72f39d482c743706482b4d875e3c80dcec2d415",
+        "Node name for S&R": "Display Any (rgthree)",
+        "enableTabs": false,
+        "tabWidth": 65,
+        "tabXOffset": 10,
+        "hasSecondTab": false,
+        "secondTabText": "Send Back",
+        "secondTabOffset": 80,
+        "secondTabWidth": 65,
+        "widget_ue_connectable": {}
+      },
+      "widgets_values": [
+        "\n👑 FRED_ImageQualityInspector\n\n🔹 PURPOSE:\nAnalyze image quality from four perspectives:\n• BRISQUE (perceptual quality, no reference, via piq)\n• Blur (variance of Laplacian, optionally restricted by mask)\n• SNR (signal-to-noise ratio, dB, optionally restricted by mask)\n• Compression proxy (Raw RGB size vs. JPEG@95 size)\n\n📥 INPUTS:\n- image • input image (required)\n- mask • optional mask (restricts blur/SNR computation to region)\n- scale_output_0_100 • if ON, metrics are normalized to scores (0–100, 100 = best)\n\n⚙️ KEY OPTIONS:\n- BRISQUE always computed on the full image.\n- Blur/SNR can be restricted by mask region if provided.\n- Compression proxy is heuristic: re-encodes JPEG@95 to estimate compressibility.\n- scale_output_0_100 allows direct comparison and automation (thresholding, scoring).\n\n📤 OUTPUTS:\n- BRISQUE_SCORE • raw or scaled value\n- BLUR_VALUE • raw or scaled value\n- SNR_VALUE • raw or scaled value\n- COMPRESSION_RATIO • raw or scaled value\n- help • this message\n\n───────────────────────────────────────────────\nWHEN “scale_output_0–100” = ON → normalized SCORES (100 = best)\n───────────────────────────────────────────────\n• brisque_score: 100 = excellent, 0 = poor.\n  Mapping: 100 − clamp(raw_brisque, 0..100).\n\n• blur_score: 100 = sharp, 0 = very blurry.\n  Mapping: saturating Laplacian variance map.\n\n• snr_score: 100 = no visible noise, 0 = very noisy.\n  Mapping: scaled 0–40 dB (≥40 = 100, ∞ = 100).\n\n• compression_score: 100 = uncompressed/high intrinsic quality,\n  0 = oversmoothed or heavily compressible.\n  Mapping: raw_RGB_size / JPEG95_size with saturation.\n\n───────────────────────────────────────────────\nWHEN “scale_output_0–100” = OFF → RAW METRICS\n───────────────────────────────────────────────\n• BRISQUE (lower is better; ~0–100+)\n  <20 excellent • 20–30 very good • 30–40 OK • >40 questionable.\n\n• BLUR (variance of Laplacian; higher = sharper, unbounded)\n  >300 very sharp • 50–300 moderately sharp • <50 likely blurry.\n\n• SNR (dB; higher = cleaner; can be negative or ∞)\n  >25 low noise • 15–25 moderate • <15 noisy.\n\n• COMPRESSION_RATIO (raw_size / JPEG95_size; heuristic proxy)\n  ~1.0 normal • <0.7 heavily compressed • >1.2 high quality/simple content.\n\n📝 Tips:\n- Read metrics together (e.g., sharp + noisy vs. smooth + clean).\n- Use mask for subject-focused evaluation (e.g., face area).\n- For thresholds/automation, prefer scaled 0–100 scores.\n"
+      ],
+      "color": "#222",
+      "bgcolor": "#000"
+    },
+    {
+      "id": 142,
+      "type": "Display Any (rgthree)",
+      "pos": [
+        1460,
+        1320
+      ],
+      "size": [
+        346.2320251464844,
+        790
+      ],
+      "flags": {},
+      "order": 34,
+      "mode": 0,
+      "inputs": [
+        {
+          "dir": 3,
+          "name": "source",
+          "type": "*",
+          "link": 272
+        }
+      ],
+      "outputs": [],
+      "title": "👑 FRED Simplified Parameters Panel: Read Me",
+      "properties": {
+        "cnr_id": "rgthree-comfy",
+        "ver": "f72f39d482c743706482b4d875e3c80dcec2d415",
+        "Node name for S&R": "Display Any (rgthree)",
+        "enableTabs": false,
+        "tabWidth": 65,
+        "tabXOffset": 10,
+        "hasSecondTab": false,
+        "secondTabText": "Send Back",
+        "secondTabOffset": 80,
+        "secondTabWidth": 65,
+        "widget_ue_connectable": {}
+      },
+      "widgets_values": [
+        "\n👑 FRED_Simplified_Parameters_Panel\n\n🔹 PURPOSE:\nProvide a simplified panel to control common generation parameters (scale, denoise, guidance, steps, sampler/scheduler) and output valid ComfyUI objects.\n\n📥 INPUTS:\n- model • input MODEL\n- scale • scaling factor\n- denoise • denoising strength\n- guidance • classifier-free guidance\n- steps • number of steps\n- noise_seed • seed value\n- sampler • sampler choice\n- scheduler • scheduler choice\n\n⚙️ KEY OPTIONS:\n- Automatically computes sigmas from steps & denoise\n- Generates proper NOISE object\n- Returns both sampler/scheduler objects and their names\n\n📤 OUTPUTS:\n- scale, denoise, guidance, steps\n- noise (NOISE object)\n- seed (INT)\n- sampler (object) + sampler_name (STRING)\n- sigmas (SIGMAS tensor)\n- scheduler_name (STRING)\n"
+      ],
+      "color": "#222",
+      "bgcolor": "#000"
+    },
+    {
+      "id": 121,
+      "type": "Display Any (rgthree)",
+      "pos": [
+        1850,
+        1750
+      ],
+      "size": [
+        750,
+        410
+      ],
+      "flags": {},
+      "order": 61,
+      "mode": 0,
+      "inputs": [
+        {
+          "dir": 3,
+          "name": "source",
+          "type": "*",
+          "link": 195
+        }
+      ],
+      "outputs": [],
+      "title": "👑 FRED_AutoImageTile_from_Mask: Read Me",
+      "properties": {
+        "cnr_id": "rgthree-comfy",
+        "ver": "f72f39d482c743706482b4d875e3c80dcec2d415",
+        "Node name for S&R": "Display Any (rgthree)",
+        "enableTabs": false,
+        "tabWidth": 65,
+        "tabXOffset": 10,
+        "hasSecondTab": false,
+        "secondTabText": "Send Back",
+        "secondTabOffset": 80,
+        "secondTabWidth": 65,
+        "widget_ue_connectable": {}
+      },
+      "widgets_values": [
+        "\n👑 FRED_AutoImageTile_from_Mask\n\n🔹 PURPOSE:\nSplit an image into tiles (grid) automatically or manually, based on mask/BBOX, with optional overlap and preview.\n\n📥 INPUTS:\n- image • image to tile\n- MASK / BBOX • optional input for bounding box\n- auto_from_mask_bbox • auto-calculate rows/cols from mask or bbox\n- Auto_grid_strategy • choose max/min/balanced rows/cols\n- confidence • shrink or expand bbox\n- manual_rows / manual_cols • manual tiling if auto disabled\n- overlap / overlap_x / overlap_y • overlap between tiles\n- preview_bbox_color • color for preview overlay\n\n⚙️ KEY OPTIONS:\n- Auto grid selection strategies (min/max/balanced)\n- Overlap as ratio or absolute pixels\n- Confidence scaling of mask/bbox\n- Preview overlay shows grid lines + bbox\n\n📤 OUTPUTS:\n- IMAGES • generated tiles\n- preview • preview overlay image\n- tile_width / tile_height • tile dimensions\n- overlap_x / overlap_y • applied overlap\n- rows / columns • final grid size\n"
+      ],
+      "color": "#222",
+      "bgcolor": "#000"
+    },
+    {
+      "id": 67,
+      "type": "PreviewImage",
+      "pos": [
+        2230,
+        1290
+      ],
+      "size": [
+        360,
+        410
+      ],
+      "flags": {},
+      "order": 60,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "images",
+          "type": "IMAGE",
+          "link": 130
+        }
+      ],
+      "outputs": [],
+      "title": "Face Image",
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.3.38",
+        "Node name for S&R": "PreviewImage",
+        "enableTabs": false,
+        "tabWidth": 65,
+        "tabXOffset": 10,
+        "hasSecondTab": false,
+        "secondTabText": "Send Back",
+        "secondTabOffset": 80,
+        "secondTabWidth": 65,
+        "widget_ue_connectable": {}
+      },
+      "widgets_values": []
+    },
+    {
+      "id": 76,
+      "type": "FRED_AutoImageTile_from_Mask",
+      "pos": [
+        1850,
+        1290
+      ],
+      "size": [
+        370,
+        422
+      ],
+      "flags": {},
+      "order": 43,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "image",
+          "type": "IMAGE",
+          "link": 247
+        },
+        {
+          "name": "MASK",
+          "shape": 7,
+          "type": "MASK",
+          "link": 271
+        },
+        {
+          "name": "BBOX",
+          "shape": 7,
+          "type": "BBOX",
+          "link": 270
+        }
+      ],
+      "outputs": [
+        {
+          "name": "IMAGES",
+          "type": "IMAGE",
+          "links": null
+        },
+        {
+          "name": "preview",
+          "type": "IMAGE",
+          "links": [
+            130
+          ]
+        },
+        {
+          "name": "tile_width",
+          "type": "INT",
+          "links": null
+        },
+        {
+          "name": "tile_height",
+          "type": "INT",
+          "links": null
+        },
+        {
+          "name": "overlap_x",
+          "type": "INT",
+          "links": null
+        },
+        {
+          "name": "overlap_y",
+          "type": "INT",
+          "links": null
+        },
+        {
+          "name": "rows",
+          "type": "INT",
+          "links": null
+        },
+        {
+          "name": "columns",
+          "type": "INT",
+          "links": null
+        },
+        {
+          "name": "help",
+          "type": "STRING",
+          "links": [
+            195
+          ]
+        }
+      ],
+      "properties": {
+        "aux_id": "Poukpalaova/ComfyUI-FRED-Nodes",
+        "ver": "cea12830a7bffb94c073581f003419ed075a5fe3",
+        "Node name for S&R": "FRED_AutoImageTile_from_Mask"
+      },
+      "widgets_values": [
+        true,
+        "min_balanced",
+        1,
+        3,
+        3,
+        0,
+        56,
+        56,
+        "#FFC800"
+      ],
+      "color": "#432",
+      "bgcolor": "#653"
+    },
+    {
+      "id": 141,
+      "type": "Display Any (rgthree)",
+      "pos": [
+        2640,
+        1040
+      ],
+      "size": [
+        460,
+        1120
+      ],
+      "flags": {},
+      "order": 62,
+      "mode": 0,
+      "inputs": [
+        {
+          "dir": 3,
+          "name": "source",
+          "type": "*",
+          "link": 269
+        }
+      ],
+      "outputs": [],
+      "title": "👑 FRED Image Saver: Read Me",
+      "properties": {
+        "cnr_id": "rgthree-comfy",
+        "ver": "f72f39d482c743706482b4d875e3c80dcec2d415",
+        "Node name for S&R": "Display Any (rgthree)",
+        "enableTabs": false,
+        "tabWidth": 65,
+        "tabXOffset": 10,
+        "hasSecondTab": false,
+        "secondTabText": "Send Back",
+        "secondTabOffset": 80,
+        "secondTabWidth": 65,
+        "widget_ue_connectable": {}
+      },
+      "widgets_values": [
+        "\n👑 FRED_Image_Saver\n\n🔹 PURPOSE:\nSave images flexibly with dynamic filename/path tokens, Automatic1111-style metadata embedding, and optional grid saving.  \nSupports single images, tiled grid images, or both at the same time.\n\n📥 INPUTS:\n- images • one or more images to save\n- save_single_image • if ON, save each input as its own file\n- filename / path • templates with tokens for naming (counter is always appended for uniqueness)\n- time_format • used by %datetime\n- extension / quality_jpeg_or_webp / optimize_png / lossless_webp • file format and compression options\n- save_workflow_as_json • writes a sidecar JSON file with metadata\n- embed_workflow_in_png • embeds workflow/prompt/app metadata into PNG tEXt\n- metadata fields (width, height, scale, denoise, guidance, clip_skip, steps, seed_value, sampler_name, scheduler_name, positive, negative, model_name)\n- lora_name_X / lora_weight_X • up to 3 LoRA names/weights (weights only expand if name is provided)\n- save_as_grid_if_multi • if ON, also save a tiled grid when multiple images are given\n- grid_column_max / grid_row_max • maximum grid size\n- grid_column_label / grid_row_label • optional labels drawn on grid\n- grid_filename / grid_path / grid_extension / grid_quality_jpeg_or_webp • grid output settings\n\n⚙️ KEY OPTIONS:\n- Single image saves:\n  • Saved to “path” (relative to Comfy’s output folder unless absolute).\n  • Uses filename template with tokens; unique counter (_00001, _00002, …) appended.\n  • PNG: can embed JSON + optimize (lossless).  \n  • JPEG/WEBP: adjustable quality, WEBP can be forced lossless.\n  • Sidecar JSON: includes parameters, prompts, model, LoRAs, app version, workflow.\n\n- Grid saves:\n  • Only created if ≥2 input images and save_as_grid_if_multi is ON.\n  • Grid size auto-derived up to max cols/rows; if not all images fit, the first N are used and leftovers are logged.\n  • Grid uses same token expansion as single images (grid_filename, grid_path).\n  • Metadata mirrors single-image save but adds “img_count”, “grid_rows”, “grid_cols”.\n  • Labels: optional column/row labels drawn with a font.\n\n- Metadata embedding (PNG tEXt keys):\n  • \"parameters\": Automatic1111-style text (Positive, Negative, Steps, Sampler, Scheduler, Guidance/Scale/Denoise, Seed, Size, Clip skip, Model, Version, LoRAs).\n  • \"prompt\": workflow prompt JSON.\n  • \"workflow\": workflow graph JSON (if available).\n  • \"app\": ComfyUI name + short git commit.\n\n- Token system (usable in both filename and path):\n  • Time/date: %date, %date_dash, %time, %datetime\n  • Params: %seed / %seed_value, %model / %model_name / %basemodelname, %sampler / %sampler_name, %scheduler / %scheduler_name, %width, %height, %steps, %cfg, %guidance, %scale, %denoise, %clip_skip\n  • Batch info: %img_count (grid/batch size)\n  • LoRAs: %lora_name_1..3, %lora_weight_1..3 (weights only if name present)\n\n📤 OUTPUTS:\n- last_image_saved_path • path of the last saved single image (empty if none saved)\n- last_grid_saved_path • path of the last saved grid image (empty if none saved)\n- help • this message\n\n📝 NOTES & TIPS:\n- This node does NOT resize or alter pixel data; width/height/steps/etc. are recorded only.\n- %basemodelname expands to model_name without extension.\n- PNG optimize=True reduces size but slows saves.\n- WEBP: if “lossless_webp” is ON, quality slider is ignored.\n- LoRA tokens are included only when a name is set.\n- Unique filename generation is guaranteed (Comfy counter + safety loop).\n- IS_CHANGED ignores large tensor inputs (“images”, “prompt”, “extra_pnginfo”, “unique_id”) so reruns don’t trigger unnecessary re-saves.\n\nExamples:\n- filename: \"%basemodelname_%datetime_seed_%seed\"\n- path:     \"Fred_nodes/%date_dash/\"\n- grid_filename: \"%model_name_%date_%time_grid_%img_count\"\n- grid_path:     \"Test/%model_name/Grid/%date_dash/\"\n"
+      ],
+      "color": "#222",
+      "bgcolor": "#000"
+    },
+    {
+      "id": 78,
+      "type": "FRED_ImageSaver",
+      "pos": [
+        2640,
+        -10
+      ],
+      "size": [
+        460,
+        1000
+      ],
+      "flags": {},
+      "order": 48,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "images",
+          "type": "IMAGE",
+          "link": 174
+        },
+        {
+          "name": "positive",
+          "type": "STRING",
+          "widget": {
+            "name": "positive"
+          },
+          "link": 261
+        },
+        {
+          "name": "negative",
+          "type": "STRING",
+          "widget": {
+            "name": "negative"
+          },
+          "link": 263
+        }
+      ],
+      "outputs": [
+        {
+          "name": "GRID_IMAGE",
+          "type": "IMAGE",
+          "links": null
+        },
+        {
+          "name": "last_saved_path",
+          "type": "STRING",
+          "links": null
+        },
+        {
+          "name": "help",
+          "type": "STRING",
+          "links": [
+            269
+          ]
+        }
+      ],
+      "properties": {
+        "aux_id": "Poukpalaova/ComfyUI-FRED-Nodes",
+        "ver": "cea12830a7bffb94c073581f003419ed075a5fe3",
+        "Node name for S&R": "FRED_ImageSaver"
+      },
+      "widgets_values": [
+        false,
+        "%lora_name_1_weight_%lora_weight_1_%model_name_%datetime",
+        "Fred_nodes/%date_dash/",
+        "%Y-%m-%d-%H%M%S",
+        "png",
+        false,
+        true,
+        100,
+        false,
+        true,
+        1023,
+        1024,
+        1.4,
+        0.6,
+        2.2,
+        1,
+        20,
+        0,
+        "euler",
+        "simple",
+        "",
+        "",
+        "flux",
+        "",
+        1,
+        "",
+        1,
+        "",
+        1,
+        false,
+        "%lora_name_1_weight_%lora_weight_1_%datetime_%model_name test grid_img count_%img_count",
+        "Test/%model_name/Grid/%date_dash/",
+        5,
+        1,
+        "png",
+        100
+      ],
+      "color": "#2a363b",
+      "bgcolor": "#3f5159"
+    },
+    {
+      "id": 125,
+      "type": "FRED_WildcardConcat_Dynamic",
+      "pos": [
+        1690,
+        120
+      ],
+      "size": [
+        470,
+        390
+      ],
+      "flags": {},
+      "order": 2,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "result",
+          "type": "STRING",
+          "links": [
+            205,
+            206
+          ]
+        },
+        {
+          "name": "help",
+          "type": "STRING",
+          "links": [
+            207
+          ]
+        }
+      ],
+      "properties": {
+        "aux_id": "Poukpalaova/ComfyUI-FRED-Nodes",
+        "ver": "cea12830a7bffb94c073581f003419ed075a5fe3",
+        "Node name for S&R": "FRED_WildcardConcat_Dynamic"
+      },
+      "widgets_values": [
+        "H:\\AIgenerated\\StableDiffusion\\ComfyUI_TEST\\custom_nodes\\ComfyUI-FRED-Nodes\\wildcards",
+        " ",
+        null,
+        null,
+        null,
+        "Breathtaking photography of",
+        "[{\"on\":true,\"file\":\"Ages.txt\",\"line\":\"a 20 year old\",\"weight\":1,\"suffix\":\"\"},{\"on\":true,\"file\":\"person.txt\",\"line\":\"man\",\"weight\":1,\"suffix\":\"\"}]",
+        null,
+        "a 20 year old",
+        "",
+        null,
+        null,
+        "man",
+        "",
+        null
+      ],
+      "color": "#232",
+      "bgcolor": "#353"
+    },
+    {
+      "id": 39,
+      "type": "Label (rgthree)",
+      "pos": [
+        -800,
+        -510
+      ],
+      "size": [
+        3957.568359375,
+        300
+      ],
+      "flags": {
+        "allow_interaction": true
+      },
+      "order": 3,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [],
+      "title": "👑ComfyUI-FRED-Nodes👑 ",
+      "properties": {
+        "fontSize": 300,
+        "fontFamily": "Arial",
+        "fontColor": "#ffffff",
+        "textAlign": "left",
+        "backgroundColor": "transparent",
+        "padding": 0,
+        "borderRadius": 0,
+        "enableTabs": false,
+        "tabWidth": 65,
+        "tabXOffset": 10,
+        "hasSecondTab": false,
+        "secondTabText": "Send Back",
+        "secondTabOffset": 80,
+        "secondTabWidth": 65,
+        "widget_ue_connectable": {}
+      },
+      "color": "#fff0",
+      "bgcolor": "#fff0"
+    }
+  ],
+  "links": [
+    [
+      130,
+      76,
+      1,
+      67,
+      0,
+      "IMAGE"
+    ],
+    [
+      132,
+      69,
+      1,
+      5,
+      0,
+      "IMAGE"
+    ],
+    [
+      133,
+      69,
+      0,
+      15,
+      0,
+      "IMAGE"
+    ],
+    [
+      135,
+      69,
+      2,
+      41,
+      0,
+      "MASK"
+    ],
+    [
+      137,
+      69,
+      3,
+      55,
+      0,
+      "*"
+    ],
+    [
+      138,
+      69,
+      4,
+      56,
+      0,
+      "*"
+    ],
+    [
+      139,
+      69,
+      5,
+      57,
+      0,
+      "*"
+    ],
+    [
+      140,
+      69,
+      6,
+      58,
+      0,
+      "*"
+    ],
+    [
+      141,
+      69,
+      7,
+      59,
+      0,
+      "*"
+    ],
+    [
+      142,
+      69,
+      8,
+      60,
+      0,
+      "*"
+    ],
+    [
+      145,
+      82,
+      0,
+      85,
+      0,
+      "STRING"
+    ],
+    [
+      146,
+      80,
+      0,
+      87,
+      0,
+      "*"
+    ],
+    [
+      147,
+      80,
+      1,
+      88,
+      0,
+      "*"
+    ],
+    [
+      148,
+      80,
+      2,
+      89,
+      0,
+      "*"
+    ],
+    [
+      149,
+      80,
+      3,
+      90,
+      0,
+      "*"
+    ],
+    [
+      156,
+      95,
+      0,
+      38,
+      0,
+      "IMAGE"
+    ],
+    [
+      158,
+      95,
+      3,
+      54,
+      0,
+      "*"
+    ],
+    [
+      159,
+      95,
+      4,
+      65,
+      0,
+      "*"
+    ],
+    [
+      160,
+      95,
+      5,
+      62,
+      0,
+      "*"
+    ],
+    [
+      161,
+      95,
+      2,
+      96,
+      0,
+      "*"
+    ],
+    [
+      174,
+      69,
+      0,
+      78,
+      0,
+      "IMAGE"
+    ],
+    [
+      189,
+      69,
+      9,
+      117,
+      0,
+      "*"
+    ],
+    [
+      191,
+      80,
+      4,
+      119,
+      0,
+      "*"
+    ],
+    [
+      195,
+      76,
+      8,
+      121,
+      0,
+      "*"
+    ],
+    [
+      196,
+      112,
+      0,
+      122,
+      0,
+      "MODEL"
+    ],
+    [
+      197,
+      122,
+      0,
+      100,
+      0,
+      "*"
+    ],
+    [
+      198,
+      122,
+      1,
+      104,
+      0,
+      "*"
+    ],
+    [
+      199,
+      122,
+      2,
+      99,
+      0,
+      "*"
+    ],
+    [
+      200,
+      122,
+      3,
+      101,
+      0,
+      "*"
+    ],
+    [
+      201,
+      122,
+      5,
+      102,
+      0,
+      "*"
+    ],
+    [
+      202,
+      122,
+      7,
+      103,
+      0,
+      "*"
+    ],
+    [
+      203,
+      122,
+      9,
+      105,
+      0,
+      "*"
+    ],
+    [
+      204,
+      122,
+      10,
+      113,
+      0,
+      "*"
+    ],
+    [
+      205,
+      125,
+      0,
+      84,
+      0,
+      "STRING"
+    ],
+    [
+      206,
+      125,
+      0,
+      82,
+      0,
+      "STRING"
+    ],
+    [
+      207,
+      125,
+      1,
+      118,
+      0,
+      "*"
+    ],
+    [
+      245,
+      138,
+      0,
+      69,
+      0,
+      "IMAGE"
+    ],
+    [
+      246,
+      138,
+      0,
+      80,
+      0,
+      "IMAGE"
+    ],
+    [
+      247,
+      138,
+      0,
+      76,
+      0,
+      "IMAGE"
+    ],
+    [
+      248,
+      138,
+      0,
+      95,
+      0,
+      "IMAGE"
+    ],
+    [
+      249,
+      138,
+      1,
+      69,
+      1,
+      "MASK"
+    ],
+    [
+      250,
+      138,
+      1,
+      40,
+      0,
+      "MASK"
+    ],
+    [
+      252,
+      138,
+      2,
+      129,
+      0,
+      "*"
+    ],
+    [
+      253,
+      138,
+      3,
+      44,
+      0,
+      "*"
+    ],
+    [
+      254,
+      138,
+      4,
+      45,
+      0,
+      "*"
+    ],
+    [
+      255,
+      138,
+      5,
+      46,
+      0,
+      "*"
+    ],
+    [
+      256,
+      138,
+      6,
+      47,
+      0,
+      "*"
+    ],
+    [
+      257,
+      138,
+      7,
+      48,
+      0,
+      "*"
+    ],
+    [
+      258,
+      138,
+      8,
+      50,
+      0,
+      "*"
+    ],
+    [
+      259,
+      138,
+      9,
+      51,
+      0,
+      "*"
+    ],
+    [
+      260,
+      138,
+      10,
+      52,
+      0,
+      "*"
+    ],
+    [
+      261,
+      138,
+      11,
+      78,
+      1,
+      "STRING"
+    ],
+    [
+      262,
+      138,
+      11,
+      71,
+      0,
+      "*"
+    ],
+    [
+      263,
+      138,
+      12,
+      78,
+      2,
+      "STRING"
+    ],
+    [
+      264,
+      138,
+      12,
+      72,
+      0,
+      "*"
+    ],
+    [
+      265,
+      138,
+      13,
+      73,
+      0,
+      "*"
+    ],
+    [
+      266,
+      138,
+      14,
+      75,
+      0,
+      "*"
+    ],
+    [
+      267,
+      138,
+      15,
+      53,
+      0,
+      "*"
+    ],
+    [
+      268,
+      95,
+      1,
+      139,
+      0,
+      "IMAGE"
+    ],
+    [
+      269,
+      78,
+      2,
+      141,
+      0,
+      "*"
+    ],
+    [
+      270,
+      95,
+      2,
+      76,
+      2,
+      "BBOX"
+    ],
+    [
+      271,
+      138,
+      1,
+      76,
+      1,
+      "MASK"
+    ],
+    [
+      272,
+      122,
+      11,
+      142,
+      0,
+      "*"
+    ],
+    [
+      273,
+      82,
+      1,
+      143,
+      0,
+      "*"
+    ]
+  ],
+  "groups": [
+    {
+      "id": 1,
+      "title": "👑 FRED_CropFace",
+      "bounding": [
+        -850,
+        1210,
+        890,
+        960
+      ],
+      "color": "#88A",
+      "font_size": 24,
+      "flags": {}
+    },
+    {
+      "id": 2,
+      "title": "👑 FRED_ImageQuality_Inspector",
+      "bounding": [
+        60,
+        1210,
+        820,
+        960
+      ],
+      "color": "#b06634",
+      "font_size": 24,
+      "flags": {}
+    },
+    {
+      "id": 3,
+      "title": "👑 FRED_ImageLoad",
+      "bounding": [
+        -850,
+        -100,
+        1310,
+        1290
+      ],
+      "color": "#3f789e",
+      "font_size": 24,
+      "flags": {}
+    },
+    {
+      "id": 4,
+      "title": "👑 FRED AutoCropImage Native Ratio",
+      "bounding": [
+        480,
+        -100,
+        1180,
+        1300
+      ],
+      "color": "#8AA",
+      "font_size": 24,
+      "flags": {}
+    },
+    {
+      "id": 6,
+      "title": "👑 FRED Auto Tile from Mask",
+      "bounding": [
+        1840,
+        1210,
+        770,
+        960
+      ],
+      "color": "#b58b2a",
+      "font_size": 24,
+      "flags": {}
+    },
+    {
+      "id": 5,
+      "title": "FRED Auto tiles",
+      "bounding": [
+        1880,
+        1340,
+        140,
+        80
+      ],
+      "color": "#3f789e",
+      "font_size": 24,
+      "flags": {}
+    },
+    {
+      "id": 7,
+      "title": "👑 FRED Simplified Parameters Panel",
+      "bounding": [
+        900,
+        1210,
+        920,
+        960
+      ],
+      "color": "#a1309b",
+      "font_size": 24,
+      "flags": {}
+    },
+    {
+      "id": 8,
+      "title": "👑 FRED Wildcard Concat",
+      "bounding": [
+        1680,
+        -100,
+        490,
+        1300
+      ],
+      "color": "#8A8",
+      "font_size": 24,
+      "flags": {}
+    },
+    {
+      "id": 9,
+      "title": "👑 FRED text to XMP",
+      "bounding": [
+        2190,
+        -100,
+        420,
+        1300
+      ],
+      "color": "#8A8",
+      "font_size": 24,
+      "flags": {}
+    },
+    {
+      "id": 10,
+      "title": "👑 FRED Image Saver",
+      "bounding": [
+        2630,
+        -100,
+        480,
+        2270
+      ],
+      "color": "#3f789e",
+      "font_size": 24,
+      "flags": {}
+    }
+  ],
+  "config": {},
+  "extra": {
+    "ds": {
+      "scale": 0.43056764313425017,
+      "offset": [
+        1797.0023995181414,
+        542.9309393190059
+      ]
+    },
+    "frontendVersion": "1.25.11",
+    "ue_links": [],
+    "links_added_by_ue": [],
+    "VHS_latentpreview": false,
+    "VHS_latentpreviewrate": 0,
+    "VHS_MetadataImage": true,
+    "VHS_KeepIntermediate": true
+  },
+  "version": 0.4
+}

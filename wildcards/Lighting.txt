@@ -1,0 +1,25 @@
+Bloom
+Indirect light
+Global illumination
+God rays
+Hard shadows
+Studio lighting
+Soft lighting
+Diffused lighting
+Backlighting, rim lighting
+Volumetric lighting, specular lighting
+Cinematic lighting
+Luminescence
+Translucency
+Subsurface scattering
+Radiant light rays
+bioluminescent details
+Ektachrome
+Glowing
+Shimmering light
+Halo
+Iridescent
+Caustics
+dappled light
+Pearlescent
+golden hour

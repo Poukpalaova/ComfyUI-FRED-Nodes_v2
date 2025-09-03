@@ -1,0 +1,10 @@
+# Python cache
+__pycache__/
+*.pyc
+
+# WIP folder
+WIP/
+
+# OS junk
+.DS_Store
+Thumbs.db
