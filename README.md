@@ -1,51 +1,24 @@
-# FRED Nodes
+# 👑 ComfyUI-FRED-Nodes v2
 
-This repository contains custom nodes for ComfyUI. This is a work in progress (WIP).
+Custom ComfyUI nodes by **Fred** — all-in-one utilities and quality-of-life tools for image workflows.  
+This v2 repo is a clean rewrite of [ComfyUI-FRED-Nodes](https://github.com/Poukpalaova/ComfyUI-FRED-Nodes), with improved nodes, bug fixes, and simplified structure.
 
-## Installation
-open command windows in the custom_nodes and type:
-git clone https://github.com/Poukpalaova/ComfyUI-FRED-Nodes.git
+---
 
-if you have a virtual installation, activate it and in the newly cloned custom_nodes type:
-pip install -r requirements.txt
+## ✨ Features
+- Enhanced **image saving** with metadata + grid support
+- Smart **image cropping/tiling** with ratio/mask awareness
+- Integrated **quality metrics** (BRISQUE, blur, SNR, compression)
+- Simplified **parameters panel** for samplers/schedulers
+- Utility nodes for **text metadata (XMP)** and **wildcard concatenation**
+- Face detection and cropping
+- Robust image loading with caching, indexing, and previews
 
-## Nodes
+---
 
-### FRED_AutoCropImage_SDXL_Ratio_v4
-Description: Automatically crops and resizes images to fit SDXL aspect ratios. Features include auto-finding SDXL resolution, custom aspect ratios, various cropping options, resizing with different interpolation modes, prescaling, and preview generation.
+## 📦 Installation
+Clone or download this repo into your ComfyUI `custom_nodes/` folder:
 
-### FRED_CropFace
-Description: Detects and crops faces from images using the RetinaFace model. It provides options for confidence threshold, margin adjustment, and face selection. The node also generates a preview with detected faces highlighted.
-
-### FRED_LoadImage_V5
-Description: Loads and processes images for use in image generation pipelines. Supports single images or batches from a specified folder, handles various image formats, processes RGBA images, calculates image quality scores, and provides options for seed-based selection.
-
-### FRED_LoadPathImagesPreview_v2
-Description: Loads and previews multiple images from a specified path. It allows pattern matching for file selection and returns the count of images in the folder.
-
-### FRED_LoadRetinaFace.py
-Description: Loads the RetinaFace face detection model. It initializes the model using the "retinaface_resnet50" architecture and returns the loaded model for use in face detection tasks.
-Description: [Your description here] Note: Same as [specify the similar node]
-
-### FRED_photo_prompt.py (WIP)
-Description: Generates photo prompts based on various style elements. It reads data from a JSON file and allows users to select different aspects of a photo prompt, including style, subject, framing, background, lighting, camera properties, and more.
-Description: [Your description here] Note: Same as [specify the similar node]
-
-### FRED_PreviewOnly.py (TEST)
-Description: Extends the PreviewImage node to provide image preview functionality. It processes input images and sends them to the UI for preview, without modifying the original images.
-Description: [Your description here]
-
-### FRED_ImageBrowser (WIP)
-Description: Image browsing and selection tool designed for integration with AI-powered image generation workflows. This module provides an intuitive interface for selecting and manipulating images across various categories, including dresses, hair styles, eye colors, tops, and hair colors.
-
-### FRED_JoinImages
-Description: Joins multiple images either vertically or horizontally. It can handle a single image or a list of images, and includes features for padding and resizing to ensure consistent dimensions.
-
-### FRED_LoadImage_V2
-Status: Deprecated
-
-### FRED_LoadImage_V3
-Status: Deprecated
-
-### FRED_LoadImage_V4
-Status: Deprecated
+```bash
+cd ComfyUI/custom_nodes
+git clone https://github.com/Poukpalaova/ComfyUI-FRED-Nodes_v2.git
