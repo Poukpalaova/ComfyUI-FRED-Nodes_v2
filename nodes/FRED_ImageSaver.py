@@ -1,4 +1,6 @@
+# -*- coding: utf-8 -*-
 from __future__ import annotations
+
 import os
 import json
 import time
@@ -17,83 +19,99 @@ from comfy.comfy_types.node_typing import ComfyNodeABC, InputTypeDict, IO
 HELP_MESSAGE = """
 👑 FRED_Image_Saver
 
-🔹 PURPOSE:
-Save images flexibly with dynamic filename/path tokens, Automatic1111-style metadata embedding, and optional grid saving.  
-Supports single images, tiled grid images, or both at the same time.
+🔹 PURPOSE
+Save images flexibly with dynamic filename/path tokens, Automatic1111-style metadata embedding, and optional grid saving.
+Accepts **list or batch** as input (mapping disabled on images), so the node runs **once** for a whole set.
 
-📥 INPUTS:
-- images • one or more images to save
-- save_single_image • if ON, save each input as its own file
-- filename / path • templates with tokens for naming (counter is always appended for uniqueness)
-- time_format • used by %datetime
-- extension / quality_jpeg_or_webp / optimize_png / lossless_webp • file format and compression options
-- save_workflow_as_json • writes a sidecar JSON file with metadata
-- embed_workflow_in_png • embeds workflow/prompt/app metadata into PNG tEXt
-- metadata fields (width, height, scale, denoise, guidance, clip_skip, steps, seed_value, sampler_name, scheduler_name, positive, negative, model_name)
-- lora_name_X / lora_weight_X • up to 3 LoRA names/weights (weights only expand if name is provided)
-- save_as_grid_if_multi • if ON, also save a tiled grid when multiple images are given
-- grid_column_max / grid_row_max • maximum grid size
-- grid_column_label / grid_row_label • optional labels drawn on grid
-- grid_filename / grid_path / grid_extension / grid_quality_jpeg_or_webp • grid output settings
+📥 INPUTS
+- images • one or more images to save (**list or batch accepted; mapping disabled**).
+  • If a list contains a batch (e.g. [ (B,H,W,3) ]), it is flattened to B images.
+  • All images must share the same H×W.
+- save_single_image • if ON, save each input image as its own file (in addition to the grid, if enabled).
+- filename / path • templates with tokens for naming (a counter is always appended for uniqueness).
+- time_format • used by %datetime.
+- extension / quality_jpeg_or_webp / optimize_png / lossless_webp • single-image format & compression.
+- save_workflow_as_json • writes a sidecar JSON file (metadata).
+- embed_workflow_in_png • embeds workflow/prompt/app metadata into PNG tEXt.
 
-⚙️ KEY OPTIONS:
+- metadata fields (record-only; pixels are not changed):
+  width, height, scale, denoise, guidance, clip_skip, steps, seed_value,
+  sampler_name, scheduler_name, positive, negative, model_name
+  • Positive/Negative are written **only if non-empty** (prevents “Negative prompt:” swallowing params).
+
+- lora_name_X / lora_weight_X (X=1..3) • up to 3 LoRAs. Weights are included **only if the name is set**.
+
+- Grid options:
+  • save_as_grid_if_multi • if ON and there are ≥2 images, also save a tiled grid image.
+  • grid_column_max / grid_row_max • maximum grid size (auto layout chooses rows/cols ≤ these maxima).
+  • grid_filename / grid_path / grid_extension / grid_quality_jpeg_or_webp • grid output settings.
+
+⚙️ KEY BEHAVIOR
 - Single image saves:
-  • Saved to “path” (relative to Comfy’s output folder unless absolute).
-  • Uses filename template with tokens; unique counter (_00001, _00002, …) appended.
-  • PNG: can embed JSON + optimize (lossless).  
-  • JPEG/WEBP: adjustable quality, WEBP can be forced lossless.
-  • Sidecar JSON: includes parameters, prompts, model, LoRAs, app version, workflow.
+  • Saved under “path” (relative to Comfy output unless absolute).
+  • Uses tokenized filename; unique counter `_00001`, `_00002`, … appended.
+  • PNG can embed JSON + optimize (lossless). JPEG/WEBP use quality; WEBP can be lossless.
 
 - Grid saves:
-  • Only created if ≥2 input images and save_as_grid_if_multi is ON.
-  • Grid size auto-derived up to max cols/rows; if not all images fit, the first N are used and leftovers are logged.
-  • Grid uses same token expansion as single images (grid_filename, grid_path).
-  • Metadata mirrors single-image save but adds “img_count”, “grid_rows”, “grid_cols”.
-  • Labels: optional column/row labels drawn with a font.
+  • A grid image is **returned** as the first output (tensor `(1,H,W,3)`) for preview/flow.
+  • A grid **file** is **saved only if** `save_as_grid_if_multi = ON` **and** there are ≥2 images.
+  • Auto layout respects `grid_column_max` / `grid_row_max`. If not all images fit, extras are ignored with a log.
+  • Grid metadata adds: `img_count`, `grid_rows`, `grid_cols`.
+  • If there is only 1 image, the returned tensor is a 1×1 grid; no grid file is saved.
 
-- Metadata embedding (PNG tEXt keys):
-  • "parameters": Automatic1111-style text (Positive, Negative, Steps, Sampler, Scheduler, Guidance/Scale/Denoise, Seed, Size, Clip skip, Model, Version, LoRAs).
-  • "prompt": workflow prompt JSON.
-  • "workflow": workflow graph JSON (if available).
-  • "app": ComfyUI name + short git commit.
+🧾 METADATA (PNG tEXt “parameters” like Automatic1111)
+- “parameters” line(s):
+  • Positive prompt line (if non-empty)
+  • “Negative prompt: …” (if non-empty)
+  • “Steps, Sampler, Scheduler, Guidance, Scale, Denoise, Seed, Size, Clip skip, Model”
+  • “Version: ComfyUI <short-git>”
+  • One line per LoRA: `LoRA_X: <name>, LoRA_X_Weight: <w>`
+- Also embeds “prompt”, “workflow” (if present), and “app” details.
 
-- Token system (usable in both filename and path):
-  • Time/date: %date, %date_dash, %time, %datetime
-  • Params: %seed / %seed_value, %model / %model_name / %basemodelname, %sampler / %sampler_name, %scheduler / %scheduler_name, %width, %height, %steps, %cfg, %guidance, %scale, %denoise, %clip_skip
-  • Batch info: %img_count (grid/batch size)
-  • LoRAs: %lora_name_1..3, %lora_weight_1..3 (weights only if name present)
+🔑 TOKENS (usable in filename and path)
+- Time/date: `%date`, `%date_dash`, `%time`, `%datetime`
+- Params: `%seed`/`%seed_value`, `%model`/`%model_name`/`%basemodelname`, `%sampler`/`%sampler_name`,
+           `%scheduler`/`%scheduler_name`, `%width`, `%height`, `%steps`, `%cfg`/`%guidance`,
+           `%scale`, `%denoise`, `%clip_skip`
+- Batch info: `%img_count` (grid/batch size)
+- LoRAs: `%lora_name_1..3`, `%lora_weight_1..3` (weight expands only if corresponding name is set)
 
-📤 OUTPUTS:
-- last_image_saved_path • path of the last saved single image (empty if none saved)
-- last_grid_saved_path • path of the last saved grid image (empty if none saved)
-- help • this message
+📤 OUTPUTS
+- GRID_IMAGE • the grid as `(1,H,W,3)` (or 1×1 if single input).
+- last_saved_path • path of the **last** saved file (single image or grid). Empty if nothing saved.
+- help • this message.
 
-📝 NOTES & TIPS:
-- This node does NOT resize or alter pixel data; width/height/steps/etc. are recorded only.
-- %basemodelname expands to model_name without extension.
-- PNG optimize=True reduces size but slows saves.
-- WEBP: if “lossless_webp” is ON, quality slider is ignored.
-- LoRA tokens are included only when a name is set.
-- Unique filename generation is guaranteed (Comfy counter + safety loop).
-- IS_CHANGED ignores large tensor inputs (“images”, “prompt”, “extra_pnginfo”, “unique_id”) so reruns don’t trigger unnecessary re-saves.
+📝 NOTES & TIPS
+- This node does **not** resize; width/height/steps/etc. are **recorded only**.
+- `%basemodelname` expands to `model_name` without extension.
+- PNG `optimize=True` reduces size but is slower. WEBP `lossless_webp=True` ignores quality.
+- Unique filenames are guaranteed (Comfy counter + safety loop).
+- **Mapping is disabled on `images`**: the node runs once for a whole list/batch.  
+  If other inputs arrive as lists (from widgets), they are coerced to their **first** value to avoid remapping.
+- Set `save_single_image=False` if you only want the grid file.
+- Mixed sizes? Make sure all inputs share the same H×W before saving a grid.
 
-Examples:
-- filename: "%basemodelname_%datetime_seed_%seed"
-- path:     "Fred_nodes/%date_dash/"
+📚 EXAMPLES
+- filename:      "%basemodelname_%datetime_seed_%seed"
+- path:          "Fred_nodes/%date_dash/"
 - grid_filename: "%model_name_%date_%time_grid_%img_count"
 - grid_path:     "Test/%model_name/Grid/%date_dash/"
 """
 
-
 INVALID_FS_CHARS = '<>:"/\\|?*'
 
 class FRED_ImageSaver(ComfyNodeABC):
+    # Dites à Comfy: j'accepte les listes sur les inputs → ne mappe pas le node sur 'images'
+    INPUT_IS_LIST = True
+    # On ne retourne pas des listes (3 sorties scalaires)
+    OUTPUT_IS_LIST = (False, False, False)
+
     @classmethod
     def INPUT_TYPES(cls) -> InputTypeDict:
         return {
             "required": {
                 # --- IMAGE & FILE OUTPUT ---
-                "images": ("IMAGE", {"tooltip": "image(s) to save"}),
+                "images": ("IMAGE", {"tooltip": "image(s) to save (list or batch)."}),
                 "save_single_image": ("BOOLEAN", {"default": True, "tooltip": "Save each input image as its own file."}),
                 "filename": (IO.STRING, {"default": "%lora_name_1_weight_%lora_weight_1_%model_name_%datetime", "multiline": False, "tooltip": "base filename (counter appended)"}),
                 "path": (IO.STRING, {"default": "Fred_nodes/%date_dash/", "multiline": False, "tooltip": "relative to Comfy output (or absolute)"}),
@@ -102,6 +120,7 @@ class FRED_ImageSaver(ComfyNodeABC):
                 "optimize_png": ("BOOLEAN", {"default": False, "tooltip": "optimize PNG (lossless); smaller files but slower"}),
                 "lossless_webp": ("BOOLEAN", {"default": True, "tooltip": "save WEBP in lossless mode (quality ignored)"}),
                 "quality_jpeg_or_webp": (IO.INT, {"default": 100, "min": 1, "max": 100, "tooltip": "JPEG/WEBP quality (ignored if WEBP lossless)"}),
+
                 "save_workflow_as_json": ("BOOLEAN", {"default": False, "tooltip": "write a sidecar JSON next to image"}),
                 "embed_workflow_in_png": ("BOOLEAN", {"default": True, "tooltip": "embed workflow/prompt JSON into PNG metadata"}),
 
@@ -130,7 +149,7 @@ class FRED_ImageSaver(ComfyNodeABC):
 
                 # --- GRID SAVE OPTIONS ---
                 "save_as_grid_if_multi": ("BOOLEAN", {"default": False, "tooltip": "Also save a single tiled grid image of all inputs."}),
-                "grid_filename": (IO.STRING, {"default": "%lora_name_1_weight_%lora_weight_1_%datetime_%model_name test grid_img count_%img_count", "multiline": False, "tooltip": "filename prefix for the grid image"}),
+                "grid_filename": (IO.STRING, {"default": "%lora_name_1_weight_%lora_weight_1_%datetime_%model_name grid_%img_count", "multiline": False, "tooltip": "filename prefix for the grid image"}),
                 "grid_path": (IO.STRING, {"default": "Test/%model_name/Grid/%date_dash/", "multiline": False, "tooltip": "save folder for the grid image"}),
                 "grid_column_max": (IO.INT, {"default": 5, "min": 1, "step": 1, "tooltip": "x_size (columns)."}),
                 "grid_row_max": (IO.INT, {"default": 1, "min": 1, "step": 1, "tooltip": "y_size (rows)."}),
@@ -149,10 +168,30 @@ class FRED_ImageSaver(ComfyNodeABC):
     OUTPUT_TOOLTIPS = ("path to last saved image", "help / usage tips")
     FUNCTION = "save"
     CATEGORY = "👑FRED/image"
-    DESCRIPTION = "Save images with A1111‑style parameters text and robust tokenized filenames/paths. Can also save a grid when there is multiple images."
+    DESCRIPTION = "Save images with A1111-style parameters text and robust tokenized filenames/paths. Can also save a grid when there is multiple images."
     OUTPUT_NODE = True
 
     # ------------------------------ helpers ------------------------------
+    def _scalar(self, x):
+        return (x[0] if isinstance(x, (list, tuple)) and x else x)
+
+    def _to_int(self, x, default=0):
+        x = self._scalar(x)
+        try:
+            return int(x)
+        except Exception:
+            try:
+                return int(float(x))
+            except Exception:
+                return int(default)
+
+    def _to_float(self, x, default=0.0):
+        x = self._scalar(x)
+        try:
+            return float(x)
+        except Exception:
+            return float(default)
+
     def _pil_to_tensor(self, img: Image.Image) -> torch.Tensor:
         arr = np.asarray(img.convert("RGB"), dtype=np.float32) / 255.0
         return torch.from_numpy(arr)  # H,W,3
@@ -165,15 +204,60 @@ class FRED_ImageSaver(ComfyNodeABC):
         return __import__("re").sub(r"\s+", " ", out).strip()
 
     def _tensor_to_pil(self, t: torch.Tensor) -> Image.Image:
+        # 1) Squeeze batch dim if present
+        if isinstance(t, torch.Tensor) and t.ndim == 4:
+            # If this is a batched tensor, take the first image;
+            # for (1,H,W,C) this simply squeezes.
+            t = t[0]
+
+        if not isinstance(t, torch.Tensor):
+            raise ValueError(f"Unsupported image type: {type(t)}")
+
+        # 2) Move to CPU and scale to uint8
         if t.dtype in (torch.float16, torch.float32, torch.float64):
-            arr = (t.clamp(0, 1).cpu().numpy() * 255.0).astype(np.uint8)
+            t = t.clamp(0, 1)
+            arr = (t.detach().cpu().numpy() * 255.0).astype(np.uint8)
         else:
-            arr = t.clamp(0, 255).byte().cpu().numpy()
-        if arr.ndim == 3 and arr.shape[2] >= 3:
-            return Image.fromarray(arr[..., :3], mode="RGB")
-        elif arr.ndim == 2:
+            # assume already in [0,255]
+            arr = t.detach().clamp(0, 255).byte().cpu().numpy()
+
+        # 3) Normalize channel order/shape to (H,W,3)
+        # Cases:
+        #   (H,W)              -> grayscale
+        #   (H,W,1)           -> grayscale
+        #   (H,W,3|4)         -> channels-last
+        #   (1|3|4,H,W)       -> channels-first
+        if arr.ndim == 2:
+            # (H,W) grayscale -> RGB
             return Image.fromarray(arr, mode="L").convert("RGB")
-        raise ValueError("Unsupported image tensor shape for saving")
+
+        if arr.ndim != 3:
+            raise ValueError(f"Unsupported image tensor shape for saving: {arr.shape}")
+
+        H, W, C_last = arr.shape
+        C_first = arr.shape[0]
+
+        # channels-last common cases
+        if C_last in (1, 3, 4):
+            if C_last == 1:
+                # (H,W,1) -> (H,W,3)
+                arr3 = np.repeat(arr, 3, axis=2)
+                return Image.fromarray(arr3, mode="RGB")
+            # (H,W,3|4) -> RGB (drop alpha if present)
+            return Image.fromarray(arr[..., :3], mode="RGB")
+
+        # channels-first common cases: (3,H,W) or (4,H,W) or (1,H,W)
+        if C_first in (1, 3, 4) and arr.shape[1] == W and arr.shape[2] != C_last:
+            # We likely have (C,H,W): transpose to (H,W,C)
+            arr = np.transpose(arr, (1, 2, 0))
+            # Now handle as channels-last
+            if arr.shape[2] == 1:
+                arr3 = np.repeat(arr, 3, axis=2)
+                return Image.fromarray(arr3, mode="RGB")
+            return Image.fromarray(arr[..., :3], mode="RGB")
+
+        # If we reach here, shape is unexpected
+        raise ValueError(f"Unsupported image tensor shape for saving: {arr.shape}")
 
     def _get_comfyui_version(self) -> str:
         """Return short git commit for ComfyUI if available; else empty string."""
@@ -223,10 +307,14 @@ class FRED_ImageSaver(ComfyNodeABC):
             "seed_value": int(seed_value),
             "sampler_name": sampler_name,
             "scheduler_name": scheduler_name,
-            "positive": positive,
-            "negative": negative,
             "model_name": model_name,
         }
+        # Include prompts only if non-empty (avoid "Negative prompt:" swallowing params)
+        if str(positive or "").strip() != "":
+            meta["positive"] = positive
+        if str(negative or "").strip() != "":
+            meta["negative"] = negative
+
         clean_loras = [(n, float(w)) for (n, w) in loras if str(n).strip() != ""]
         if clean_loras:
             meta["loras"] = [{"name": n, "weight": w} for (n, w) in clean_loras]
@@ -265,13 +353,15 @@ class FRED_ImageSaver(ComfyNodeABC):
 
         parts = []
 
-        # Always emit a first line for "positive", even if empty.
-        # Using a single space keeps line #1 present without adding visible text.
-        parts.append(pos if pos.strip() != "" else " ")
+        # Positive line: include only if non-empty.
+        if pos.strip() != "":
+            parts.append(pos)
 
-        # Negative line always present (may be empty after the colon)
-        parts.append(f"Negative prompt: {neg}")
+        # Negative line: include only if non-empty.
+        if neg.strip() != "":
+            parts.append(f"Negative prompt: {neg}")
 
+        # Parameters line (always present)
         tail = [
             f"Steps: {steps}",
             (f"Sampler: {sampler}" if sampler else None),
@@ -290,7 +380,7 @@ class FRED_ImageSaver(ComfyNodeABC):
         ver = (m.get("app") or {}).get("version") or self._get_comfyui_version()
         parts.append(f"Version: ComfyUI{(' ' + ver) if ver else ''}")
 
-        # Add LoRA lines in requested format
+        # LoRA lines in requested format
         loras = m.get("loras") or []
         for idx, d in enumerate(loras, start=1):
             name = (d.get('name') or '').strip()
@@ -335,13 +425,7 @@ class FRED_ImageSaver(ComfyNodeABC):
         token_map["date_dash"] = time.strftime("%Y-%m-%d")
         token_map["time"] = time.strftime("%H%M%S")
         token_map["datetime"] = time.strftime(time_format or "%Y-%m-%d-%H%M%S")
-        alias_map = {
-            "model": "model_name",
-            "sampler": "sampler_name",
-            "scheduler": "scheduler_name",
-            "seed": "seed_value",
-            "cfg": "guidance",
-        }
+        alias_map = {"model": "model_name", "sampler": "sampler_name", "scheduler": "scheduler_name", "seed": "seed_value", "cfg": "guidance"}
         for a, b in alias_map.items():
             if a not in token_map and b in token_map:
                 token_map[a] = token_map[b]
@@ -390,10 +474,6 @@ class FRED_ImageSaver(ComfyNodeABC):
         """
         Choose rows/cols respecting the provided maxima (x_size = columns, y_size = rows),
         while avoiding blank tiles when n < col_max*row_max.
-
-        - Start with as many columns as possible up to col_max, but not more than n.
-        - Grow rows up to row_max until rows*cols >= n.
-        - If still not enough (because cols was tiny), grow cols up to col_max.
         """
         if n <= 0:
             return 1, 1
@@ -401,13 +481,12 @@ class FRED_ImageSaver(ComfyNodeABC):
         rows = max(1, math.ceil(n / cols))
         rows = min(rows, row_max)
 
-        # Ensure capacity >= n; if not, expand within limits.
+        # Ensure capacity >= n; expand within limits.
         while rows * cols < n and rows < row_max:
             rows += 1
         while rows * cols < n and cols < col_max:
             cols += 1
 
-        # Final clamps
         rows = max(1, min(rows, row_max))
         cols = max(1, min(cols, col_max))
         return rows, cols  # (rows, cols)
@@ -429,7 +508,7 @@ class FRED_ImageSaver(ComfyNodeABC):
 
     # ------------------------------ main ------------------------------
     def save(self,
-             images: torch.Tensor,
+             images,
              save_single_image: bool,
              filename: str,
              path: str,
@@ -470,30 +549,93 @@ class FRED_ImageSaver(ComfyNodeABC):
              extra_pnginfo: Dict[str, Any] = None,
              unique_id: str = ""):
 
-        # ui_images: List[Dict[str, str]] = []
-        grid_image_out = None  # Will hold a single-image batch (1,H,W,3) or stay None
-        output_base = folder_paths.get_output_directory()
-        b, h, w, c = images.shape  # (B, H, W, C)
+        # --- Coercer tout ce qui pourrait arriver en liste (widgets / autres nodes) ---
+        # ---- COERCE scalar/numeric inputs (avoid list types) ----
+        filename      = self._scalar(filename)
+        path          = self._scalar(path)
+        time_format   = self._scalar(time_format)
+        extension     = self._scalar(extension)
+        optimize_png  = bool(self._scalar(optimize_png))
+        lossless_webp = bool(self._scalar(lossless_webp))
+        quality_jpeg_or_webp = self._to_int(quality_jpeg_or_webp, 100)
+        save_workflow_as_json = bool(self._scalar(save_workflow_as_json))
+        embed_workflow_in_png = bool(self._scalar(embed_workflow_in_png))
 
+        save_as_grid_if_multi = bool(self._scalar(save_as_grid_if_multi))
+
+        grid_filename = self._scalar(grid_filename)
+        grid_path     = self._scalar(grid_path)
+        grid_extension = self._scalar(grid_extension)
+        grid_column_max = self._to_int(grid_column_max, 5)
+        grid_row_max    = self._to_int(grid_row_max, 1)
+        grid_quality_jpeg_or_webp = self._to_int(grid_quality_jpeg_or_webp, 100)
+
+        # prompts / meta numeric
+        positive = self._scalar(positive)
+        negative = self._scalar(negative)
+        sampler_name   = self._scalar(sampler_name)
+        scheduler_name = self._scalar(scheduler_name)
+        model_name     = self._scalar(model_name)
+
+        width      = self._to_int(width, 1024)
+        height     = self._to_int(height, 1024)
+        scale      = self._to_float(scale, 1.40)
+        denoise    = self._to_float(denoise, 0.60)
+        guidance   = self._to_float(guidance, 2.20)
+        clip_skip  = self._to_int(clip_skip, 1)
+        steps      = self._to_int(steps, 20)
+        seed_value = self._to_int(seed_value, 0)
+
+        lora_name_1 = self._scalar(lora_name_1); lora_weight_1 = self._to_float(lora_weight_1, 1.0)
+        lora_name_2 = self._scalar(lora_name_2); lora_weight_2 = self._to_float(lora_weight_2, 1.0)
+        lora_name_3 = self._scalar(lora_name_3); lora_weight_3 = self._to_float(lora_weight_3, 1.0)
+
+        # --- Normalize input: accept list/tuple OR a torch batch tensor ---
+        img_list: List[torch.Tensor] = []
+        if isinstance(images, (list, tuple)):
+            input_kind = "list"
+            for im in images:
+                if not isinstance(im, torch.Tensor):
+                    raise ValueError(f"[FRED_Image_Saver] Unsupported list element type: {type(im)}")
+                if im.ndim == 4:  # (B,H,W,C) batch FOUND inside a list → flatten it
+                    b_in = im.shape[0]
+                    for i in range(b_in):
+                        img_list.append(im[i])
+                elif im.ndim == 3:  # (H,W,C)
+                    img_list.append(im)
+                else:
+                    raise ValueError(f"[FRED_Image_Saver] Unsupported tensor shape in list: {tuple(im.shape)}")
+        elif isinstance(images, torch.Tensor):
+            input_kind = "tensor"
+            if images.ndim == 4:  # (B,H,W,C)
+                for i in range(images.shape[0]):
+                    img_list.append(images[i])
+            elif images.ndim == 3:  # (H,W,C) single
+                img_list.append(images)
+            else:
+                raise ValueError(f"[FRED_Image_Saver] Unsupported tensor shape: {tuple(images.shape)}")
+        else:
+            raise ValueError(f"[FRED_Image_Saver] Unsupported images input type: {type(images)}")
+
+        b = len(img_list)
+        is_multi_input = b > 1
+        first_t = img_list[0]
+        in_dev = first_t.device
+        in_dt = first_t.dtype
+
+        shapes = [tuple(t.shape) for t in img_list]
+        print(f"[FRED_Image_Saver] input_kind={input_kind}, count={b}, is_multi_input={is_multi_input}, shapes={shapes[:5]}{'...' if len(shapes)>5 else ''}")
+
+        # --- metadata base (shared) ---
         metadata = self._build_metadata(
-            width=width,
-            height=height,
-            scale=scale,
-            denoise=denoise,
-            guidance=guidance,
-            clip_skip=clip_skip,
-            steps=steps,
-            seed_value=seed_value,
-            sampler_name=sampler_name,
-            scheduler_name=scheduler_name,
-            positive=positive,
-            negative=negative,
-            model_name=model_name,
+            width=width, height=height, scale=scale, denoise=denoise, guidance=guidance,
+            clip_skip=clip_skip, steps=steps, seed_value=seed_value,
+            sampler_name=sampler_name, scheduler_name=scheduler_name,
+            positive=positive, negative=negative, model_name=model_name,
             loras=[(lora_name_1, lora_weight_1), (lora_name_2, lora_weight_2), (lora_name_3, lora_weight_3)],
-            extra_pnginfo=extra_pnginfo or {},
-            prompt=prompt or {},
+            extra_pnginfo=extra_pnginfo or {}, prompt=prompt or {},
         )
-        # Expose LoRA fields for token expansion (weights only if name is non-empty)
+        # Expose LoRA fields for token expansion (weights only if name non-empty)
         if (lora_name_1 or "").strip():
             metadata["lora_name_1"] = lora_name_1
             metadata["lora_weight_1"] = lora_weight_1
@@ -504,15 +646,16 @@ class FRED_ImageSaver(ComfyNodeABC):
             metadata["lora_name_3"] = lora_name_3
             metadata["lora_weight_3"] = lora_weight_3
 
-        # Single images
         saved_paths: List[str] = []
+
+        # --- Single images (optionnel) ---
         if save_single_image:
             outdir = self._ensure_outdir(path, metadata, time_format)
             base_template = filename.strip() if filename else "image"
             base = self._expand_tokens(base_template, metadata, time_format)
             base = self._sanitize_component(base) or "image"
 
-            for i in range(b):
+            for t in img_list:
                 save_dir, filename_base, counter, subfolder, _ = folder_paths.get_save_image_path(base, outdir)
                 name = f"{filename_base}_{counter:05d}"
                 full = os.path.join(save_dir, f"{name}.{extension}")
@@ -521,7 +664,7 @@ class FRED_ImageSaver(ComfyNodeABC):
                     name = f"{filename_base}_{counter:05d}"
                     full = os.path.join(save_dir, f"{name}.{extension}")
 
-                img = self._tensor_to_pil(images[i])
+                img = self._tensor_to_pil(t)
 
                 pnginfo = None
                 if extension.lower() == "png" and embed_workflow_in_png:
@@ -542,21 +685,9 @@ class FRED_ImageSaver(ComfyNodeABC):
                             img.save(full, format='WEBP', quality=int(quality_jpeg_or_webp))
                     else:
                         comfy.utils.save_image(img, save_dir, name)
-                    # If the saved path is inside Comfy's output tree, add a UI entry so it shows in the node
-                    # try:
-                        # rel = os.path.relpath(full, output_base)
-                        # if not rel.startswith(".."):
-                            # # `subfolder` came from get_save_image_path; filename is just "<name>.<ext>"
-                            # ui_images.append({"filename": f"{name}.{extension}", "subfolder": subfolder, "type": "output"})
-                        # else:
-                            # # Outside output dir → Comfy can't preview it inline
-                            # pass
-                    # except Exception:
-                        # pass
                 except Exception as e:
                     print(f"[FRED_Image_Saver] Save error: {e}. Falling back to Comfy save_image.")
                     comfy.utils.save_image(img, save_dir, name)
-                    # ui_images.append({"filename": f"{name}.{extension}", "subfolder": subfolder, "type": "output"})
 
                 if save_workflow_as_json:
                     try:
@@ -568,37 +699,34 @@ class FRED_ImageSaver(ComfyNodeABC):
 
                 saved_paths.append(full)
 
-        # Grid image
-        imgs_pil = [self._tensor_to_pil(images[i]) for i in range(b)]
-
-        # Decide grid shape using the provided maxima (x_size = columns, y_size = rows)
-        rows, cols = self._compute_grid_dims(b, grid_column_max, grid_row_max)
+        # --- GRID (une seule fois, liste ou batch) ---
+        imgs_pil = [self._tensor_to_pil(t) for t in img_list]
+        rows, cols = self._compute_grid_dims(len(imgs_pil), grid_column_max, grid_row_max)
         capacity = rows * cols
-
-        # If there are more images than capacity, use only the first batch and warn.
-        if b > capacity:
-            print(f"[FRED_Image_Saver] Grid capacity {capacity} (rows={rows}, cols={cols}) "
-                  f"cannot fit all {b} images. {b - capacity} image(s) left over.")
+        if len(imgs_pil) > capacity:
+            print(f"[FRED_Image_Saver] Grid capacity {capacity} (rows={rows}, cols={cols}) cannot fit all {len(imgs_pil)} images. {len(imgs_pil) - capacity} left over.")
             imgs_pil = imgs_pil[:capacity]
 
-        grid_img = self._assemble_grid(imgs_pil, rows=rows, cols=cols)
+        grid_img = self._assemble_grid(imgs_pil, rows, cols)
 
-        # Provide a tensor output for preview/flow
-        grid_image_out = self._pil_to_tensor(grid_img).to(dtype=images.dtype, device=images.device).unsqueeze(0)  # 1,H,W,3
+        gi_np = np.asarray(grid_img, dtype=np.uint8)
+        gi_t  = torch.from_numpy(gi_np).to(in_dev).float() / 255.0
+        grid_image_out = gi_t.unsqueeze(0).to(dtype=in_dt)
 
-        if save_as_grid_if_multi and b >= 2:
+        if save_as_grid_if_multi and len(imgs_pil) > 1:
             meta_grid = dict(metadata)
             meta_grid["img_count"] = len(imgs_pil)
             meta_grid["grid_rows"] = rows
             meta_grid["grid_cols"] = cols
-            # -------------
 
             outdir_grid = self._ensure_outdir(grid_path, meta_grid, time_format)
             base_grid_t = grid_filename.strip() if grid_filename else "grid"
             base_grid = self._expand_tokens(base_grid_t, meta_grid, time_format)
             base_grid = self._sanitize_component(base_grid) or "grid"
 
-            save_dir, filename_base, counter, subfolder, _ = folder_paths.get_save_image_path(base_grid, outdir_grid, grid_img.width, grid_img.height)
+            save_dir, filename_base, counter, subfolder, _ = folder_paths.get_save_image_path(
+                base_grid, outdir_grid, grid_img.width, grid_img.height
+            )
             name = f"{filename_base}_{counter:05d}"
             full = os.path.join(save_dir, f"{name}.{grid_extension}")
             while os.path.exists(full):
@@ -625,16 +753,9 @@ class FRED_ImageSaver(ComfyNodeABC):
                         grid_img.save(full, format='WEBP', quality=int(grid_quality_jpeg_or_webp))
                 else:
                     comfy.utils.save_image(grid_img, save_dir, name)
-                # try:
-                    # rel = os.path.relpath(full, output_base)
-                    # if not rel.startswith(".."):
-                        # ui_images.append({"filename": f"{name}.{grid_extension}", "subfolder": subfolder, "type": "output"})
-                # except Exception:
-                    pass
             except Exception as e:
                 print(f"[FRED_Image_Saver] Grid save error: {e}. Falling back to Comfy save_image.")
                 comfy.utils.save_image(grid_img, save_dir, name)
-                # ui_images.append({"filename": f"{name}.{grid_extension}", "subfolder": subfolder, "type": "output"})
 
             if save_workflow_as_json:
                 try:
@@ -646,14 +767,7 @@ class FRED_ImageSaver(ComfyNodeABC):
 
             saved_paths.append(full)
 
-        if grid_image_out is None:
-            # No grid created (e.g., b < 2). To keep downstream nodes happy,
-            # return the first input image as a 1-image batch.
-            grid_image_out = images[:1].clone()
-
-        elif save_as_grid_if_multi and b == 1:
-            print("[FRED_Image_Saver] save_as_grid_if_multi is ON but only 1 image was provided — skipping grid.")
-
+        # Retour
         return (grid_image_out, saved_paths[-1] if saved_paths else "", HELP_MESSAGE)
 
     @staticmethod
