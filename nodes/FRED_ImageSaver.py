@@ -321,11 +321,8 @@ class FRED_ImageSaver(ComfyNodeABC):
         # App info
         v = self._get_comfyui_version()
         meta["app"] = {"name": "ComfyUI", **({"version": v} if v else {})}
-        # Optional embeds
-        if extra_pnginfo and isinstance(extra_pnginfo, dict):
-            meta["extra_pnginfo"] = extra_pnginfo
-        if prompt and isinstance(prompt, dict):
-            meta["prompt"] = prompt
+        meta["extra_pnginfo"] = extra_pnginfo if isinstance(extra_pnginfo, dict) else (extra_pnginfo or {})
+        meta["prompt"] = prompt if isinstance(prompt, dict) else (prompt or {})
         return meta
 
     def _fmt_f(self, x) -> str:
@@ -394,21 +391,45 @@ class FRED_ImageSaver(ComfyNodeABC):
             parts.append(f"LoRA_{idx}: {name}, LoRA_{idx}_Weight: {self._fmt_f(weight)}")
         return "\n".join(parts)
 
-    def _embed_pnginfo(self, metadata: Dict[str, Any]) -> PngImagePlugin.PngInfo:
+    def _embed_pnginfo(self, metadata):
         pnginfo = PngImagePlugin.PngInfo()
         try:
             a111 = self._build_a111_parameters(metadata)
             pnginfo.add_text("parameters", a111)
+
+            # Always embed 'prompt' (stringify even if list/dict)
             if "prompt" in metadata:
                 pnginfo.add_text("prompt", json.dumps(metadata["prompt"]))
-            if "extra_pnginfo" in metadata:
-                wf = metadata["extra_pnginfo"].get("workflow", {}) if isinstance(metadata["extra_pnginfo"], dict) else {}
+
+            # Robust workflow extraction
+            wf = self._extract_workflow(metadata.get("extra_pnginfo"))
+            if wf is not None:
                 pnginfo.add_text("workflow", json.dumps(wf))
+
             if "app" in metadata:
                 pnginfo.add_text("app", json.dumps(metadata["app"]))
         except Exception as e:
             print(f"[FRED_Image_Saver] PNGInfo embed failed: {e}")
         return pnginfo
+
+    def _extract_workflow(self, extra_pnginfo):
+        # extra_pnginfo can be a dict (core Comfy) or a list of dicts (some front-ends)
+        def _maybe_json(x):
+            if isinstance(x, str):
+                try:
+                    return json.loads(x)
+                except Exception:
+                    return x
+            return x
+
+        if isinstance(extra_pnginfo, dict):
+            return _maybe_json(extra_pnginfo.get("workflow"))
+
+        if isinstance(extra_pnginfo, list):
+            for item in extra_pnginfo:
+                if isinstance(item, dict) and "workflow" in item:
+                    return _maybe_json(item["workflow"])
+        return None
 
     def _expand_tokens(self, s: str, meta: Dict[str, Any], time_format: str) -> str:
         if not s:
@@ -692,8 +713,13 @@ class FRED_ImageSaver(ComfyNodeABC):
                 if save_workflow_as_json:
                     try:
                         sidecar = os.path.join(save_dir, f"{name}.json")
-                        with open(sidecar, "w", encoding="utf-8") as f:
-                            json.dump(metadata, f, ensure_ascii=False, indent=2)
+                        wf = self._extract_workflow(metadata.get("extra_pnginfo"))
+                        if wf is None:
+                            # optional: fall back to UI-export-style workflow if you ever stash it elsewhere
+                            print("[FRED_Image_Saver] No workflow found in extra_pnginfo; skipping sidecar.")
+                        else:
+                            with open(sidecar, "w", encoding="utf-8") as f:
+                                json.dump(wf, f, ensure_ascii=False, indent=2)
                     except Exception as e:
                         print(f"[FRED_Image_Saver] Could not write JSON sidecar: {e}")
 

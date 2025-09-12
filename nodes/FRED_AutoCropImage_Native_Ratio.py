@@ -323,7 +323,8 @@ class FRED_AutoCropImage_Native_Ratio:
         original_ratio = original_width / original_height
         for name, w, h in sd_ratios:
             if abs((w / h) - original_ratio) < 0.001:
-                return w, h, f"{name} - ({w}x{h})"
+                # return w, h, f"{name} - ({w}x{h})"
+                return w, h, f"{name}"
         closest = min(sd_ratios, key=lambda ar: abs(original_ratio - (ar[1] / ar[2])))
         return closest[1], closest[2], f"{closest[0]}"
 
