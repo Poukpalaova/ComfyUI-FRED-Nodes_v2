@@ -200,12 +200,37 @@ class FRED_AutoImageTile_from_Mask:
         # 3. Convert overlay to float [0,1]
         overlay_image_float = overlay_image.float() / 255.0
 
-        # 4. Make sure preview is a float tensor [0,1]
-        preview = image.clone() if len(image.shape) == 4 else image.clone().unsqueeze(0)
-        preview_float = preview.float() / 255.0 if preview.max() > 1.0 else preview.float()
+        # # 4. Make sure preview is a float tensor [0,1]
+        # preview = image.clone() if len(image.shape) == 4 else image.clone().unsqueeze(0)
+        # preview_float = preview.float() / 255.0 if preview.max() > 1.0 else preview.float()
 
-        # 5. Blend preview and overlay (0.6 = 60% overlay, 30% original)
-        blend_preview = self.blend_images(preview_float, overlay_image_float, 0.6)
+        # # 5. Blend preview and overlay (0.6 = 60% overlay, 30% original)
+        # blend_preview = self.blend_images(preview_float, overlay_image_float, 0.6)
+        # 4. Make sure preview is a float tensor and robustly mapped to [0,1] (no preview_float var)
+        preview = image if len(image.shape) == 4 else image.unsqueeze(0)
+        preview = preview.float()
+        pmin = float(preview.min())
+        pmax = float(preview.max())
+
+        if pmax > 1.5:  # likely 0..255
+            preview = preview / 255.0
+        elif pmin < -0.01 or pmax > 1.01:  # e.g. [-1,1] or slightly OOR
+            denom = max(pmax - pmin, 1e-8)
+            preview = (preview - pmin) / denom
+        # else: already ~[0,1]
+
+        # 4b. Ensure overlay matches preview batch/size (overlay was created as (1,H,W,3))
+        if overlay_image_float.shape[0] != preview.shape[0]:
+            overlay_image_float = overlay_image_float.expand(preview.shape[0], -1, -1, -1)
+        if overlay_image_float.shape[1:3] != preview.shape[1:3]:
+            overlay_image_float = torch.nn.functional.interpolate(
+                overlay_image_float.permute(0, 3, 1, 2),
+                size=(preview.shape[1], preview.shape[2]),
+                mode='nearest'
+            ).permute(0, 2, 3, 1)
+
+        # 5. True alpha blend (no multiplicative darkening); 0.4 reads nicely
+        blend_preview = self.blend_images(preview, overlay_image_float, 0.4)
 
         # 6. Convert to numpy for any further OpenCV drawing (optional, if you want to add more shapes)
         blend_preview_np = (blend_preview[0].cpu().numpy() * 255).astype(np.uint8)
@@ -288,14 +313,32 @@ class FRED_AutoImageTile_from_Mask:
 
         return preview
 
-    def blend_images(self, image1: torch.Tensor, image2: torch.Tensor, blend_factor: float):
-        if image1.shape != image2.shape:
-            image2 = self.crop_and_resize(image2, image1.shape)
+    # def blend_images(self, image1: torch.Tensor, image2: torch.Tensor, blend_factor: float):
+        # if image1.shape != image2.shape:
+            # image2 = self.crop_and_resize(image2, image1.shape)
 
-        blended_image = image1 * image2
-        blended_image = image1 * (1 - blend_factor) + blended_image * blend_factor
-        blended_image = torch.clamp(blended_image, 0, 1)
-        return blended_image
+        # blended_image = image1 * image2
+        # blended_image = image1 * (1 - blend_factor) + blended_image * blend_factor
+        # blended_image = torch.clamp(blended_image, 0, 1)
+        # return blended_image
+    def blend_images(self, base: torch.Tensor, overlay: torch.Tensor, alpha: float):
+        # Clamp alpha
+        alpha = float(max(0.0, min(1.0, alpha)))
+
+        # Align shapes as a last resort (should already be matched by caller)
+        if overlay.shape != base.shape:
+            if overlay.shape[0] == 1 and base.shape[0] > 1:
+                overlay = overlay.expand(base.shape[0], -1, -1, -1)
+            if overlay.shape[1:3] != base.shape[1:3]:
+                overlay = torch.nn.functional.interpolate(
+                    overlay.permute(0, 3, 1, 2),
+                    size=(base.shape[1], base.shape[2]),
+                    mode='nearest'
+                ).permute(0, 2, 3, 1)
+
+        # Standard alpha blend: (1-a)*base + a*overlay
+        out = base * (1.0 - alpha) + overlay * alpha
+        return torch.clamp(out, 0.0, 1.0)
 
     def Hex_to_RGB(self, inhex: str) -> tuple:
         if not inhex.startswith('#'):

@@ -11,7 +11,7 @@ ASPECT_RATIOS = [
     {"name": "9:21 portrait 640x1536", "width": 640, "height": 1536},
     {"name": "1:2 portrait 768x1536", "width": 768, "height": 1536},
     {"name": "9:16 portrait 768x1344", "width": 768, "height": 1344},
-    {"name": "2:3 portrait 1024x1536", "width": 1024, "height": 1536},
+    {"name": "2:3 portrait 1024x1536", "width": 832, "height": 1216},
     {"name": "5:8 portrait 832x1216", "width": 832, "height": 1216},
     {"name": "5:7 portrait 896x1254", "width": 896, "height": 1254},
     {"name": "3:4 portrait 896x1152", "width": 896, "height": 1152},
@@ -187,7 +187,9 @@ class FRED_AutoCropImage_Native_Ratio:
             modified_image = self.resize_image(cropped_image, resize_mode, final_width, final_height, "center")
             modified_mask = comfy.utils.common_upscale(cropped_mask.unsqueeze(1), final_width, final_height, resize_mode, "center").squeeze(1)
         else:
-            scale_factor = min(native_width / cropped_width, native_height / cropped_height)
+            desired_w = native_width  * prescale_factor
+            desired_h = native_height * prescale_factor
+            scale_factor = min(desired_w / cropped_width, desired_h / cropped_height)
             modified_image = cropped_image
             modified_mask = cropped_mask
 

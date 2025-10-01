@@ -17,6 +17,7 @@ NODE_MODULES = [
     "FRED_Simplified_Parameters_Panel",
     "FRED_Text_to_XMP",
     "FRED_WildcardConcat_Dynamic",
+    "FRED_Save_Text_File",
 ]
 
 for module_name in NODE_MODULES:
