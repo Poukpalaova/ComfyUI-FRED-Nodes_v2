@@ -92,8 +92,8 @@ class FRED_AutoCropImage_Native_Ratio:
                 "prescale_factor": ("FLOAT", {"default": 1.5, "min": 0.1, "max": 8.0, "step": 0.1}),
                 "include_prescale_if_resize": ("BOOLEAN", {"default": False}),
                 "multiple_of": (["1", "2", "4", "8", "16", "32", "64"], {"default": "1"}),
-                "preview_mask_color_intensity": ("FLOAT", {"default": 0.7, "min": 0.1, "max": 1.0, "step": 0.1}),
-                "preview_mask_color": ("COLOR", {"default": "#503555"},),
+                "preview_mask_color_intensity": ("FLOAT", {"default": 0.4, "min": 0.1, "max": 1.0, "step": 0.1}),
+                "preview_mask_color": ("COLOR", {"default": "#503555", "widgetType": "MTB_COLOR"},),
             },
             "optional": {
                 "mask_optional": ("MASK",),
@@ -117,22 +117,36 @@ class FRED_AutoCropImage_Native_Ratio:
 
         _, original_height, original_width, _ = image.shape
 
-        # Prepare mask
-        if mask_optional is None:
-            mask = torch.zeros(1, original_height, original_width, dtype=torch.float32, device=image.device)
-        else:
-            mask = mask_optional
-        if mask.shape[1] != original_height or mask.shape[2] != original_width:
-            mask = torch.nn.functional.interpolate(mask.unsqueeze(0), size=(original_height, original_width),
-                                                   mode="bicubic").squeeze(0).clamp(0.0, 1.0)
-
         # Precrop from mask
         if Precrop_from_input_mask and mask_optional is not None:
-            x_min, y_min, x_max, y_max = self.find_mask_boundaries(mask)
+            x_min, y_min, x_max, y_max = self.find_mask_boundaries(mask_optional)
             if x_min is not None:
+                # Crop image : on suppose image en format (B, H, W, C)
                 image = image[:, y_min:y_max+1, x_min:x_max+1, :]
-                mask = mask[:, y_min:y_max+1, x_min:x_max+1]
-                _, original_height, original_width, _ = image.shape
+                # Crop mask : format (B, H, W)
+                mask = mask_optional[:, y_min:y_max+1, x_min:x_max+1]
+                # Mettre à jour taille pour la suite
+                original_height, original_width = (y_max - y_min + 1), (x_max - x_min + 1)
+            else:
+                # On conserve taille originale si pas de bounding box valide
+                original_height, original_width = image.shape[1], image.shape[2]
+                mask = mask_optional
+        else:
+            # Pas de crop depuis mask, taille originale conservée
+            original_height, original_width = image.shape[1], image.shape[2]
+            if mask_optional is None:
+                mask = torch.zeros(1, original_height, original_width, dtype=torch.float32, device=image.device)
+            else:
+                mask = mask_optional
+
+        # Si le masque a une taille différente de l'image, on redimensionne
+        if mask.shape[1] != original_height or mask.shape[2] != original_width:
+            mask = torch.nn.functional.interpolate(
+                mask.unsqueeze(0).unsqueeze(0),  # (1, 1, H, W)
+                size=(original_height, original_width),
+                mode="bicubic",
+                align_corners=False
+            ).squeeze(0).squeeze(0).clamp(0.0, 1.0)
 
         # Native resolution selection
         if aspect_ratio == "no_crop_to_ratio":
@@ -195,11 +209,16 @@ class FRED_AutoCropImage_Native_Ratio:
 
         # Overlay preview
         if mask is not None and mask.sum() > 0 and mask.sum() != mask.numel():
-            preview = self.apply_mask_overlay(preview, mask_optional, preview_mask_color, preview_mask_color_intensity)
+            preview = self.apply_mask_overlay(preview, mask, preview_mask_color, preview_mask_color_intensity)
 
         _, output_height, output_width, _ = modified_image.shape
 
-        return (modified_image, preview, modified_mask, scale_factor,
+        # return (modified_image, preview, modified_mask, scale_factor,
+                # output_width, output_height, native_width, native_height,
+                # sd_aspect_ratios, HELP_MESSAGE)
+        output = modified_image
+        output = output.to(dtype=torch.float32, device=image.device).clamp(0, 1).contiguous()
+        return (output, preview, modified_mask, scale_factor,
                 output_width, output_height, native_width, native_height,
                 sd_aspect_ratios, HELP_MESSAGE)
 
@@ -290,7 +309,8 @@ class FRED_AutoCropImage_Native_Ratio:
         return cropped_image, preview, cropped_mask
 
     # --- Utilities ---
-    def apply_mask_overlay(self, preview, mask, mask_color, alpha=0.6):
+    # def apply_mask_overlay(self, preview, mask, mask_color, alpha=0.6):
+    def apply_mask_overlay(self, preview, mask, mask_color, alpha):
         rgb = torch.tensor(self.Hex_to_RGB(mask_color), dtype=preview.dtype, device=preview.device) / 255.0
         B, H, W, C = preview.shape
         if mask.ndim == 3:
@@ -353,27 +373,57 @@ class FRED_AutoCropImage_Native_Ratio:
 
         if is_mask:
             return image[:, y_start:y_start+new_height, x_start:x_start+new_width]
+        # else:
+            # preview_color_tensor = torch.tensor(self.Hex_to_RGB(preview_color), dtype=torch.uint8, device=image.device)
+            # preview = image.clone()
+            # overlay_image = torch.full((1, original_height, original_width, 3), 255, dtype=torch.uint8, device=image.device)
+            # if x_start > 0:
+                # overlay_image[:, :, :x_start, :] = preview_color_tensor
+            # if x_start + new_width < original_width:
+                # overlay_image[:, :, x_start+new_width:, :] = preview_color_tensor
+            # if y_start > 0:
+                # overlay_image[:, :y_start, x_start:x_start+new_width, :] = preview_color_tensor
+            # if y_start + new_height < original_height:
+                # overlay_image[:, y_start+new_height:, x_start:x_start+new_width, :] = preview_color_tensor
+            # overlay_float = overlay_image.float() / 255.0
+            # preview_float = preview.float()
+            # blend_preview = self.blend_images(preview_float, overlay_float, preview_intensity)
+            # blend_np = (blend_preview[0].cpu().numpy() * 255).astype(np.uint8)
+            # blend_np = np.ascontiguousarray(blend_np)
+            # cv2.rectangle(blend_np, (x_start, y_start), (x_start+new_width, y_start+new_height),
+                          # (int(preview_color_tensor[0]), int(preview_color_tensor[1]), int(preview_color_tensor[2])), 4)
+            # blend_preview = torch.from_numpy(blend_np).unsqueeze(0).float() / 255.0
+            # cropped_image = image[:, y_start:y_start+new_height, x_start:x_start+new_width, :]
+            # return cropped_image, blend_preview
         else:
-            preview_color_tensor = torch.tensor(self.Hex_to_RGB(preview_color), dtype=torch.uint8, device=image.device)
             preview = image.clone()
-            overlay_image = torch.full((1, original_height, original_width, 3), 255, dtype=torch.uint8, device=image.device)
-            if x_start > 0:
-                overlay_image[:, :, :x_start, :] = preview_color_tensor
-            if x_start + new_width < original_width:
-                overlay_image[:, :, x_start+new_width:, :] = preview_color_tensor
-            if y_start > 0:
-                overlay_image[:, :y_start, x_start:x_start+new_width, :] = preview_color_tensor
-            if y_start + new_height < original_height:
-                overlay_image[:, y_start+new_height:, x_start:x_start+new_width, :] = preview_color_tensor
-            overlay_float = overlay_image.float() / 255.0
-            preview_float = preview.float()
-            blend_preview = self.blend_images(preview_float, overlay_float, preview_intensity)
-            blend_np = (blend_preview[0].cpu().numpy() * 255).astype(np.uint8)
+
+            mask_overlay = torch.ones((1, original_height, original_width), dtype=torch.float32, device=image.device)
+            mask_overlay[:, y_start:y_start+new_height, x_start:x_start+new_width] = 0.0
+
+            # Passer la couleur Jaune sous forme de string hexadécimale ici, comme preview_color
+            preview = self.apply_mask_overlay(preview, mask_overlay, "#DCDC32", preview_intensity)
+
+            # Conversion en numpy pour le dessin du rectangle contour
+            blend_np = (preview[0].cpu().numpy() * 255).astype(np.uint8)
             blend_np = np.ascontiguousarray(blend_np)
-            cv2.rectangle(blend_np, (x_start, y_start), (x_start+new_width, y_start+new_height),
-                          (int(preview_color_tensor[0]), int(preview_color_tensor[1]), int(preview_color_tensor[2])), 4)
+
+            # Dessin du rectangle contour avec OpenCV (épaisseur 4)
+            preview_color_tensor = torch.tensor(self.Hex_to_RGB("#DCDC32"), dtype=torch.uint8, device=image.device)
+            cv2.rectangle(
+                blend_np,
+                (x_start, y_start),
+                (x_start + new_width, y_start + new_height),
+                (int(preview_color_tensor[0]), int(preview_color_tensor[1]), int(preview_color_tensor[2])),
+                thickness=4
+            )
+
+            # Conversion inverse en tensor float normalisé
             blend_preview = torch.from_numpy(blend_np).unsqueeze(0).float() / 255.0
-            cropped_image = image[:, y_start:y_start+new_height, x_start:x_start+new_width, :]
+
+            # Crop de l'image originale à retourner
+            cropped_image = image[:, y_start:y_start + new_height, x_start:x_start + new_width, :]
+
             return cropped_image, blend_preview
 
     def blend_images(self, image1, image2, blend_factor):

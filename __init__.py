@@ -18,6 +18,12 @@ NODE_MODULES = [
     "FRED_Text_to_XMP",
     "FRED_WildcardConcat_Dynamic",
     "FRED_Save_Text_File",
+    "FRED_ImageUncropFromBBox",
+    "FRED_ModelLoaderWithName",
+    "FRED_ExtractKSampler_parameter",
+    "FRED_Image_Sharpening_Blur_Level",
+    "FRED_AutoLoraLoader_Dynamic",
+    "FRED_AutoLoraLoader_5_stacks_simple",
 ]
 
 for module_name in NODE_MODULES:
