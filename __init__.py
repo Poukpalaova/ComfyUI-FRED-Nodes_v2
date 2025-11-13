@@ -24,6 +24,8 @@ NODE_MODULES = [
     "FRED_Image_Sharpening_Blur_Level",
     "FRED_AutoLoraLoader_Dynamic",
     "FRED_AutoLoraLoader_5_stacks_simple",
+    "FRED_ExtractLora_parameter",
+    "FRED_ImageSaver_v2",
 ]
 
 for module_name in NODE_MODULES:

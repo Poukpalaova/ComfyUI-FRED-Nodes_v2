@@ -1,3 +1,4 @@
+from nodes import LoraLoader
 import os
 import sys
 import comfy.sd
@@ -83,7 +84,7 @@ class FRED_AutoLoraLoader_Dynamic:
 
         clip = optional_clip
         for lora in loras:
-            model, clip = comfy.sd.load_lora(model, lora[0], lora[1], lora[2])
+            model, clip = LoraLoader().load_lora(model, lora[0], lora[1], lora[2])
 
         return (model, clip, HELP_MESSAGE)
 

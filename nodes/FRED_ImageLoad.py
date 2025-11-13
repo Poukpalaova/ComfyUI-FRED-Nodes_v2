@@ -317,32 +317,23 @@ class FRED_ImageLoad(ComfyNodeABC):
                 raise ValueError("Invalid image input type.")
 
             # tensor convert & mask
-            # if img.mode == 'RGBA':
-                # rgb_image = img.convert('RGB')
-                # alpha_channel = img.split()[3]
-                # alpha_array = np.array(alpha_channel)
-                # is_inverted = np.mean(alpha_array) > 127
-                # image_t = np.array(rgb_image).astype(np.float32) / 255.0
-                # image_t = torch.from_numpy(image_t)[None,]
-                # mask_t = np.array(alpha_channel).astype(np.float32) / 255.0
-                # if is_inverted:
-                    # mask_t = 1. - mask_t
-                # mask_t = torch.from_numpy(mask_t)
             if img.mode == 'RGBA':
                 rgb_image = img.convert('RGB')
                 alpha_channel = img.split()[3]
-                alpha_array = np.array(alpha_channel)
                 
                 image_t = np.array(rgb_image).astype(np.float32) / 255.0
                 image_t = torch.from_numpy(image_t)[None,]
                 
-                # Simply normalize alpha channel WITHOUT inverted logic
+                # Follow ComfyUI standard: invert alpha channel for mask
+                # Alpha white (opaque) becomes mask black (not masked)
+                # Alpha black (transparent) becomes mask white (masked)
                 mask_t = np.array(alpha_channel).astype(np.float32) / 255.0
-                mask_t = torch.from_numpy(mask_t)
+                mask_t = 1. - torch.from_numpy(mask_t)  # INVERT like ComfyUI core
             else:
                 image_t = np.array(img.convert("RGB")).astype(np.float32) / 255.0
                 image_t = torch.from_numpy(image_t)[None,]
-                mask_t = 1. - torch.ones((img.size[1], img.size[0]), dtype=torch.float32)
+                # Create empty mask (all zeros) when no alpha channel
+                mask_t = torch.zeros((img.size[1], img.size[0]), dtype=torch.float32)
 
             output_image = image_t
             output_mask = mask_t.unsqueeze(0)
