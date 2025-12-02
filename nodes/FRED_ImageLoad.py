@@ -23,7 +23,9 @@ from comfy.comfy_types.node_typing import ComfyNodeABC, InputTypeDict, IO
 
 # --- A1111 / SD Prompt Reader–style parsing ---
 A1111_PARAM_KEY = "parameters"
-NEGATIVE_HEAD = re.compile(r"(^|\n)Negative prompt:\s*", re.IGNORECASE)
+# NEGATIVE_HEAD = re.compile(r"(^|\n)Negative prompt:\s*", re.IGNORECASE)
+NEGATIVE_PROMPT_HEADER = re.compile(r"(^|\n)Negative prompt:\s*", re.IGNORECASE)
+PARAMS_HEADER = re.compile(r"\n\s*Steps:|, Sampler:|, Scheduler:|, Guidance:|, Scale:|, Denoise:|, Seed:|, Size:|, Clip skip:", re.IGNORECASE)
 
 ALLOWED_EXT = ('.jpeg', '.jpg', '.png', '.tiff', '.gif', '.bmp', '.webp', '.avif')
 CACHE_VERSION = 2
@@ -107,29 +109,68 @@ def _resolve_hint_path(hint: str) -> str | None:
         return cand
     return None
 
-def _extract_pos_neg_and_params(a111_text: str) -> tuple[str, str, str]:
-    if not a111_text:
+# def _extract_pos_neg_and_params(a111_text: str) -> tuple[str, str, str]:
+    # if not a111_text:
+        # return "", "", ""
+    # s = a111_text.replace("\r\n", "\n").replace("\r", "\n")
+    # m = NEGATIVE_HEAD.search(s)
+    # if m:
+        # positive = s[:m.start()].strip()
+        # rest = s[m.end():]
+    # else:
+        # # first, _, tail = s.partition("\n")
+        # # return first.strip(), "", tail.strip()
+        # return s.strip(), "", ""
+    # steps_idx = rest.find("\nSteps:")
+    # if steps_idx == -1:
+        # steps_line = re.search(r"\n\s*Steps\s*:", rest)
+        # if steps_line:
+            # steps_idx = steps_line.start()
+    # if steps_idx != -1:
+        # negative = rest[:steps_idx].strip()
+        # params_tail = rest[steps_idx+1:].strip()
+    # else:
+        # negative = rest.strip()
+        # params_tail = ""
+    # return positive, negative, params_tail
+def _extract_pos_neg_and_params(text: str) -> tuple[str, str, str]:
+    if not text:
         return "", "", ""
-    s = a111_text.replace("\r\n", "\n").replace("\r", "\n")
-    m = NEGATIVE_HEAD.search(s)
-    if m:
-        positive = s[:m.start()].strip()
-        rest = s[m.end():]
+
+    # Normalize line endings
+    s = text.replace("\r\n", "\n").replace("\r", "\n")
+
+    # Find negative prompt header start
+    neg_match = NEGATIVE_PROMPT_HEADER.search(s)
+
+    if neg_match:
+        positive = s[:neg_match.start()].strip()
+        rest = s[neg_match.end():]
+
+        # Separate negative prompt from parameters
+        param_match = PARAMS_HEADER.search(rest)
+        if param_match:
+            negative = rest[:param_match.start()].strip()
+            params = rest[param_match.start():].strip()
+        else:
+            negative = rest.strip()
+            params = ""
+
+        return positive, negative, params
+
     else:
-        first, _, tail = s.partition("\n")
-        return first.strip(), "", tail.strip()
-    steps_idx = rest.find("\nSteps:")
-    if steps_idx == -1:
-        steps_line = re.search(r"\n\s*Steps\s*:", rest)
-        if steps_line:
-            steps_idx = steps_line.start()
-    if steps_idx != -1:
-        negative = rest[:steps_idx].strip()
-        params_tail = rest[steps_idx+1:].strip()
-    else:
-        negative = rest.strip()
-        params_tail = ""
-    return positive, negative, params_tail
+        # No negative prompt header found, so:
+        # Separate parameters from whole text if present
+        param_match = PARAMS_HEADER.search(s)
+        if param_match:
+            positive = s[:param_match.start()].strip()
+            params = s[param_match.start():].strip()
+        else:
+            positive = s.strip()
+            params = ""
+        negative = ""
+
+        return positive, negative, params
 
 def _read_meta_triplet_from_path(path: str) -> tuple[str, str, str]:
     try:

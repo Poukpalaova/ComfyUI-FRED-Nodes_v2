@@ -233,7 +233,7 @@ class FRED_ImageSaver_v2:
             "required": {
                 "images": ("IMAGE", {"tooltip": "images to save (list or batch)."}),
                 "save_single_image": ("BOOLEAN", {"default": True, "tooltip": "Save each input image as its own file."}),
-                "filename": ("STRING", {"default": "%model_name%date_dash", "multiline": False, "tooltip": "base filename (counter appended)"}),
+                "filename": ("STRING", {"default": "%lora_name_1_%lora_weight_1_%model_name_%date_dash", "multiline": False, "tooltip": "base filename (counter appended)"}),
                 "path": ("STRING", {"default": "Fred_nodes/%date_dash/", "multiline": False, "tooltip": "relative to Comfy output or absolute"}),
                 "time_format": ("STRING", {"default": "%Y-%m-%d-%H%M%S", "tooltip": "used by %datetime token"}),
                 "extension": (["png", "jpeg", "webp"], {"default": "png", "tooltip": "output file format for single images"}),
@@ -244,7 +244,7 @@ class FRED_ImageSaver_v2:
                 "embed_workflow_in_png": ("BOOLEAN", {"default": True, "tooltip": "embed workflow/prompt JSON into PNG metadata"}),
                 # Grid options
                 "save_as_grid_if_multi": ("BOOLEAN", {"default": False, "tooltip": "Also save a single tiled grid image of all inputs."}),
-                "grid_filename": ("STRING", {"default": "%lora_name_1%lora_weight_1%datetime%model_name_grid%img_count", "multiline": False, "tooltip": "filename prefix for the grid image"}),
+                "grid_filename": ("STRING", {"default": "%lora_name_1_%lora_weight_1_%date_dash_%model_name_grid%_img_count", "multiline": False, "tooltip": "filename prefix for the grid image"}),
                 "grid_path": ("STRING", {"default": "Test/%model_name/Grid/%date_dash/", "multiline": False, "tooltip": "save folder for the grid image"}),
                 "grid_column_max": ("INT", {"default": 5, "min": 1, "step": 1, "tooltip": "xsize (columns)."}),
                 "grid_row_max": ("INT", {"default": 2, "min": 1, "step": 1, "tooltip": "ysize (rows)."}),
