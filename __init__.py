@@ -27,6 +27,7 @@ NODE_MODULES = [
     "FRED_ExtractLora_parameter",
     "FRED_ImageSaver_v2",
     "FRED_ExecutionTime",
+    "FRED_JpegArtifact_Simulator",
 ]
 
 for module_name in NODE_MODULES:
