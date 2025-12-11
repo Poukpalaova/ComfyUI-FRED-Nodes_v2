@@ -93,7 +93,8 @@ class FRED_AutoCropImage_Native_Ratio:
                 "include_prescale_if_resize": ("BOOLEAN", {"default": False}),
                 "multiple_of": (["1", "2", "4", "8", "16", "32", "64"], {"default": "1"}),
                 "preview_mask_color_intensity": ("FLOAT", {"default": 0.4, "min": 0.1, "max": 1.0, "step": 0.1}),
-                "preview_mask_color": ("COLOR", {"default": "#503555", "widgetType": "MTB_COLOR"},),
+                # "preview_mask_color": ("COLOR", {"default": "#503555", "widgetType": "MTB_COLOR"},),
+                "preview_mask_color": ("COLOR", {"default": "#503555", "widgetType": "FRED_COLOR"},),
             },
             "optional": {
                 "mask_optional": ("MASK",),
