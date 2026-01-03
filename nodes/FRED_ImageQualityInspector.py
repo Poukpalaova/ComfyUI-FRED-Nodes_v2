@@ -86,7 +86,7 @@ class FRED_ImageQualityInspector:
     RETURN_TYPES = ("FLOAT", "FLOAT", "FLOAT", "FLOAT", "STRING")
     RETURN_NAMES = ("BRISQUE", "BLUR", "SNR", "COMPRESSION_RATIO", "help")
     FUNCTION = "analyze_image"
-    CATEGORY = "👑FRED/analysis"
+    CATEGORY = "👑FRED/postprocessing"
 
     # ------------------------- helpers (scaling) -------------------------
     @staticmethod

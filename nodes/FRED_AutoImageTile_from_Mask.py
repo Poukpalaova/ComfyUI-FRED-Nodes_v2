@@ -422,5 +422,5 @@ NODE_CLASS_MAPPINGS = {
 }
 
 NODE_DISPLAY_NAME_MAPPINGS = {
-    "FRED_AutoImageTile_from_Mask": "👑 FRED_AutoImageTile_from_Mask"
+    "FRED_AutoImageTile_from_Mask": "👑 FRED Auto Image Tile from Mask"
 }

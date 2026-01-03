@@ -150,5 +150,5 @@ NODE_CLASS_MAPPINGS = {
 }
 
 NODE_DISPLAY_NAME_MAPPINGS = {
-    "FRED_ExtractKSampler_parameter": "👑 FRED_ExtractKSampler_parameter",
+    "FRED_ExtractKSampler_parameter": "👑 FRED Extract KSampler parameter",
 }

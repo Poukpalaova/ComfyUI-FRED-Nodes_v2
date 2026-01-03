@@ -93,7 +93,7 @@ class FRED_AutoLoraLoader_5_stacks_simple:
                     "loras_infos", "help")
     OUTPUT_TOOLTIPS = ("", "", "", "", "", "", "", "", "", "", "", "", "", "")
     FUNCTION = "stack"
-    CATEGORY = "👑 FRED/loras"
+    CATEGORY = "👑FRED/models/loras"
     DESCRIPTION = "Auto-applies up to 5 LoRAs with on/off/auto modes and emits a compact loras_infos string."
 
     @staticmethod
@@ -216,5 +216,5 @@ NODE_CLASS_MAPPINGS = {
 }
 
 NODE_DISPLAY_NAME_MAPPINGS = {
-    "FRED_AutoLoraLoader_5_stacks_simple": "👑 FRED AutoLoRA 5 (simple)",
+    "FRED_AutoLoraLoader_5_stacks_simple": "👑 FRED Auto LoRA Loader 5 stacks (simple)",
 }

@@ -188,5 +188,5 @@ NODE_CLASS_MAPPINGS = {
 }
 
 NODE_DISPLAY_NAME_MAPPINGS = {
-    "FRED_ExtractLora_parameter": "👑 FRED_ExtractLora_parameter",
+    "FRED_ExtractLora_parameter": "👑 FRED Extract Lora parameter",
 }

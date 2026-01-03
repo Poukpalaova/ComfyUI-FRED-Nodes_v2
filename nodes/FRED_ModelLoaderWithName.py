@@ -9,7 +9,7 @@ class FRED_CheckpointLoaderWithName:
     RETURN_TYPES = ("MODEL", "CLIP", "VAE", "STRING")
     RETURN_NAMES = ("MODEL", "CLIP", "VAE", "model_name")
     FUNCTION = "load_checkpoint"
-    CATEGORY = "👑FRED/Model"
+    CATEGORY = "👑FRED/models"
 
     @classmethod
     def INPUT_TYPES(cls):
@@ -51,7 +51,7 @@ class FRED_UNETLoaderWithName:
     OUTPUT_TOOLTIPS = ("U-Net model (denoising latents)", "model filename")
     FUNCTION = "load_unet"
 
-    CATEGORY = "👑FRED/Model"
+    CATEGORY = "👑FRED/models"
     DESCRIPTION = "Loads U-Net model and outputs it's filename"
 
     @classmethod
@@ -89,6 +89,6 @@ NODE_CLASS_MAPPINGS = {
 }
 
 NODE_DISPLAY_NAME_MAPPINGS = {
-    "FRED_CheckpointLoaderWithName": "👑 FRED_CheckpointLoaderWithName",
-    "FRED_UNETLoaderWithName": "👑 FRED_UNETLoaderWithName"
+    "FRED_CheckpointLoaderWithName": "👑 FRED Checkpoint Loader With Name",
+    "FRED_UNETLoaderWithName": "👑 FRED UNET Loader With Name"
 }

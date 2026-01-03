@@ -102,7 +102,7 @@ class FRED_ExecutionTime(ComfyNodeABC):
     RETURN_TYPES = ("FLOAT", "STRING", "STRING")
     RETURN_NAMES = ("execution_time_sec", "execution_time_str", "help")
     FUNCTION = "finalize"
-    CATEGORY = "👑FRED/utility"
+    CATEGORY = "👑FRED/utils"
     DESCRIPTION = "Return total prompt duration in seconds (2 decimals). Connect 'tail' to the latest node of your workflow."
 
     @classmethod

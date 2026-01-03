@@ -98,7 +98,7 @@ class FRED_Text_to_XMP:
 
     RETURN_TYPES = ("STRING", "STRING",)
     RETURN_NAMES = ("XMP_formatted_text", "help",)
-    CATEGORY = "👑FRED/utils"
+    CATEGORY = "👑FRED/text"
     FUNCTION = "convert_to_xmp"
 
     def convert_to_xmp(self, text: str, sentence_mode: bool, replace_space_with_underscore: bool):
@@ -140,5 +140,5 @@ NODE_CLASS_MAPPINGS = {
 }
 
 NODE_DISPLAY_NAME_MAPPINGS = {
-    "FRED_Text_to_XMP": "👑 FRED_Text_to_XMP"
+    "FRED_Text_to_XMP": "👑 FRED Text to XMP"
 }

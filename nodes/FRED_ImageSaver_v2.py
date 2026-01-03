@@ -367,7 +367,7 @@ class FRED_ImageSaver_v2:
     RETURN_NAMES = ("GRID_IMAGE", "last_saved_path", "help")
     OUTPUT_TOOLTIPS = ("", "path to last saved image", "help / usage tips")
     FUNCTION = "save"
-    CATEGORY = "👑 FRED/image"
+    CATEGORY = "👑FRED/image"
     DESCRIPTION = "Save images with A1111-style parameters text and robust tokenized filenames/paths (v2: parameters input with explicit override switch, unlimited loras_infos, multi-image list mapping)."
     OUTPUT_NODE = True
 
@@ -1072,5 +1072,5 @@ NODE_CLASS_MAPPINGS = {
 }
 
 NODE_DISPLAY_NAME_MAPPINGS = {
-    "FRED_ImageSaver_v2": "👑 FRED ImageSaver v2",
+    "FRED_ImageSaver_v2": "👑 FRED Image Saver v2",
 }

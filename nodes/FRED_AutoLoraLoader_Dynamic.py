@@ -48,7 +48,7 @@ class FRED_AutoLoraLoader_Dynamic:
     RETURN_TYPES = ("MODEL", "CLIP", "STRING")
     RETURN_NAMES = ("model", "clip", "showhelp")
     FUNCTION = "stack"
-    CATEGORY = "👑 FRED/lora"
+    CATEGORY = "👑FRED/models/loras"
 
     def stack(self, model, toggle, mode, num_loras, text_prompt="", optional_clip=None, **kwargs):
         if (toggle in [False, None, "False"]) or not kwargs:
@@ -94,5 +94,5 @@ NODE_CLASS_MAPPINGS = {
 }
 
 NODE_DISPLAY_NAME_MAPPINGS = {
-    "FRED_AutoLoraLoader_Dynamic": "👑 FRED_AutoLoraLoader_Dynamic"
+    "FRED_AutoLoraLoader_Dynamic": "👑 FRED Auto Lora Loader Dynamic"
 }

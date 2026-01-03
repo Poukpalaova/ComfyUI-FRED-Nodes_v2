@@ -460,7 +460,7 @@ NODE_CLASS_MAPPINGS = {
 }
 
 NODE_DISPLAY_NAME_MAPPINGS = {
-    "FRED_ImageUncropFromBBox": "👑 FRED_ImageUncropFromBBox"
+    "FRED_ImageUncropFromBBox": "👑 FRED Image Uncrop From BBox"
 }
 
 # import torch

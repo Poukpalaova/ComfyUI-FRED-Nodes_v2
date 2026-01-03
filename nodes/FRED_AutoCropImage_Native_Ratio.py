@@ -463,5 +463,5 @@ NODE_CLASS_MAPPINGS = {
     "FRED_AutoCropImage_Native_Ratio": FRED_AutoCropImage_Native_Ratio
 }
 NODE_DISPLAY_NAME_MAPPINGS = {
-    "FRED_AutoCropImage_Native_Ratio": "👑 FRED AutoCropImage Native Ratio"
+    "FRED_AutoCropImage_Native_Ratio": "👑 FRED Auto Crop Image Native Ratio"
 }

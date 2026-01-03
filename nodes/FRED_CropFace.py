@@ -370,4 +370,4 @@ class FRED_CropFace:
         )
 
 NODE_CLASS_MAPPINGS = {"FRED_CropFace": FRED_CropFace}
-NODE_DISPLAY_NAME_MAPPINGS = {"FRED_CropFace": "👑 FRED_CropFace"}
+NODE_DISPLAY_NAME_MAPPINGS = {"FRED_CropFace": "👑 FRED Crop Face"}
