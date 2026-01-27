@@ -28,8 +28,8 @@ NODE_MODULES = [
     "FRED_ImageSaver_v2",
     "FRED_ExecutionTime",
     "FRED_JpegArtifact_Simulator",
-    "FRED_RestoreFaceWithMask",
-    "FRED_Multi_Linear_Slider",
+#     "FRED_RestoreFaceWithMask",
+    "FRED_Multi_Linear_Slider"
 ]
 
 for module_name in NODE_MODULES:

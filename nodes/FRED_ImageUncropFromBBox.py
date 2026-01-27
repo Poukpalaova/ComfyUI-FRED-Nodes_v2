@@ -33,7 +33,7 @@ with smooth progressive blending using border blending and optional mask support
 - cropped_image • Cropped and possibly modified image (IMAGE)
 - bbox • Bounding box coordinates in the original image where the crop should be placed (BBOX)
 - border_blending • Strength of blend/fade on edges (FLOAT, 0=no blur, 1=maximum blur)
-- erode_size • Pixels to erode mask inward before blur (INT, 0-100, creates inward gradient)
+- erode_size • Pixels to erode mask inward at the border of the cropped image, before blur (INT, 0-100)
 - use_mask • Enable mask-based blending: False=rectangular blend, True=use optional_mask shape (BOOLEAN)
 - resize_mode • Resizing method for images and masks (STRING: bilinear, bicubic, nearest, area)
 - bbox_mode • Bounding box format: x0y0x1y1 (default) or xywh (STRING)
@@ -288,13 +288,30 @@ class FRED_ImageUncropFromBBox:
         x0, y0, x1, y1 = bbox_coords
 
         # Convert to numpy
+        # mask_np = mask_tensor.cpu().numpy()
+        # if mask_np.max() <= 1.0:
+            # mask_np = (mask_np * 255.0)
         mask_np = mask_tensor.cpu().numpy()
-        if mask_np.max() <= 1.0:
-            mask_np = (mask_np * 255.0)
+        if mask_np.max() > mask_np.min():
+            mask_np = (mask_np - mask_np.min()) / (mask_np.max() - mask_np.min())
+            print(f"[FRED_ImageUncropFromBBox] Mask normalized from [{mask_tensor.min():.4f}, {mask_tensor.max():.4f}] to [0.0, 1.0]")
+
         mask_np = np.clip(mask_np, 0, 255).astype(np.uint8)
         mask_pil = Image.fromarray(mask_np, mode="L")
 
         # Detect mask context and resize
+        # if (mask_w, mask_h) == (bbox_w, bbox_h):
+            # print(f"[FRED_ImageUncropFromBBox] Mask matches bbox size: {mask_w}x{mask_h}")
+            # resized_mask = mask_pil
+        # elif (mask_w, mask_h) == (crop_w, crop_h):
+            # print(f"[FRED_ImageUncropFromBBox] Mask matches crop size: {mask_w}x{mask_h}, resizing to bbox")
+            # resized_mask = mask_pil.resize((bbox_w, bbox_h), resample=resample)
+        # elif (mask_w, mask_h) == (orig_w, orig_h):
+            # print(f"[FRED_ImageUncropFromBBox] Mask matches original image size: {mask_w}x{mask_h}, cropping to bbox")
+            # resized_mask = mask_pil.crop((x0, y0, x1, y1))
+        # else:
+            # print(f"[FRED_ImageUncropFromBBox] Mask size {mask_w}x{mask_h} unknown, resizing to bbox {bbox_w}x{bbox_h}")
+            # resized_mask = mask_pil.resize((bbox_w, bbox_h), resample=resample)
         if (mask_w, mask_h) == (bbox_w, bbox_h):
             print(f"[FRED_ImageUncropFromBBox] Mask matches bbox size: {mask_w}x{mask_h}")
             resized_mask = mask_pil
@@ -308,86 +325,74 @@ class FRED_ImageUncropFromBBox:
             print(f"[FRED_ImageUncropFromBBox] Mask size {mask_w}x{mask_h} unknown, resizing to bbox {bbox_w}x{bbox_h}")
             resized_mask = mask_pil.resize((bbox_w, bbox_h), resample=resample)
 
+        # NORMALIZE AFTER RESIZE - this is critical!
+        mask_array = np.array(resized_mask).astype(np.float32) / 255.0
+
+        # Normalize to full 0-1 range
+        if mask_array.max() > mask_array.min():
+            mask_array = (mask_array - mask_array.min()) / (mask_array.max() - mask_array.min())
+            print(f"[FRED_ImageUncropFromBBox] Mask normalized after resize - from [{mask_array.min():.4f}, {mask_array.max():.4f}] to [0.0, 1.0]")
+            # Convert back to PIL so the rest of the code works
+            resized_mask = Image.fromarray((mask_array * 255).astype(np.uint8), mode="L")
+        else:
+            print(f"[FRED_ImageUncropFromBBox] WARNING: Mask is uniform (min=max), cannot normalize")
+
         # Apply Padding + Erosion + Blur technique
         if border_blending > 0 or erode_size > 0:
             MAX_BLUR_RADIUS = 150
             blur_radius = int(MAX_BLUR_RADIUS * border_blending)
             blur_radius = max(1, blur_radius)
-
-            # Calculate padding: needs to be at least erode_size for erosion to work
-            # Add extra blur_radius for smooth transition
-            pad_pixels = erode_size + blur_radius
-
-            # Determine which sides need padding (only if NOT at image edge)
-            pad_left = 0 if bbox_at_edges['left'] else pad_pixels
-            pad_right = 0 if bbox_at_edges['right'] else pad_pixels
-            pad_top = 0 if bbox_at_edges['top'] else pad_pixels
-            pad_bottom = 0 if bbox_at_edges['bottom'] else pad_pixels
-
+            
             # Convert to numpy array
             mask_array = np.array(resized_mask).astype(np.float32) / 255.0
-
-            # Step 1: Add black padding if needed
-            if any([pad_left, pad_right, pad_top, pad_bottom]):
-                mask_array = np.pad(
-                    mask_array,
-                    ((pad_top, pad_bottom), (pad_left, pad_right)),
-                    mode='constant',
-                    constant_values=0
-                )
-                print(f"[FRED_ImageUncropFromBBox] Added padding: {pad_pixels}px (L:{pad_left}, R:{pad_right}, T:{pad_top}, B:{pad_bottom})")
-
-            # Convert to torch for processing
-            mask_torch = torch.from_numpy(mask_array)
-
-            # Step 2: Erode the mask inward
+            
+            print(f"[FRED_ImageUncropFromBBox] Initial mask - min: {mask_array.min():.3f}, max: {mask_array.max():.3f}, mean: {mask_array.mean():.3f}")
+            
+            # Step 1: Create rectangular black border (erode_size defines the border width)
             if erode_size > 0:
-                if HAS_SCIPY:
-                    # Use scipy for better erosion
-                    mask_array = scipy.ndimage.grey_erosion(mask_array, size=(erode_size, erode_size))
-                    mask_torch = torch.from_numpy(mask_array)
-                else:
-                    # Fallback: simple min pooling erosion
-                    kernel_size = erode_size * 2 + 1
-                    if kernel_size > 1:
-                        mask_torch = mask_torch.unsqueeze(0).unsqueeze(0)
-                        mask_torch = -F.max_pool2d(-mask_torch, kernel_size, stride=1, padding=erode_size)
-                        mask_torch = mask_torch.squeeze(0).squeeze(0)
-
-                print(f"[FRED_ImageUncropFromBBox] Applied erosion: {erode_size}px")
-
-            # Step 3: Blur the eroded mask
+                mask_h, mask_w = mask_array.shape[:2]
+                
+                # Create a rectangular mask that is 0 at edges and 1 in the interior
+                border_mask = np.ones_like(mask_array)
+                
+                # Set border regions to 0
+                border_mask[:erode_size, :] = 0  # Top
+                border_mask[-erode_size:, :] = 0  # Bottom
+                border_mask[:, :erode_size] = 0  # Left
+                border_mask[:, -erode_size:] = 0  # Right
+                
+                # Apply border mask to original mask
+                mask_array = mask_array * border_mask
+                
+                print(f"[FRED_ImageUncropFromBBox] After border removal - min: {mask_array.min():.3f}, max: {mask_array.max():.3f}, mean: {mask_array.mean():.3f}")
+                print(f"[FRED_ImageUncropFromBBox] Applied rectangular border removal: {erode_size}px")
+            
+            # Convert to torch for blur
+            mask_torch = torch.from_numpy(mask_array)
+            
+            # Step 2: Apply blur to create smooth gradient from the black borders
             if blur_radius > 0:
-                # Ensure blur kernel size is odd
                 blur_kernel = blur_radius * 2 + 1
-
-                # Apply Gaussian blur
+                
                 if HAS_TORCHVISION:
                     mask_torch = mask_torch.unsqueeze(0).unsqueeze(0)
                     mask_torch = TF.gaussian_blur(mask_torch, blur_kernel)
                     mask_torch = mask_torch.squeeze(0).squeeze(0)
                 else:
-                    # Fallback to PIL
                     mask_array = mask_torch.cpu().numpy()
                     mask_pil_temp = Image.fromarray((mask_array * 255).astype(np.uint8), mode="L")
                     mask_pil_temp = mask_pil_temp.filter(ImageFilter.GaussianBlur(radius=blur_radius))
                     mask_torch = torch.from_numpy(np.array(mask_pil_temp).astype(np.float32) / 255.0)
-
+                
+                print(f"[FRED_ImageUncropFromBBox] After blur - min: {mask_torch.min():.3f}, max: {mask_torch.max():.3f}, mean: {mask_torch.mean():.3f}")
                 print(f"[FRED_ImageUncropFromBBox] Applied blur: radius {blur_radius}px")
-
-            # Step 4: Crop back to bbox size (removing padding, keeping gradient)
-            if any([pad_left, pad_right, pad_top, pad_bottom]):
-                mask_array = mask_torch.cpu().numpy()
-                # Crop to remove padding
-                mask_array = mask_array[pad_top:pad_top+bbox_h, pad_left:pad_left+bbox_w]
-                mask_torch = torch.from_numpy(mask_array)
-                print(f"[FRED_ImageUncropFromBBox] Cropped back to bbox size: {bbox_w}x{bbox_h}")
-
+            
             # Convert back to PIL
             mask_array = mask_torch.cpu().numpy()
             mask_array = np.clip(mask_array * 255, 0, 255).astype(np.uint8)
             resized_mask = Image.fromarray(mask_array, mode="L")
-
+            
+            print(f"[FRED_ImageUncropFromBBox] Final mask - min: {mask_array.min()}, max: {mask_array.max()}, mean: {mask_array.mean():.1f}")
         return resized_mask
 
     def blend_with_mask(self, orig_pil, crop_pil, mask_pil, paste_coords):

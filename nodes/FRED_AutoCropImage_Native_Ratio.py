@@ -8,13 +8,15 @@ import comfy.utils
 from comfy_extras.nodes_mask import ImageCompositeMasked
 
 ASPECT_RATIOS = [
-    {"name": "9:21 portrait 640x1536", "width": 640, "height": 1536},
+    {"name": "5:12 portrait 640x1536", "width": 640, "height": 1536},
+    {"name": "9:21 portrait 576x1344", "width": 576, "height": 1344},
     {"name": "1:2 portrait 768x1536", "width": 768, "height": 1536},
     {"name": "9:16 portrait 768x1344", "width": 768, "height": 1344},
-    {"name": "2:3 portrait 1024x1536", "width": 832, "height": 1216},
-    {"name": "5:8 portrait 832x1216", "width": 832, "height": 1216},
+    {"name": "5:8 portrait 800x1280", "width": 800, "height": 1280},
+    {"name": "2:3 portrait 896x1344", "width": 896, "height": 1344},
     {"name": "5:7 portrait 896x1254", "width": 896, "height": 1254},
-    {"name": "3:4 portrait 896x1152", "width": 896, "height": 1152},
+    {"name": "3:4 portrait 768x1024", "width": 768, "height": 1024},
+    {"name": "7:9 portrait 896x1152", "width": 896, "height": 1152},
     {"name": "4:5 portrait 1024x1280", "width": 1024, "height": 1280},
     {"name": "5:6 portrait 1066x1280", "width": 1066, "height": 1280},
     {"name": "9:10 portrait 1152x1280", "width": 1152, "height": 1280},
@@ -22,13 +24,15 @@ ASPECT_RATIOS = [
     {"name": "10:9 landscape 1280x1152", "width": 1280, "height": 1152},
     {"name": "6:5 landscape 1280x1066", "width": 1280, "height": 1066},
     {"name": "5:4 landscape 1280x1024", "width": 1280, "height": 1024},
-    {"name": "8:5 landscape 1280x800", "width": 1280, "height": 800},
+    {"name": "9:7 landscape 1152x896", "width": 1152, "height": 896},
+    {"name": "4:3 landscape 1024x768", "width": 1024, "height": 768},
     {"name": "7:5 landscape 1120x800", "width": 1120, "height": 800},
-    {"name": "4:3 landscape 1152x896", "width": 1152, "height": 896},
-    {"name": "3:2 landscape 1216x832", "width": 1216, "height": 832},
+    {"name": "3:2 wide landscape 1344x896", "width": 1344, "height": 896},
+    {"name": "8:5 wide landscape 1280x800", "width": 1280, "height": 800},
     {"name": "16:9 wide landscape 1344x768", "width": 1344, "height": 768},
     {"name": "2:1 panorama 1536x768", "width": 1536, "height": 768},
-    {"name": "21:9 ultra-wide 1536x640", "width": 1536, "height": 640}
+    {"name": "21:9 ultra-wide 1344x576", "width": 1344, "height": 576},
+    {"name": "12:5 ultra-wide 1536x640", "width": 1536, "height": 640}
 ]
 
 HELP_MESSAGE = """
@@ -93,8 +97,8 @@ class FRED_AutoCropImage_Native_Ratio:
                 "include_prescale_if_resize": ("BOOLEAN", {"default": False}),
                 "multiple_of": (["1", "2", "4", "8", "16", "32", "64"], {"default": "1"}),
                 "preview_mask_color_intensity": ("FLOAT", {"default": 0.4, "min": 0.1, "max": 1.0, "step": 0.1}),
-                # "preview_mask_color": ("COLOR", {"default": "#503555", "widgetType": "MTB_COLOR"},),
-                "preview_mask_color": ("COLOR", {"default": "#503555", "widgetType": "FRED_COLOR"},),
+                # "preview_mask_color": ("COLOR", {"default": "#503555", "widgetType": "FRED_COLOR"},),
+                "preview_mask_color": ("COLOR", {"default": "#503555"}),
             },
             "optional": {
                 "mask_optional": ("MASK",),

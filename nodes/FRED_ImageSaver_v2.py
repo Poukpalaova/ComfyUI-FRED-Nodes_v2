@@ -311,7 +311,8 @@ def _pick_for_index(value: Any, idx: int) -> Any:
 
 class FRED_ImageSaver_v2:
     INPUT_IS_LIST = True
-    OUTPUT_IS_LIST = (False, False, False)
+    # OUTPUT_IS_LIST = (False, False, False)
+    OUTPUT_IS_LIST = (False, True, False)
 
     @classmethod
     def INPUT_TYPES(cls):
@@ -710,7 +711,8 @@ class FRED_ImageSaver_v2:
 
                 saved_paths.append(full)
 
-        return (grid_tensor, saved_paths[-1] if saved_paths else "", HELP_MESSAGE)
+        # return (grid_tensor, saved_paths[-1] if saved_paths else "", HELP_MESSAGE)
+        return (grid_tensor, saved_paths if saved_paths else "", HELP_MESSAGE)
 
     # Helper methods
 
