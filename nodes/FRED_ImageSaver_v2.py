@@ -352,6 +352,7 @@ class FRED_ImageSaver_v2:
                 "sampler_name": ("STRING", {"default": "euler", "multiline": False, "tooltip": "record-only parameter (sampler name)"}),
                 "scheduler_name": ("STRING", {"default": "simple", "multiline": False, "tooltip": "record-only parameter (scheduler name)"}),
                 "model_name": ("STRING", {"default": "flux", "tooltip": "record-only parameter (model name)"}),
+                "add_counter": ("BOOLEAN", {"default": True, "tooltip": "Add counter suffix (_00001) to filenames. If False, uses exact name or adds index for batches."}),
             },
             "hidden": {
                 "prompt": "PROMPT",
@@ -435,6 +436,7 @@ class FRED_ImageSaver_v2:
         grid_row_max,
         grid_extension,
         grid_quality_jpeg_or_webp,
+        add_counter,
         prompt=None,
         extra_pnginfo=None,
         unique_id=None,
@@ -444,8 +446,8 @@ class FRED_ImageSaver_v2:
         # Coerce scalar options
         save_single_image = bool(self.scalar(save_single_image))
         use_parameters_input = bool(self.scalar(use_parameters_input))
-        filename = self.scalar(filename)
-        path = self.scalar(path)
+        # filename = self.scalar(filename)
+        # path = self.scalar(path)
         time_format = self.scalar(time_format)
         extension = self.scalar(extension)
         optimize_png = bool(self.scalar(optimize_png))
@@ -460,6 +462,7 @@ class FRED_ImageSaver_v2:
         grid_column_max = self.to_int(grid_column_max, 5)
         grid_row_max = self.to_int(grid_row_max, 1)
         grid_quality_jpeg_or_webp = self.to_int(grid_quality_jpeg_or_webp, 100)
+        add_counter = bool(self.scalar(add_counter))
 
         # Normalize images → list of tensors HWC float[0..1]
         imglist: List[torch.Tensor] = []
@@ -597,15 +600,35 @@ class FRED_ImageSaver_v2:
             base_grid = self.expand_tokens(grid_filename.strip() or "grid", meta_grid, time_format)
             base_grid = self.sanitize_component(base_grid) or "grid"
 
-            savedir, filename_base, counter, subfolder, info = folder_paths.get_save_image_path(
-                base_grid, outdir_grid, grid_img.width, grid_img.height
-            )
-            fname = f"{filename_base}_{counter:05d}"
-            full = os.path.join(savedir, f"{fname}.{grid_extension}")
-            while os.path.exists(full):
-                counter += 1
+            # savedir, filename_base, counter, subfolder, info = folder_paths.get_save_image_path(
+                # base_grid, outdir_grid, grid_img.width, grid_img.height
+            # )
+            # fname = f"{filename_base}_{counter:05d}"
+            # full = os.path.join(savedir, f"{fname}.{grid_extension}")
+            # while os.path.exists(full):
+                # counter += 1
+                # fname = f"{filename_base}_{counter:05d}"
+                # full = os.path.join(savedir, f"{fname}.{grid_extension}")
+            if add_counter:
+                # Avec compteur (comportement par défaut)
+                savedir, filename_base, counter, subfolder, info = folder_paths.get_save_image_path(
+                    base_grid, outdir_grid, grid_img.width, grid_img.height
+                )
                 fname = f"{filename_base}_{counter:05d}"
                 full = os.path.join(savedir, f"{fname}.{grid_extension}")
+                
+                while os.path.exists(full):
+                    counter += 1
+                    fname = f"{filename_base}_{counter:05d}"
+                    full = os.path.join(savedir, f"{fname}.{grid_extension}")
+            else:
+                # Sans compteur - nom exact
+                savedir = outdir_grid
+                fname = base_grid
+                full = os.path.join(savedir, f"{fname}.{grid_extension}")
+                
+                if os.path.exists(full):
+                    print(f"[FRED_ImageSaver_v2] Grid: Overwriting existing file: {full}")
 
             # Prepare PNG info for grid
             pnginfo_grid = None
@@ -650,25 +673,129 @@ class FRED_ImageSaver_v2:
 
             saved_paths.append(full)
 
+        # # SAVE SINGLE IMAGES (with per-index mapping)
+        # if save_single_image:
+            # filename_list = filename if isinstance(filename, (list, tuple)) else [filename]
+            # filename_i = filename_list[idx % len(filename_list)]
+            # base_template = filename_i.strip() or "image"
+            # base = self.expand_tokens(base_template, meta_i, time_format)
+            # # base_template = filename.strip() or "image"
+            # output_dir = folder_paths.get_output_directory()  # L:\ComfyUI\output
+            # print(f"FINAL CHECK - path={repr(path)} | type={type(path)} | is_list={isinstance(path, (list, tuple))}")
+            # # Force liste si scalaire (split par | ou ,)
+            # if isinstance(path, str):
+                # path_list = [p.strip() for p in path.split('|')] or [path]  # "d1|d2|d3" → liste
+            # else:
+                # path_list = path
+            # print(f"Forced path_list={repr(path_list[:3])}...")  # Debug
+            # for idx, img_pil in enumerate(imgs_pil):
+                # meta_i = meta_for_index(idx)
+                # path_i_raw = path[idx % len(path)] if isinstance(path, (list, tuple)) and len(path) > 0 else path
+                
+                # savedir = os.path.join(output_dir, path_i_raw)
+                # os.makedirs(savedir, exist_ok=True)
+                
+                # base = self.expand_tokens(base_template, meta_i, time_format)
+                # base = self.sanitize_component(base) or "image"
+                
+                # # Reste identique (counter + save)
+                # if add_counter:
+                    # counter = 0
+                    # fname = f"{base}_{counter:05d}"
+                    # full = os.path.join(savedir, f"{fname}.{extension}")
+                    # while os.path.exists(full):
+                        # counter += 1
+                        # fname = f"{base}_{counter:05d}"
+                        # full = os.path.join(savedir, f"{fname}.{extension}")
+                # else:
+                    # fname = f"{base}_{idx:03d}" if len(imgs_pil) > 1 else base
+                    # full = os.path.join(savedir, f"{fname}.{extension}")
+                    # if os.path.exists(full):
+                        # print(f"FRED_ImageSaver_v2 Single Overwriting existing file {full}")
+
+                # # PNG info + save (INCHANGÉ)
+                # pnginfo = None
+                # if extension.lower() == "png" and embed_workflow_in_png:
+                    # pnginfo = self.embed_pnginfo(meta_i, extra_pnginfo, prompt, embed_workflow_in_png)
+
+                # try:
+                    # if extension.lower() == "png":
+                        # params = {"optimize": bool(optimize_png)}
+                        # if pnginfo is not None:
+                            # params["pnginfo"] = pnginfo
+                        # if img_pil.mode not in ("RGB", "RGBA", "L"):
+                            # img_pil = img_pil.convert("RGB")
+                        # img_pil.save(full, "PNG", **params)
+                    # elif extension.lower() == "jpeg":
+                        # img_pil.save(full, format="JPEG", quality=int(quality_jpeg_or_webp), optimize=True)
+                    # elif extension.lower() == "webp":
+                        # if lossless_webp:
+                            # img_pil.save(full, format="WEBP", lossless=True)
+                        # else:
+                            # img_pil.save(full, format="WEBP", quality=int(quality_jpeg_or_webp))
+                    # else:
+                        # img_pil.save(full)
+                # except Exception as e:
+                    # print(f"FRED_ImageSaver_v2: Save error {e}. Fallback to simple save.")
+                    # try:
+                        # img_pil.save(full)
+                    # except Exception as e2:
+                        # print(f"FRED_ImageSaver_v2: Fatal save error {e2}")
+
+                # if save_workflow_as_json:
+                    # try:
+                        # sidecar = os.path.join(savedir, f"{fname}.json")
+                        # wf = self.extract_workflow(extra_pnginfo, prompt)
+                        # if wf is None:
+                            # print("FRED_ImageSaver_v2: No workflow found in extra_pnginfo, skipping sidecar.")
+                        # else:
+                            # with open(sidecar, "w", encoding="utf-8") as f:
+                                # json.dump(wf, f, ensure_ascii=False, indent=2)
+                    # except Exception as e:
+                        # print(f"FRED_ImageSaver_v2: Could not write JSON sidecar {e}")
+
+                # saved_paths.append(full)
+
+        # # return (grid_tensor, saved_paths[-1] if saved_paths else "", HELP_MESSAGE)
+        # return (grid_tensor, saved_paths if saved_paths else "", HELP_MESSAGE)
         # SAVE SINGLE IMAGES (with per-index mapping)
         if save_single_image:
-            outdir = self.ensure_outdir(path, base_meta_grid, time_format)
-            base_template = filename.strip() or "image"
-
+            # base_template = filename.strip() or "image"
+            output_dir = folder_paths.get_output_directory()  # L:\ComfyUI\output
+            print(f"FINAL CHECK - path={repr(path)} | type={type(path)} | is_list={isinstance(path, (list, tuple))}")
+            # Force liste si scalaire (split par | ou ,)
+            if isinstance(path, str):
+                path_list = [p.strip() for p in path.split('|')] or [path]  # "d1|d2|d3" â†’ liste
+            else:
+                path_list = path
+            print(f"Forced path_list={repr(path_list[:3])}...")  # Debug
             for idx, img_pil in enumerate(imgs_pil):
                 meta_i = meta_for_index(idx)
+                path_i_raw = path[idx % len(path)] if isinstance(path, (list, tuple)) and len(path) > 0 else path
+                
+                savedir = os.path.join(output_dir, path_i_raw)
+                os.makedirs(savedir, exist_ok=True)
+                filename_list = filename if isinstance(filename, list) else [filename]
+                filename_i = filename_list[idx % len(filename_list)]
+                base_template = filename_i.strip() or "image"
                 base = self.expand_tokens(base_template, meta_i, time_format)
-                base = self.sanitize_component(base) or "image"
-
-                savedir, filename_base, counter, subfolder, info = folder_paths.get_save_image_path(base, outdir)
-                fname = f"{filename_base}_{counter:05d}"
-                full = os.path.join(savedir, f"{fname}.{extension}")
-                while os.path.exists(full):
-                    counter += 1
-                    fname = f"{filename_base}_{counter:05d}"
+                
+                # Reste identique (counter + save)
+                if add_counter:
+                    counter = 0
+                    fname = f"{base}_{counter:05d}"
                     full = os.path.join(savedir, f"{fname}.{extension}")
+                    while os.path.exists(full):
+                        counter += 1
+                        fname = f"{base}_{counter:05d}"
+                        full = os.path.join(savedir, f"{fname}.{extension}")
+                else:
+                    fname = base  # Nom EXACT, SANS index
+                    full = os.path.join(savedir, f"{fname}.{extension}")
+                    if os.path.exists(full):
+                        print(f"FRED_ImageSaver_v2 Single Overwriting {full}")
 
-                # Prepare PNG info for single image
+                # PNG info + save (INCHANGÃ‰)
                 pnginfo = None
                 if extension.lower() == "png" and embed_workflow_in_png:
                     pnginfo = self.embed_pnginfo(meta_i, extra_pnginfo, prompt, embed_workflow_in_png)
