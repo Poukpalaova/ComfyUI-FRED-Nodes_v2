@@ -97,8 +97,8 @@ class FRED_AutoCropImage_Native_Ratio:
                 "include_prescale_if_resize": ("BOOLEAN", {"default": False}),
                 "multiple_of": (["1", "2", "4", "8", "16", "32", "64"], {"default": "1"}),
                 "preview_mask_color_intensity": ("FLOAT", {"default": 0.4, "min": 0.1, "max": 1.0, "step": 0.1}),
-                # "preview_mask_color": ("COLOR", {"default": "#503555", "widgetType": "FRED_COLOR"},),
-                "preview_mask_color": ("COLOR", {"default": "#503555"}),
+                # "preview_mask_color": ("COLOR", {"default": "#503555"}),
+                "preview_mask_color": ("STRING", {"default": "#503555", "widgetType": "COLOR"},),
             },
             "optional": {
                 "mask_optional": ("MASK",),
@@ -116,8 +116,9 @@ class FRED_AutoCropImage_Native_Ratio:
     def run(self, image, Precrop_from_input_mask, aspect_ratio, mask_preserve,
             custom_width, custom_height, crop_from_center, crop_x_in_Percent, crop_y_in_Percent,
             resize_image, resize_mode_if_upscale, resize_mode_if_downscale,
-            prescale_factor, include_prescale_if_resize,
-            preview_mask_color_intensity, preview_mask_color, multiple_of,
+            prescale_factor, include_prescale_if_resize, multiple_of,
+            preview_mask_color_intensity, 
+            preview_mask_color,
             mask_optional=None):
 
         _, original_height, original_width, _ = image.shape

@@ -79,8 +79,18 @@ class FRED_AutoLoraLoader_5_stacks_simple:
         for i in range(1, 6):
             inputs["optional"][f"switch_{i}"] = (["auto", "off", "on"], {"default": "off"})
             inputs["optional"][f"lora_name_{i}"] = (loras, {"default": "None"})
-            inputs["optional"][f"lora_weight_{i}"] = ("FLOAT", {"default": 1.0, "min": -10.0, "max": 10.0, "step": 0.01})
-            inputs["optional"][f"search_word_{i}"] = ("STRING", {"default": ""})
+            inputs["optional"][f"lora_weight_{i}"] = ("FLOAT", {"default": 1.0, "min": -20.0, "max": 20.0, "step": 0.01})
+            inputs["optional"][f"search_word_{i}"] = (
+                "STRING",
+                {
+                    "default": "",
+                    "tooltip": (
+                        "Keywords separated by ';' or ','. "
+                        "Used only when the switch is set to 'auto'. "
+                        "Example: 'portrait;cinematic;closeup'"
+                    ),
+                },
+            )
         return inputs
 
     RETURN_TYPES = ("MODEL", "CLIP",
@@ -159,9 +169,16 @@ class FRED_AutoLoraLoader_5_stacks_simple:
             if switch == "on":
                 active = True
             elif switch == "auto":
-                kws = [w.strip().lower() for w in str(search_word or "").split(",") if w.strip()]
-                for w in kws:
-                    if w and w in text_prompt_lc:
+                raw_keywords = str(search_word or "").replace(";", ",")
+
+                kws = [
+                    keyword.strip().lower()
+                    for keyword in raw_keywords.split(",")
+                    if keyword.strip()
+                ]
+
+                for keyword in kws:
+                    if keyword and keyword in text_prompt_lc:
                         active = True
                         break
 

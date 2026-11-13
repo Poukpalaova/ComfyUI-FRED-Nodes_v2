@@ -58,7 +58,8 @@ class FRED_AutoImageTile_from_Mask:
                 "overlap_x": ("INT", { "default": 56, "min": 0, "max": MAX_RESOLUTION//2, "step": 1 }),
                 "overlap_y": ("INT", { "default": 56, "min": 0, "max": MAX_RESOLUTION//2, "step": 1 }),
                 # "preview_bbox_color": ("COLOR", {"default": "#FFC800", "widgetType": "FRED_COLOR"},),
-                "preview_bbox_color": ("COLOR", {"default": "#FFC800"}),
+                # "preview_bbox_color": ("COLOR", {"default": "#FFC800"}),
+                "preview_bbox_color": ("STRING", {"default": "#FFC800", "widgetType": "COLOR"},),
             },
             "optional": {
                 "MASK": ("MASK",),

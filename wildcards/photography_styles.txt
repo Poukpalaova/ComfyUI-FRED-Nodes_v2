@@ -1,0 +1,735 @@
+# Photography and photorealistic styles for Florence-2 prompt replacement
+# Multi-word phrases first (longer entries), then single words
+# Lines starting with # are ignored
+# Order matters: longer/more specific phrases before shorter ones
+
+# Photography types
+photorealistic illustration
+photorealistic rendering
+photorealistic digital art
+hyperrealistic painting
+hyperrealistic illustration
+photorealistic portrait
+photorealistic landscape
+photorealistic still life
+photorealistic architecture
+photorealistic interior
+photorealistic exterior
+photorealistic product
+photorealistic food
+photorealistic fashion
+photorealistic jewelry
+photorealistic watch
+photorealistic car
+photorealistic vehicle
+photorealistic animal
+photorealistic wildlife
+photorealistic macro
+photorealistic micro
+photorealistic scientific
+photorealistic medical
+photorealistic technical
+photorealistic industrial
+photorealistic commercial
+photorealistic advertising
+photorealistic editorial
+photorealistic documentary
+photorealistic journalistic
+photorealistic street
+photorealistic urban
+photorealistic rural
+photorealistic nature
+photorealistic seascape
+photorealistic aerial
+photorealistic satellite
+photorealistic drone
+photorealistic underwater
+photorealistic space
+photorealistic astronomical
+photorealistic microscopic
+photorealistic telescopic
+photorealistic x-ray
+photorealistic infrared
+photorealistic thermal
+photorealistic night
+photorealistic day
+photorealistic golden hour
+photorealistic blue hour
+photorealistic sunrise
+photorealistic sunset
+photorealistic noon
+photorealistic midnight
+photorealistic dawn
+photorealistic dusk
+photorealistic twilight
+photorealistic overcast
+photorealistic cloudy
+photorealistic sunny
+photorealistic rainy
+photorealistic snowy
+photorealistic foggy
+photorealistic misty
+photorealistic stormy
+photorealistic dramatic
+photorealistic moody
+photorealistic atmospheric
+photorealistic cinematic
+photorealistic film noir
+photorealistic vintage
+photorealistic retro
+photorealistic modern
+photorealistic contemporary
+photorealistic classic
+photorealistic timeless
+photorealistic elegant
+photorealistic sophisticated
+photorealistic luxurious
+photorealistic premium
+photorealistic high-end
+photorealistic professional
+photorealistic studio
+photorealistic outdoor
+photorealistic indoor
+photorealistic environmental
+photorealistic contextual
+photorealistic situational
+photorealistic lifestyle
+photorealistic candid
+photorealistic posed
+photorealistic formal
+photorealistic informal
+photorealistic casual
+photorealistic relaxed
+photorealistic natural
+photorealistic authentic
+photorealistic genuine
+photorealistic realistic
+photorealistic true-to-life
+photorealistic lifelike
+photorealistic believable
+photorealistic convincing
+photorealistic persuasive
+photorealistic compelling
+photorealistic striking
+photorealistic stunning
+photorealistic breathtaking
+photorealistic spectacular
+photorealistic magnificent
+photorealistic gorgeous
+photorealistic beautiful
+photorealistic attractive
+photorealistic appealing
+photorealistic pleasing
+photorealistic satisfying
+photorealistic harmonious
+photorealistic balanced
+photorealistic composed
+photorealistic well-framed
+photorealistic well-lit
+photorealistic well-exposed
+photorealistic well-focused
+photorealistic sharp
+photorealistic crisp
+photorealistic clear
+photorealistic detailed
+photorealistic high-resolution
+photorealistic high-definition
+photorealistic ultra-high-definition
+photorealistic 4k
+photorealistic 8k
+photorealistic 16k
+photorealistic ultra-detailed
+photorealistic ultra-realistic
+photorealistic ultra-sharp
+photorealistic ultra-crisp
+photorealistic ultra-clear
+photorealistic ultra-focused
+photorealistic ultra-precise
+photorealistic ultra-accurate
+photorealistic ultra-faithful
+photorealistic ultra-true
+photorealistic ultra-authentic
+photorealistic ultra-genuine
+photorealistic ultra-natural
+photorealistic ultra-lifelike
+photorealistic ultra-believable
+photorealistic ultra-convincing
+photorealistic ultra-persuasive
+photorealistic ultra-compelling
+photorealistic ultra-striking
+photorealistic ultra-stunning
+photorealistic ultra-breathtaking
+photorealistic ultra-spectacular
+photorealistic ultra-magnificent
+photorealistic ultra-gorgeous
+photorealistic ultra-beautiful
+photorealistic ultra-attractive
+photorealistic ultra-appealing
+photorealistic ultra-pleasing
+photorealistic ultra-satisfying
+photorealistic ultra-harmonious
+photorealistic ultra-balanced
+photorealistic ultra-composed
+
+# Camera and lens types
+dslr photograph
+dslr photo
+mirrorless photograph
+mirrorless photo
+full-frame photograph
+full-frame photo
+crop-sensor photograph
+crop-sensor photo
+medium-format photograph
+medium-format photo
+large-format photograph
+large-format photo
+35mm photograph
+35mm photo
+50mm photograph
+50mm photo
+85mm photograph
+85mm photo
+100mm photograph
+100mm photo
+135mm photograph
+135mm photo
+200mm photograph
+200mm photo
+300mm photograph
+300mm photo
+400mm photograph
+400mm photo
+500mm photograph
+500mm photo
+600mm photograph
+600mm photo
+wide-angle photograph
+wide-angle photo
+ultra-wide-angle photograph
+ultra-wide-angle photo
+fisheye photograph
+fisheye photo
+telephoto photograph
+telephoto photo
+super-telephoto photograph
+super-telephoto photo
+macro photograph
+macro photo
+close-up photograph
+close-up photo
+extreme-close-up photograph
+extreme-close-up photo
+portrait photograph
+portrait photo
+landscape photograph
+landscape photo
+street photograph
+street photo
+documentary photograph
+documentary photo
+journalistic photograph
+journalistic photo
+editorial photograph
+editorial photo
+commercial photograph
+commercial photo
+advertising photograph
+advertising photo
+fashion photograph
+fashion photo
+product photograph
+product photo
+food photograph
+food photo
+architecture photograph
+architecture photo
+interior photograph
+interior photo
+exterior photograph
+exterior photo
+real-estate photograph
+real-estate photo
+automotive photograph
+automotive photo
+wildlife photograph
+wildlife photo
+sports photograph
+sports photo
+action photograph
+action photo
+event photograph
+event photo
+wedding photograph
+wedding photo
+family photograph
+family photo
+travel photograph
+travel photo
+nature photograph
+nature photo
+seascape photograph
+seascape photo
+aerial photograph
+aerial photo
+satellite photograph
+satellite photo
+drone photograph
+drone photo
+underwater photograph
+underwater photo
+space photograph
+space photo
+astronomical photograph
+astronomical photo
+microscopic photograph
+microscopic photo
+telescopic photograph
+telescopic photo
+x-ray photograph
+x-ray photo
+infrared photograph
+infrared photo
+thermal photograph
+thermal photo
+night photograph
+night photo
+day photograph
+day photo
+golden-hour photograph
+golden-hour photo
+blue-hour photograph
+blue-hour photo
+sunrise photograph
+sunrise photo
+sunset photograph
+sunset photo
+noon photograph
+noon photo
+midnight photograph
+midnight photo
+dawn photograph
+dawn photo
+dusk photograph
+dusk photo
+twilight photograph
+twilight photo
+overcast photograph
+overcast photo
+cloudy photograph
+cloudy photo
+sunny photograph
+sunny photo
+rainy photograph
+rainy photo
+snowy photograph
+snowy photo
+foggy photograph
+foggy photo
+misty photograph
+misty photo
+stormy photograph
+stormy photo
+dramatic photograph
+dramatic photo
+moody photograph
+moody photo
+atmospheric photograph
+atmospheric photo
+cinematic photograph
+cinematic photo
+film-noir photograph
+film-noir photo
+vintage photograph
+vintage photo
+retro photograph
+retro photo
+modern photograph
+modern photo
+contemporary photograph
+contemporary photo
+classic photograph
+classic photo
+timeless photograph
+timeless photo
+elegant photograph
+elegant photo
+sophisticated photograph
+sophisticated photo
+luxurious photograph
+luxurious photo
+premium photograph
+premium photo
+high-end photograph
+high-end photo
+professional photograph
+professional photo
+studio photograph
+studio photo
+outdoor photograph
+outdoor photo
+indoor photograph
+indoor photo
+environmental photograph
+environmental photo
+contextual photograph
+contextual photo
+situational photograph
+situational photo
+lifestyle photograph
+lifestyle photo
+candid photograph
+candid photo
+posed photograph
+posed photo
+formal photograph
+formal photo
+informal photograph
+informal photo
+casual photograph
+casual photo
+relaxed photograph
+relaxed photo
+natural photograph
+natural photo
+authentic photograph
+authentic photo
+genuine photograph
+genuine photo
+realistic photograph
+realistic photo
+true-to-life photograph
+true-to-life photo
+lifelike photograph
+lifelike photo
+believable photograph
+believable photo
+convincing photograph
+convincing photo
+persuasive photograph
+persuasive photo
+compelling photograph
+compelling photo
+striking photograph
+striking photo
+stunning photograph
+stunning photo
+breathtaking photograph
+breathtaking photo
+spectacular photograph
+spectacular photo
+magnificent photograph
+magnificent photo
+gorgeous photograph
+gorgeous photo
+beautiful photograph
+beautiful photo
+attractive photograph
+attractive photo
+appealing photograph
+appealing photo
+pleasing photograph
+pleasing photo
+satisfying photograph
+satisfying photo
+harmonious photograph
+harmonious photo
+balanced photograph
+balanced photo
+composed photograph
+composed photo
+well-framed photograph
+well-framed photo
+well-lit photograph
+well-lit photo
+well-exposed photograph
+well-exposed photo
+well-focused photograph
+well-focused photo
+sharp photograph
+sharp photo
+crisp photograph
+crisp photo
+clear photograph
+clear photo
+detailed photograph
+detailed photo
+high-resolution photograph
+high-resolution photo
+high-definition photograph
+high-definition photo
+ultra-high-definition photograph
+ultra-high-definition photo
+4k photograph
+4k photo
+8k photograph
+8k photo
+16k photograph
+16k photo
+ultra-detailed photograph
+ultra-detailed photo
+ultra-realistic photograph
+ultra-realistic photo
+ultra-sharp photograph
+ultra-sharp photo
+ultra-crisp photograph
+ultra-crisp photo
+ultra-clear photograph
+ultra-clear photo
+ultra-focused photograph
+ultra-focused photo
+ultra-precise photograph
+ultra-precise photo
+ultra-accurate photograph
+ultra-accurate photo
+ultra-faithful photograph
+ultra-faithful photo
+ultra-true photograph
+ultra-true photo
+ultra-authentic photograph
+ultra-authentic photo
+ultra-genuine photograph
+ultra-genuine photo
+ultra-natural photograph
+ultra-natural photo
+ultra-lifelike photograph
+ultra-lifelike photo
+ultra-believable photograph
+ultra-believable photo
+ultra-convincing photograph
+ultra-convincing photo
+ultra-persuasive photograph
+ultra-persuasive photo
+ultra-compelling photograph
+ultra-compelling photo
+ultra-striking photograph
+ultra-striking photo
+ultra-stunning photograph
+ultra-stunning photo
+ultra-breathtaking photograph
+ultra-breathtaking photo
+ultra-spectacular photograph
+ultra-spectacular photo
+ultra-magnificent photograph
+ultra-magnificent photo
+ultra-gorgeous photograph
+ultra-gorgeous photo
+ultra-beautiful photograph
+ultra-beautiful photo
+ultra-attractive photograph
+ultra-attractive photo
+ultra-appealing photograph
+ultra-appealing photo
+ultra-pleasing photograph
+ultra-pleasing photo
+ultra-satisfying photograph
+ultra-satisfying photo
+ultra-harmonious photograph
+ultra-harmonious photo
+ultra-balanced photograph
+ultra-balanced photo
+ultra-composed photograph
+ultra-composed photo
+
+# Film and sensor types
+film photograph
+film photo
+digital photograph
+digital photo
+color photograph
+color photo
+black-and-white photograph
+black-and-white photo
+monochrome photograph
+monochrome photo
+sepia photograph
+sepia photo
+infrared photograph
+infrared photo
+ultraviolet photograph
+ultraviolet photo
+polaroid photograph
+polaroid photo
+instant photograph
+instant photo
+35mm film photograph
+35mm film photo
+medium-format film photograph
+medium-format film photo
+large-format film photograph
+large-format film photo
+slide film photograph
+slide film photo
+negative film photograph
+negative film photo
+color-negative photograph
+color-negative photo
+black-and-white-negative photograph
+black-and-white-negative photo
+color-slide photograph
+color-slide photo
+black-and-white-slide photograph
+black-and-white-slide photo
+chromogenic photograph
+chromogenic photo
+silver-halide photograph
+silver-halide photo
+gelatin-silver photograph
+gelatin-silver photo
+platinum-palladium photograph
+platinum-palladium photo
+cyanotype photograph
+cyanotype photo
+van-dyke photograph
+van-dyke photo
+kallitype photograph
+kallitype photo
+argentotype photograph
+argentotype photo
+lithograph photograph
+lithograph photo
+giclee photograph
+giclee photo
+archival photograph
+archival photo
+museum-quality photograph
+museum-quality photo
+gallery-quality photograph
+gallery-quality photo
+exhibition-quality photograph
+exhibition-quality photo
+fine-art photograph
+fine-art photo
+documentary photograph
+documentary photo
+journalistic photograph
+journalistic photo
+editorial photograph
+editorial photo
+commercial photograph
+commercial photo
+advertising photograph
+advertising photo
+fashion photograph
+fashion photo
+portrait photograph
+portrait photo
+landscape photograph
+landscape photo
+street photograph
+street photo
+nature photograph
+nature photo
+wildlife photograph
+wildlife photo
+sports photograph
+sports photo
+action photograph
+action photo
+event photograph
+event photo
+wedding photograph
+wedding photo
+family photograph
+family photo
+travel photograph
+travel photo
+architecture photograph
+architecture photo
+interior photograph
+interior photo
+exterior photograph
+exterior photo
+real-estate photograph
+real-estate photo
+automotive photograph
+automotive photo
+product photograph
+product photo
+food photograph
+food photo
+still-life photograph
+still-life photo
+
+# Single words (must come last to avoid partial replacements)
+photo
+photograph
+photographic
+photorealistic
+hyperrealistic
+realistic
+naturalistic
+lifelike
+believable
+convincing
+persuasive
+compelling
+striking
+stunning
+breathtaking
+spectacular
+magnificent
+gorgeous
+beautiful
+attractive
+appealing
+pleasing
+satisfying
+harmonious
+balanced
+composed
+framed
+lit
+exposed
+focused
+sharp
+crisp
+clear
+detailed
+resolution
+definition
+quality
+professional
+commercial
+editorial
+documentary
+journalistic
+artistic
+creative
+aesthetic
+visual
+optical
+lens
+camera
+sensor
+film
+digital
+analog
+vintage
+retro
+modern
+contemporary
+classic
+timeless
+elegant
+sophisticated
+luxurious
+premium
+high-end
+ultra
+super
+mega
+giga
+tera
+peta
+exa
+zetta
+yotta
+kilo
+mega
+giga
+tera
+peta
+exa
+zetta
+yotta

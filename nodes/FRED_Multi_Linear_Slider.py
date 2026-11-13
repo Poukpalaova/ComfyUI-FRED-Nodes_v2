@@ -12,29 +12,29 @@ class FRED_Multi_Linear_Slider:
                     "default": 50.0, 
                     "min": 0.0, 
                     "max": 100.0, 
-                    "step": 0.1, 
+                    "step": 0.01, 
                     "tooltip": "Master slider (0–100)."
                 }),
 
                 # Boundary of value 1
-                "Boundary_1_MIN": ("FLOAT", {"default": 0.0, "min": -999999, "max": 999999, "step": 0.1}),
-                "Boundary_1_MAX": ("FLOAT", {"default": 1.0, "min": -999999, "max": 999999, "step": 0.1}),
+                "Boundary_1_MIN": ("FLOAT", {"default": 0.00, "min": -999999, "max": 999999, "step": 0.01}),
+                "Boundary_1_MAX": ("FLOAT", {"default": 1.00, "min": -999999, "max": 999999, "step": 0.01}),
 
                 # Boundary of value 2
-                "Boundary_2_MIN": ("FLOAT", {"default": 0.0, "min": -999999, "max": 999999, "step": 0.1}),
-                "Boundary_2_MAX": ("FLOAT", {"default": 1.0, "min": -999999, "max": 999999, "step": 0.1}),
+                "Boundary_2_MIN": ("FLOAT", {"default": 0.00, "min": -999999, "max": 999999, "step": 0.01}),
+                "Boundary_2_MAX": ("FLOAT", {"default": 1.00, "min": -999999, "max": 999999, "step": 0.01}),
                 
                 # Boundary of value 3
-                "Boundary_3_MIN": ("FLOAT", {"default": 0.0, "min": -999999, "max": 999999, "step": 0.1}),
-                "Boundary_3_MAX": ("FLOAT", {"default": 1.0, "min": -999999, "max": 999999, "step": 0.1}),
+                "Boundary_3_MIN": ("FLOAT", {"default": 0.00, "min": -999999, "max": 999999, "step": 0.01}),
+                "Boundary_3_MAX": ("FLOAT", {"default": 1.00, "min": -999999, "max": 999999, "step": 0.01}),
                 
                 # Boundary of value 4
-                "Boundary_4_MIN": ("FLOAT", {"default": 0.0, "min": -999999, "max": 999999, "step": 0.1}),
-                "Boundary_4_MAX": ("FLOAT", {"default": 1.0, "min": -999999, "max": 999999, "step": 0.1}),
+                "Boundary_4_MIN": ("FLOAT", {"default": 0.00, "min": -999999, "max": 999999, "step": 0.01}),
+                "Boundary_4_MAX": ("FLOAT", {"default": 1.00, "min": -999999, "max": 999999, "step": 0.01}),
                 
                 # Boundary of value 5
-                "Boundary_5_MIN": ("FLOAT", {"default": 0.0, "min": -999999, "max": 999999, "step": 0.1}),
-                "Boundary_5_MAX": ("FLOAT", {"default": 1.0, "min": -999999, "max": 999999, "step": 0.1}),
+                "Boundary_5_MIN": ("FLOAT", {"default": 0.00, "min": -999999, "max": 999999, "step": 0.01}),
+                "Boundary_5_MAX": ("FLOAT", {"default": 1.00, "min": -999999, "max": 999999, "step": 0.01}),
             }
         }
 

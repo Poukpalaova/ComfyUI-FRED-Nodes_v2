@@ -497,7 +497,7 @@ class FRED_ImageSaver_v2:
         if len(imglist) == 0:
             return (torch.zeros(1, 8, 8, 3), "", HELP_MESSAGE)
 
-        print(f"[DEBUG SAVE] len(imglist) = {len(imglist)}, save_single_image = {save_single_image}")
+        # print(f"[DEBUG SAVE] len(imglist) = {len(imglist)}, save_single_image = {save_single_image}")
 
         # GRID METADATA - Use first element of lists
         parameters_grid = self.scalar(parameters) or ""
@@ -676,7 +676,7 @@ class FRED_ImageSaver_v2:
             saved_paths.append(full)
 
         # SAVE SINGLE IMAGE
-        print(f"[DEBUG] Entering single save: path={repr(path)}, filename={repr(filename)}")
+        # print(f"[DEBUG] Entering single save: path={repr(path)}, filename={repr(filename)}")
         if save_single_image:
             output_dir = folder_paths.get_output_directory()
           # for idx, img_pil in enumerate(imgs_pil):
@@ -706,7 +706,7 @@ class FRED_ImageSaver_v2:
                 # if os.path.exists(full):
                     # print(f"FRED_ImageSaver_v2 Single Overwriting {full}")
             for idx, img_pil in enumerate(imgs_pil):
-                print(f"[DEBUG LOOP] idx={idx}, path={repr(path)}, filename={repr(filename)}")
+                # print(f"[DEBUG LOOP] idx={idx}, path={repr(path)}, filename={repr(filename)}")
                 meta_i = meta_for_index(idx)
 
                 path_list = path if isinstance(path, list) else [path]
@@ -723,7 +723,7 @@ class FRED_ImageSaver_v2:
                     counter = 0
                     fname = f"{base}_{counter:05d}"
                     full = os.path.join(savedir, f"{fname}.{extension}")
-                    print(f"[DEBUG COUNTER] idx={idx}, base='{base}', savedir='{savedir}', first_full='{full}', exists={os.path.exists(full)}")
+                    # print(f"[DEBUG COUNTER] idx={idx}, base='{base}', savedir='{savedir}', first_full='{full}', exists={os.path.exists(full)}")
                     while os.path.exists(full):
                         counter += 1
                         fname = f"{base}_{counter:05d}"
@@ -763,7 +763,7 @@ class FRED_ImageSaver_v2:
                     except Exception as e2:
                         print(f"FRED_ImageSaver_v2: Fatal save error {e2}")
 
-                print(f"[DEBUG] meta_i={meta_i.get('model_name', 'N/A')}, base='{base}', savedir='{savedir}', full='{full}'")
+                # print(f"[DEBUG] meta_i={meta_i.get('model_name', 'N/A')}, base='{base}', savedir='{savedir}', full='{full}'")
 
                 if save_workflow_as_json:
                     try:
@@ -778,7 +778,7 @@ class FRED_ImageSaver_v2:
                         print(f"FRED_ImageSaver_v2: Could not write JSON sidecar {e}")
 
                 saved_paths.append(full)
-                print(f"[DEBUG] Saved: {full}, total saved_paths: {len(saved_paths)}")
+                # print(f"[DEBUG] Saved: {full}, total saved_paths: {len(saved_paths)}")
 
         # return (grid_tensor, saved_paths[-1] if saved_paths else "", HELP_MESSAGE)
         return (grid_tensor, saved_paths if saved_paths else "", HELP_MESSAGE)
@@ -886,7 +886,8 @@ class FRED_ImageSaver_v2:
                 if tok in s:
                     s = s.replace(tok, val)
 
-        s = re.sub(r"[^A-Za-z0-9_/\\.-]", "_", s)
+        # s = re.sub(r"[^A-Za-z0-9_/\\.-]", "_", s)
+        s = re.sub(r"[^A-Za-z0-9 _()_/\\.-]", "_", s)
         return s
 
     def ensure_outdir(self, subdir: str, meta: Dict[str, Any], time_format: str) -> str:

@@ -29,7 +29,9 @@ NODE_MODULES = [
     "FRED_ExecutionTime",
     "FRED_JpegArtifact_Simulator",
 #     "FRED_RestoreFaceWithMask",
-    "FRED_Multi_Linear_Slider"
+    "FRED_Multi_Linear_Slider",
+    "FRED_TextReplaceList",
+    "FRED_TextReplaceList_Dynamic"
 ]
 
 for module_name in NODE_MODULES:

@@ -1,0 +1,556 @@
+# Non-realistic art styles for Florence-2 prompt replacement
+# Order: longest phrases first (4+ words), then 3-word, then 2-word, then single words
+# Lines starting with # are ignored
+# Each section sorted: multi-word phrases first, single words last
+
+# Digital illustration variants (4+ words)
+Anime-style illustration
+cartoon-style illustration
+realistic digital illustration
+fantasy digital illustration
+comic style illustration
+pixel art illustration
+concept art illustration
+matte painting illustration
+stylized digital art
+fantasy illustration
+
+# Digital illustration variants (3 words)
+digital illustration
+vector illustration
+flat illustration
+isometric illustration
+digital painting
+digital art
+
+# Digital illustration variants (2 words)
+pixel art
+retro pixel art
+vector art
+flat design
+
+# Digital illustration variants (single words)
+illustration
+painting
+drawing
+art
+graphic
+artwork
+image
+
+# 3D and rendering (4+ words)
+computer generated imagery
+computer generated image
+unreal engine render
+octane render
+redshift render
+cycles render
+v-ray render
+
+# 3D and rendering (3 words)
+3d rendering
+3d render
+3d illustration
+cgi render
+blender render
+unity render
+
+# 3D and rendering (2 words)
+render
+rendered
+
+# Cartoon and comic styles (4+ words)
+comic style illustration
+comic book style
+cartoon style illustration
+graphic novel style
+western comic style
+japanese comic style
+
+# Cartoon and comic styles (3 words)
+comic style
+cartoon style
+anime style
+manga style
+chibi style
+cel shaded
+cel-shaded
+toon shaded
+
+# Cartoon and comic styles (2 words)
+cartoonish
+comic book
+graphic novel
+
+# Cartoon and comic styles (single words)
+cartoon
+comic
+anime
+manga
+
+# Traditional art media (4+ words)
+watercolor painting
+watercolor illustration
+watercolor style
+oil painting
+oil on canvas
+acrylic painting
+acrylic on canvas
+gouache painting
+gouache illustration
+tempera painting
+fresco painting
+pastel drawing
+pastel painting
+colored pencil drawing
+colored pencil illustration
+charcoal drawing
+charcoal sketch
+ink drawing
+ink illustration
+pen and ink drawing
+marker illustration
+alcohol marker art
+watercolor and ink
+mixed media illustration
+
+# Traditional art media (3 words)
+watercolor
+oil
+acrylic
+gouache
+tempera
+fresco
+pastel
+charcoal
+ink
+marker
+
+# Traditional art media (2 words)
+brushstrokes
+visible brushstrokes
+impasto painting
+palette knife painting
+wet-on-wet painting
+dry brush technique
+alla prima painting
+plein air painting
+tonalist painting
+luminist painting
+baroque painting style
+renaissance painting style
+impressionist painting
+post-impressionist painting
+expressionist painting
+abstract expressionist painting
+cubist painting
+surrealist painting
+art nouveau style
+art deco style
+pop art style
+op art style
+minimalist painting
+naive art style
+folk art painting
+outsider art style
+
+# Traditional art media (single words)
+sketch
+canvas
+portrait
+landscape
+still-life
+
+# Drawing and sketching (4+ words)
+continuous line drawing
+continuous line art
+line drawing
+line art
+pencil sketch
+pencil drawing
+graphite drawing
+technical drawing
+architectural drawing
+figure drawing
+life drawing
+gesture drawing
+contour drawing
+crosshatching drawing
+stippling drawing
+pointillism style
+
+# Drawing and sketching (3 words)
+rough sketch
+thumbnail sketch
+doodle style
+scribble drawing
+
+# Drawing and sketching (2 words)
+sketchy
+doodle
+scribble
+
+# Animation and motion graphics (4+ words)
+animation still
+animated series style
+cartoon network style
+disney style
+pixar style
+dreamworks style
+studio ghibli style
+traditional animation
+2d animation style
+motion graphics style
+animated gif style
+
+# Animation and motion graphics (3 words)
+animated series
+cartoon network
+studio ghibli
+motion graphics
+animated gif
+
+# Animation and motion graphics (2 words)
+traditional
+animated
+animation
+
+# Animation and motion graphics (single words)
+disney
+pixar
+dreamworks
+ghibli
+
+# Pixel and retro (4+ words)
+pixel art illustration
+retro pixel art
+pixel art game style
+retro game art
+sprite art
+tile art
+voxel art
+low poly art
+lowpoly style
+
+# Pixel and retro (3 words)
+pixel art
+retro game
+sprite art
+tile art
+voxel art
+low poly
+
+# Pixel and retro (2 words)
+pixelated
+retro
+game
+sprite
+tile
+voxel
+lowpoly
+
+# Pixel and retro (single words)
+pixel
+retro
+game
+sprite
+tile
+voxel
+poly
+
+# Print and graphic design (4+ words)
+screen print style
+screenprint illustration
+linocut style
+woodcut style
+engraving style
+etching style
+lithograph style
+serigraph style
+poster art
+graphic design style
+infographic style
+material design style
+memphis design style
+
+# Print and graphic design (3 words)
+screen print
+screenprint
+linocut
+woodcut
+engraving
+etching
+lithograph
+serigraph
+graphic design
+infographic
+material design
+memphis design
+
+# Print and graphic design (2 words)
+poster
+graphic
+design
+infographic
+material
+memphis
+
+# Print and graphic design (single words)
+print
+poster
+graphic
+design
+
+# Photography-adjacent but not photos (4+ words)
+tilt-shift photography style
+miniature faking style
+bokeh effect illustration
+long exposure style
+double exposure style
+infrared photography style
+x-ray style illustration
+thermal imaging style
+satellite imagery style
+aerial photography style
+drone photography style
+macro photography style
+microscopic view style
+telescopic view style
+
+# Photography-adjacent but not photos (3 words)
+tilt-shift photography
+miniature faking
+bokeh effect
+long exposure
+double exposure
+infrared photography
+x-ray style
+thermal imaging
+satellite imagery
+aerial photography
+drone photography
+macro photography
+microscopic view
+telescopic view
+
+# Photography-adjacent but not photos (2 words)
+tilt-shift
+miniature
+bokeh
+exposure
+infrared
+thermal
+satellite
+aerial
+drone
+macro
+microscopic
+telescopic
+
+# Photography-adjacent but not photos (single words)
+photography
+miniature
+bokeh
+exposure
+infrared
+thermal
+satellite
+aerial
+drone
+macro
+microscopic
+telescopic
+
+# Art movements and styles (4+ words)
+art nouveau
+art deco
+pop art
+op art
+abstract expressionist
+post-impressionist
+naive art
+folk art
+outsider art
+
+# Art movements and styles (3 words)
+baroque
+renaissance
+impressionist
+expressionist
+cubist
+surrealist
+minimalist
+artistic
+creative
+abstract
+surreal
+fantasy
+scifi
+cyberpunk
+steampunk
+biopunk
+dieselpunk
+atompunk
+solarpunk
+lunarpunk
+hopepunk
+grimdark
+noblebright
+weird
+eldritch
+cosmic
+lovecraftian
+kafkaesque
+orwellian
+huxleyan
+bradburyesque
+asimovian
+heinleinian
+clarkean
+gibsonesque
+sterlingesque
+stephensonian
+leckieesque
+jemisinian
+robinsonesque
+kimstanley
+ursula
+octavia
+nnedi
+nkjemisin
+nalo
+hopkinson
+butler
+le Guin
+leguin
+mckillip
+mckillip
+vandermeer
+jeff
+peter
+peterbeagle
+beagle
+neil
+neilgaiman
+gaiman
+pratchett
+terry
+terrypratchett
+discworld
+discworld
+middle
+middleearth
+tolkien
+tolkien
+narnia
+lewis
+cslewis
+narnia
+wonderland
+carroll
+lewiscarroll
+carroll
+oz
+baum
+frankbaum
+baum
+nevernever
+neverneverland
+barrie
+jbarrie
+barrie
+neverland
+neverland
+wonderland
+wonderland
+wonderland
+wonderland
+wonderland
+wonderland
+
+# Single words (must come absolutely last)
+illustration
+painting
+drawing
+sketch
+render
+animation
+cartoon
+comic
+anime
+manga
+artwork
+art
+graphic
+design
+print
+poster
+canvas
+portrait
+landscape
+still-life
+diorama
+maquette
+sculpture
+statue
+figurine
+doll
+puppet
+mannequin
+model
+miniature
+toy
+plush
+stuffed
+animated
+rendered
+illustrated
+drawn
+painted
+sketched
+digitized
+pixelated
+vectorized
+stylized
+stylised
+artistic
+creative
+abstract
+surreal
+fantasy
+scifi
+cyberpunk
+steampunk
+biopunk
+dieselpunk
+atompunk
+solarpunk
+lunarpunk
+hopepunk
+grimdark
+noblebright
+weird
+eldritch
+cosmic
+lovecraftian
+kafkaesque
+orwellian
+huxleyan
+bradburyesque
+asimovian
+heinleinian
+clarkean
+gibsonesque
+sterlingesque
+stephensonian
+leckieesque
+jemisinian
+robinsonesque
+kimstanley
+ursula
+octavia
+nnedi
+nkjemisin
+nalo
+hopkinson
+butler

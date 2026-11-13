@@ -173,7 +173,8 @@ class FRED_WildcardConcat_Dynamic(ComfyNodeABC):
         except Exception:
             pass
 
-        pfx = (prefix or "").strip()
+        # pfx = (prefix or "").strip()
+        pfx = prefix or ""
 
         try:
             rows = json.loads(rows_json or "[]")
@@ -189,7 +190,8 @@ class FRED_WildcardConcat_Dynamic(ComfyNodeABC):
                 file_name = (row.get("file") or "").strip()
                 chosen    = (row.get("line") or "").strip()
                 weight    = float(row.get("weight") or 1.0)
-                suffix    = str(row.get("suffix") or "").strip()
+                # suffix    = str(row.get("suffix") or "").strip()
+                suffix = str(row.get("suffix") or "")
 
                 if not file_name:
                     continue
@@ -252,7 +254,8 @@ class FRED_WildcardConcat_Dynamic(ComfyNodeABC):
                 file   = (r.get("file") or "").strip()
                 line   = (r.get("line") or "").strip()
                 weight = float(r.get("weight") or 1.0)
-                suffix = str(r.get("suffix") or "")
+                # suffix = str(r.get("suffix") or "")
+                suffix = str(row.get("suffix") or "")
                 is_random = ("random" in line.lower())
                 cleaned.append({
                     "on": on, "file": file,
